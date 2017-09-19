@@ -1,0 +1,149 @@
+@font-face {
+    font-family: 'JF-Flat';
+    src:  url('../assets/fonts/flat-jooza-regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'TypoGraphica';
+    src:  url('../assets/fonts/TypoGraphica_demo.otf') format('opentype');
+}
+html[dir="rtl"] {
+    body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+        font-family: 'JF-Flat'!important;
+    }
+}
+html[dir="ltr"] {
+    html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+        font-family: sans-serif!important;
+    }
+}
+
+.toolbar-title-md{
+    text-align: center!important;
+}
+.text-input {
+    box-shadow: none!important;
+}
+.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner {
+    border-bottom-color: transparent!important;
+    box-shadow: none!important;
+}
+ion-navbar{
+    box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.1)!important;
+    -webkit-box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.1)!important;
+    -o-box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.1)!important;
+    -moz-box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.1)!important;
+    .back-button{
+        color: #20a7f6!important;
+        position: absolute;
+        left: 0px;
+        padding:5px 10px;
+        z-index: 999999;
+
+        ion-icon{
+            font-size:28px;  
+        }
+        .back-button-text{
+            display: none;
+        }
+    }
+}
+
+.action-sheet-container {
+    padding: 0 10px;
+}
+
+ion-action-sheet{
+    .action-sheet-container {
+        padding: 0 10px!important;
+        background-color: transparent!important;
+        .action-sheet-group {
+            margin-bottom: 10px!important;
+            border-radius: 5px!important;
+            background: #f1f1f1!important;
+            overflow: hidden;
+
+            .action-sheet-title{
+                padding: 5px!important;
+                font-size: 18px!important;
+                text-align: center;
+                color: #20a7f6!important;
+                border-bottom: 1px solid #ddd!important;
+                border-radius: 0!important;
+                /*background: #f6bc44;*/
+            }
+            .action-sheet-button{
+                color: #666;
+                font-size: 16px!important;
+                padding: 5px!important;
+                background: transparent!important;
+                border-bottom: 1px solid #ddd!important;
+                direction: rtl;
+                text-align: center!important;
+                min-height: 44px;
+                .button-inner{
+                    justify-content:center!important;
+                    -webkit-justify-content:center!important;
+                    -moz-justify-content:center!important;
+                    .action-sheet-icon{
+                        float: right;
+                        margin-left: 5px;
+                        font-size: 1.2em;
+                        position: absolute;
+                        right: 16px;
+                        margin: 0px;
+                        /*color: #f6bc44;*/
+                    }
+                }
+            }
+
+
+        }
+    }
+
+}
+
+.list-md .item-input.input-has-focus:last-child{
+    border-bottom-color: transparent!important;
+    box-shadow: none!important;
+}
+ion-toast{
+    .toast-message{
+        padding: 8px!important;
+    }
+}
+#ion-diagnostics-toast{
+    top: 5px;
+}
+
+
+
+
+
+html[dir="rtl"] {
+    .toolbar-title,div,a,ion-card-content,ion-card-header,ion-segment-button, .action-sheet-title, .action-sheet-button .button-inner{
+        font-family: JF-Flat!important;
+    }  
+    .toast-container{
+        direction: rtl;
+    }
+}
+
+html[dir="ltr"] {
+    .toolbar-title,div,a,ion-card-content,ion-card-header,ion-segment-button, .action-sheet-title, .action-sheet-button .button-inner{
+        font-family: sans-serif!important;
+    }  
+    .toast-container{
+        direction: ltr;
+    }
+}
+
+
+.action-sheet-container{
+    .action-sheet-title{
+        font-family: sans-serif!important;
+    }
+    .button-inner{
+        font-family: sans-serif!important;
+    }  
+}
+

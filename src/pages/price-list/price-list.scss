@@ -1,0 +1,109 @@
+page-price-list {
+    direction: rtl!important;
+    ion-content{
+        background-color:#f1f1f1!important;
+        ion-list{
+            margin:0px!important;
+            ion-item{
+                padding: 0px!important;
+                margin:0px!important;
+                clear: both;
+                float: none;
+                width: 100%;
+                height: 40px;
+                line-height: 40px;
+                background: #fff;
+                border: 0px!important;
+                .item-inner{
+                    border: 0px!important;
+                    padding: 0 10px;
+                    border-bottom: 1px solid #f1f1f1!important;
+                    clear:both;
+                    ion-label{
+                        color: #666;
+                        margin: 0px 10px!important;
+                        height: 36px;
+                        line-height: 36px;
+                        font-size: 14px;
+                    }
+                    ion-input{
+                        input{
+                            margin: 8px 10px;
+                            color: #666;
+                            font-size: 14px;
+                        }
+
+                    }
+
+                    ion-icon{
+                        font-size: 14px;
+                        margin: 0px;
+                        /*height: 100%;*/
+                        line-height: 20px;
+                        color: #666;
+                    }
+
+                    ion-select{
+                        max-width: calc(100% - 100px)!important;
+                        width: calc(100% - 100px)!important;
+                        padding: 11px 8px 11px 5px;
+                        .select-icon{
+                            margin-top: 5px;
+                            .select-icon-inner{
+                                color: #666!important;
+                                left:0px;
+                            }
+                        }
+                        .select-text{
+                            color: #666;
+                            font-size: 14px;
+                        }
+
+                    }
+
+                }
+            }
+
+            .add-more{
+                button{
+                    height: 30px;
+                    margin: 10px;
+                    padding: 0px 5px;
+                    min-height: 30px;
+                    height: 30px;
+                    font-size: 12px;
+                    color: #2095f6;
+                    border-color: #2095f6!important;
+
+                }
+                button:active{
+                    background:#2095f6!important;
+                    color:#fff!important;
+                }
+            }
+
+        }
+    }
+
+    ion-footer{
+        .toolbar-background{
+            background: #20a7f6!important;
+
+        }
+        ion-title{
+            .toolbar-title{
+                color: #fff!important;
+                font-size: 14px;
+                font-weight: 300;
+
+            }
+        }
+    }
+
+}
+
+html[dir="ltr"]{
+    page-price-list {
+        direction: ltr!important;
+    }
+}

@@ -1,0 +1,120 @@
+
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'Settings' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page" parallax-header>
+
+    <div class="main-content">
+
+        <div class="inner-content">
+            <ion-list>
+                <ion-list-header>
+                    {{'Settings' | translate}}
+                </ion-list-header>
+                <ion-item (click)="goEditProfile()">
+                    <ion-icon ios="ios-settings-outline" md="ios-settings-outline" item-start></ion-icon>
+                    <div class="inner-item">
+                        {{'Edit profile' | translate}}
+                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" item-end></ion-icon>
+                    </div>
+
+                </ion-item>
+
+                <ion-item (click)="goProfile()">
+                    <ion-icon ios="ios-person-outline" md="ios-person-outline" item-start></ion-icon>
+                    <div class="inner-item">
+                        {{'Profile' | translate}}
+                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" item-end></ion-icon>
+                    </div>
+                </ion-item>
+             
+                <ion-item (click)="goReservationsList()">
+                    <ion-icon ios="ios-flag-outline" md="ios-flag-outline" item-start></ion-icon>
+                    <div class="inner-item">
+                        {{'Reservations' | translate}}
+                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" item-end></ion-icon>
+                    </div>
+                </ion-item>
+              
+                <ion-item (click)="goMyBalance()" >
+                    <ion-icon ios="ios-card-outline" md="ios-card-outline" item-start></ion-icon>
+                    <div class="inner-item">
+                        {{'My Balance' | translate}}
+                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" item-end></ion-icon>
+                    </div>
+                </ion-item>
+       
+            </ion-list>
+
+            <ion-list>
+                <ion-list-header>
+                    {{'Application' | translate}}
+                </ion-list-header>
+
+                <ion-item>
+                    <ion-icon ios="ios-clipboard-outline" md="ios-clipboard-outline" item-start></ion-icon>
+                    <div class="inner-item">
+                        {{'Usage Policy' | translate}}
+                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" item-end></ion-icon>
+                    </div>
+                </ion-item>
+
+                <ion-item (click)="contactus()">
+                    <ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon>
+                    <div class="inner-item">
+                        {{'Contact us' | translate}}
+                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" item-end></ion-icon>
+                    </div>
+                </ion-item>
+                <ion-item (click)="changeLang()">
+                    <ion-icon ios="ios-globe-outline" md="ios-globe-outline" item-start></ion-icon>
+                    <div class="inner-item">
+                        {{'Change language' | translate}}
+                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" item-end></ion-icon>
+                    </div>
+                </ion-item>
+
+     
+
+                <!--                <ion-item (click)="goProfile()">
+                                    go Profile
+                                </ion-item>-->
+            </ion-list>
+
+            <ion-list>
+
+                <ion-list-header>
+                    {{'sign out' | translate}}
+                </ion-list-header>
+                <ion-item (click)='Logout()'>
+                    <ion-icon ios="ios-log-out-outline" md="ios-log-out-outline" item-start></ion-icon>
+                    <div class="inner-item">
+                        {{'sign out' | translate}}
+                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" item-end></ion-icon>
+                    </div>
+                </ion-item>
+
+                <!--                <ion-item (click)="goProfile()">
+                                    go Profile
+                                </ion-item>-->
+            </ion-list>
+
+            <div class="powered-by">
+                <h4>
+                    powered by it plus
+                </h4>
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+</ion-content>
+
+

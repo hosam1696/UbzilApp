@@ -1,0 +1,67 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{'Add Request'|translate}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content dir="ltr">
+    <div class="inner-content">
+        <ion-list>
+            <ion-item>
+                <ion-label stacked>{{'project title'|translate}}</ion-label>
+                <ion-input type="text" placeholder="Request title"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>{{'Request location'|translate}}</ion-label>
+                <ion-input type="text" placeholder="Request location"></ion-input>
+            </ion-item>
+            <ion-item>
+                <span>{{'Request Add location'|translate}}</span>
+                <h2 (click)="locationmodal()"><ion-icon item-start ios="ios-pin" md="ios-pin"></ion-icon>{{'Click to add location'|translate}}</h2>
+            </ion-item>
+        </ion-list>
+
+        <ion-list class="checkbox-list">
+            <ion-list-header>
+                What type of property do you have? 
+            </ion-list-header>
+            <ion-item>
+                <ion-label>Daenerys Targaryen</ion-label>
+                <ion-checkbox checked="true"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Arya Stark</ion-label>
+                <ion-checkbox></ion-checkbox>
+            </ion-item>
+        </ion-list>
+
+        <ion-list radio-group class="radio-list">
+            <ion-list-header>
+                What type of property do you have? 
+            </ion-list-header>
+
+            <ion-item>
+                <ion-label>Go</ion-label>
+                <ion-radio checked="true" value="go"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Rust</ion-label>
+                <ion-radio value="rust"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Python</ion-label>
+                <ion-radio value="python"></ion-radio>
+            </ion-item>
+        </ion-list>
+
+        <ion-row>
+            <button ion-button full>{{'Add Request'|translate}}</button>
+        </ion-row>      
+    </div>
+</ion-content>

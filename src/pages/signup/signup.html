@@ -1,0 +1,200 @@
+
+<ion-content>
+
+    <div class="top-content">
+        <ion-img src="../../assets/img/logofin.png"></ion-img>
+    </div>
+
+    <div class="bottom-content" dir="ltr">
+        <ion-grid *ngIf="step == 1">
+
+            <ion-card>
+                <ion-card-content>
+                    Please enter your phone number to send you confirmation code
+                </ion-card-content>
+            </ion-card>
+            <ion-list>
+                <ion-item>
+                    <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                    <ion-input [(ngModel)]="mobile" [value]="mobile" type="tel" placeholder="Phone number" ></ion-input>
+                </ion-item>
+            </ion-list>
+
+            <ion-row>
+                <button ion-button full (click)="Step2()">Next
+                        <ion-spinner *ngIf="spinner == 1" name="circles" duration="3000"></ion-spinner>
+                </button>
+
+                <ion-col>
+                    <button class="back-btn" ion-button (click)="goSignin()"><ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon></button>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+
+        <ion-grid *ngIf="step == 2">
+
+            <ion-card>
+                <ion-card-content>
+                    Please enter your confirmation code to confirm signup         
+                </ion-card-content>
+            </ion-card>
+            <ion-list>
+                <ion-item>
+                    <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                    <ion-input [(ngModel)]="vercode" [value]="vercode" type="number" placeholder="Confirmation code" ></ion-input>
+                </ion-item>
+            </ion-list>
+
+
+            <ion-row>
+                <button ion-button full (click)="Step3()">Confirm</button>
+            </ion-row>
+
+            <ion-row>
+                <ion-col class="resend">
+                    <a (click)="Step2()" class="resend-code" >Resend confirmation code</a>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <button  class="back-btn" ion-button (click)="Step1()"> <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon></button>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+
+        <ion-grid *ngIf="step == 3">
+
+            <ion-card>
+                <ion-card-content>
+                    Please specify your membership type
+                </ion-card-content>
+            </ion-card>
+            <!--        <ion-row>
+                        <button ion-button full (click)="selectType()">Membership Type : {{MembershipType}}</button>
+                    </ion-row>-->
+
+            <ion-row>
+                <button ion-button full (click)="Step6('Passenger')" >Service Finder
+                        <ion-spinner *ngIf="signupload" name="circles"></ion-spinner>
+                </button>
+            </ion-row>
+            <ion-row>
+                <button ion-button full (click)="Step6('Transporter')">Service Provider
+                        <ion-spinner *ngIf="signupload" name="circles"></ion-spinner>
+                </button>
+            </ion-row>
+
+            <ion-col>
+                <button  class="back-btn" ion-button (click)="Step1()"> <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon></button>
+            </ion-col>
+
+        </ion-grid>
+
+        <ion-grid *ngIf="step == 6">
+            <ion-grid *ngIf="MembershipType == 'Passenger'">
+                <ion-list>
+                    <ion-item>
+                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-input [(ngModel)]="name" type="text"  placeholder="User name"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-input [(ngModel)]="mail" type="mail" placeholder="Email"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-input [(ngModel)]="password" type="password" placeholder="Password" ></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-input [(ngModel)]="repassword" type="password" placeholder="Confirm password"></ion-input>
+                    </ion-item>
+
+                </ion-list>
+
+                <ion-row>
+
+                    <button ion-button full (click)="Step4()">تسجيل
+                            <ion-spinner *ngIf="signupload" name="circles"></ion-spinner>
+                    </button>
+
+
+                    <ion-col>
+                        <button class="back-btn" ion-button (click)="Step3()"><ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon></button>
+                    </ion-col>
+                    <ion-col>
+                        <h4 class="have-account"> Have account?<a (click)="goSignin()" class="new-account" >Login</a></h4>
+                    </ion-col>
+                </ion-row>
+
+            </ion-grid>
+
+            <ion-grid *ngIf="MembershipType == 'Transporter'">
+                <ion-list>
+                        <ion-item>
+                            <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                            <ion-input [(ngModel)]="name" type="text"  placeholder="Company name"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                            <ion-input [(ngModel)]="mail" type="mail" placeholder="Email"></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                            <ion-input [(ngModel)]="city" type="text" placeholder="City"></ion-input>
+                        </ion-item>
+
+<!--                        <ion-item class="select-city">
+                            <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon> City</ion-label>
+                            <ion-select [(ngModel)]="city_id">
+                                <ion-option *ngFor="let city of cities" [value]="city.tid" >{{city.name}}</ion-option>
+                            </ion-select>
+                        </ion-item>-->
+
+                        <ion-item>
+                            <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                            <ion-input [(ngModel)]="password" type="password" placeholder="Password" ></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                            <ion-input [(ngModel)]="repassword" type="password" placeholder="Confirm password"></ion-input>
+                        </ion-item>
+                </ion-list>
+
+                <ion-row>
+
+                    <button ion-button full (click)="Step4()">Signup
+                            <ion-spinner *ngIf="signupload" name="circles"></ion-spinner>
+                    </button>
+
+                    <!--                <ion-col >
+                                        <button ion-button (click)="PrintCityID()">check city</button>
+                                    </ion-col>-->
+                    <ion-col>
+                        <button class="back-btn" ion-button (click)="Step3()"><ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon></button>
+                    </ion-col>
+                </ion-row>
+
+            </ion-grid>
+        </ion-grid>
+
+
+        <ion-grid *ngIf="step == 4">
+            Grid 4
+            <button ion-button round (click)="Step5()">Step 5</button>
+        </ion-grid>
+
+        <ion-grid *ngIf="step == 5">
+            Grid 5
+            <button ion-button round (click)="Step1()">Again !</button>
+        </ion-grid>
+    </div>
+
+
+</ion-content>

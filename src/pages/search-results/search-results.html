@@ -1,0 +1,88 @@
+
+<ion-header>
+    <!--    <ion-navbar>
+            <button ion-button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+            <ion-title>Srearch Result</ion-title>
+        </ion-navbar>-->
+    <ion-toolbar>
+        <button ion-button menuToggle (click)="toroot()">
+            <ion-icon md="ios-home-outline" ios="ios-home-outline"></ion-icon>
+        </button>
+        <ion-searchbar placeholder="{{'Search service'| translate}}"></ion-searchbar>
+        <div class="logo" (click)="goSearchResults()"><span>U</span><span>b</span><span>z</span><span>i</span><span>l</span> <span>|</span></div>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-list>
+        <ion-item (click)="goDynamicPage()">
+            <ion-thumbnail item-start>
+                <img src="../assets/img/png/iron.png" alt=""/>
+            </ion-thumbnail>
+            <h2>كي ملابس</h2>
+            <ion-icon ios="ios-arrow-back" md="ios-arrow-back"></ion-icon>
+        </ion-item>
+        <ion-item (click)="goAddRequest()">
+            <ion-thumbnail item-start>
+                <img src="../assets/img/png/washing-machine.png" alt=""/>
+            </ion-thumbnail>
+            <h2>تنظيف ملابس</h2>
+            <ion-icon ios="ios-arrow-back" md="ios-arrow-back"></ion-icon>
+        </ion-item>
+
+
+        <ion-item (click)="goAddRequest()">
+            <ion-thumbnail item-start>
+                <img src="../assets/img/png/liquid-soap.png" alt=""/>
+            </ion-thumbnail>
+            <h2>غسيل أطباق</h2>
+            <ion-icon ios="ios-arrow-back" md="ios-arrow-back"></ion-icon>
+        </ion-item>
+        <ion-item (click)="goAddRequest()">
+            <ion-thumbnail item-start>
+                <img src="../assets/img/png/cleaner.png" alt=""/>
+            </ion-thumbnail>
+            <h2>تنظيف المنزل</h2>
+            <ion-icon ios="ios-arrow-back" md="ios-arrow-back"></ion-icon>
+        </ion-item>
+
+
+        <ion-item (click)="goAddRequest()">
+            <ion-thumbnail item-start>
+                <img src="../assets/img/png/portable-fridge.png" alt=""/>
+            </ion-thumbnail>
+            <h2>ثلاجات محمولة</h2>
+            <ion-icon ios="ios-arrow-back" md="ios-arrow-back"></ion-icon>
+        </ion-item>
+        <ion-item (click)="goAddRequest()">
+            <ion-thumbnail item-start>
+                <img src="../assets/img/png/washing-machine.png" alt=""/>
+            </ion-thumbnail>
+            <h2>تنظيف ملابس</h2>
+            <ion-icon ios="ios-arrow-back" md="ios-arrow-back"></ion-icon>
+        </ion-item>
+
+
+        <ion-item (click)="goAddRequest()">
+            <ion-thumbnail item-start>
+                <img src="../assets/img/png/cleaner.png" alt=""/>
+            </ion-thumbnail>
+            <h2>كي ملابس</h2>
+            <ion-icon ios="ios-arrow-back" md="ios-arrow-back"></ion-icon>
+        </ion-item>
+        <ion-item (click)="goAddRequest()">
+            <ion-thumbnail item-start>
+                <img src="../assets/img/png/washing-machine.png" alt=""/>
+            </ion-thumbnail>
+            <h2>تنظيف ملابس</h2>
+            <ion-icon ios="ios-arrow-back" md="ios-arrow-back"></ion-icon>
+        </ion-item>
+    </ion-list>
+
+
+
+
+</ion-content>

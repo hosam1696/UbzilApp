@@ -1,0 +1,130 @@
+page-reservation {
+    direction: rtl!important;
+    ion-content{
+        background-color:#f1f1f1!important;
+        ion-list{
+            margin:0px!important;
+            ion-item{
+                border:0px !important;
+                margin-bottom: 1px!important;
+                padding:0px 10px!important;
+                min-height: 40px;
+                line-height: 40px;
+                .item-inner{
+                    border-bottom:0px solid #ddd!important;
+                    padding: 0px!important;
+                    ion-label{
+                        margin: 0px !important; 
+                        font-size: 14px!important;
+                        color: #666;
+                        width: 110px!important;
+                        max-width: 110px!important;
+                        line-height: 20px;
+                        white-space: normal;
+                    }
+
+                    ion-input{
+                        input{
+                            color: #666!important;
+                            font-size: 14px;
+                        }
+                    }
+
+                    ion-icon{
+                        font-size: 20px;
+                        margin-left: 10px!important;
+                        color: #666;
+                    }
+
+                    ion-select{
+                        max-width: calc(100% - 100px)!important;
+                        width: calc(100% - 100px)!important;
+                        padding:10px 8px;
+                        .select-icon{
+                            margin-top: 5px;
+                            .select-icon-inner{
+                                color: #666!important;
+                                left:0px;
+                            }
+                        }
+                        .select-text{
+                            color: #666;
+                            font-size: 14px;
+                        }
+
+                    }
+
+                    ion-textarea{
+                        background: #fff;
+                        color:#666;
+                        border-radius: 4px !important;
+                        textarea{
+                            margin: 5px 0px!important;
+                            font-size: 14px;  
+                            height: 120px;
+                            line-height: 18px;
+                            border-radius: 0px !important;
+                        }
+                    }
+                }
+
+            }
+        }
+
+        .user-data{
+            ion-item{
+                height: 40px;
+            }
+            ion-item:last-child{
+                height: auto!important;
+            }
+        }
+
+    }
+
+    ion-footer{
+        .toolbar-background{
+            background: #20a7f6!important;
+
+        }
+        ion-title{
+            .toolbar-title{
+                color: #fff!important;
+                font-size: 14px;
+                font-weight: 300;
+
+            }
+        }
+    }
+}
+
+html[dir="ltr"]{
+    page-reservation {
+        direction: ltr!important;
+        ion-content{
+            ion-list{
+                ion-item{
+                    .item-inner{
+
+                        ion-icon{
+                            margin-left: auto!important;
+                            margin-right: 10px!important;
+                        }
+
+                        ion-select{
+                            .select-icon{
+                                .select-icon-inner{
+                                    left:auto;
+                                    right:0px;
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+    }
+}
+

@@ -1,0 +1,118 @@
+
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'Reservations' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="main-content">
+
+
+        <ion-list *ngIf=" x ">
+            <ion-item>
+                <ion-thumbnail item-start (click)="goProfilePage()">
+                               <img src="../../assets/img/12.jpg">
+                </ion-thumbnail>
+                <h2>حسين محمود</h2>
+                <h4> السبت <span item-end class="time">12/10/2017</span></h4>
+                <div class="bottom-btn">
+                    <button ion-button outline (click)="ConfirmReservationmodal()">{{'Refuse'|translate}}</button>
+                    <button ion-button outline (click)="accepted()">{{'Accept'|translate}}</button>
+                </div>
+
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail item-start (click)="goProfilePage()">
+                               <img src="../../assets/img/13.jpg">
+                </ion-thumbnail>
+                <h2>حاتم محمود</h2>
+                <h4> الاحد <span item-end class="time">20/10/2017</span></h4>
+                <div class="bottom-btn">
+                    <button ion-button outline (click)="ConfirmReservationmodal()">{{'Refuse'|translate}}</button>
+                    <button ion-button outline (click)="accepted()">{{'Accept'|translate}}</button>
+                </div>
+
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail item-start (click)="goProfilePage()">
+                               <img src="../../assets/img/14.jpg">
+                </ion-thumbnail>
+                <h2>اسامة محمد</h2>
+                <h4> الثلاثاء <span item-end class="time">1/10/2017</span></h4>
+                <div class="bottom-btn">
+                    <button ion-button outline (click)="ConfirmReservationmodal()">{{'Refuse'|translate}}</button>
+                    <button ion-button outline (click)="accepted()">{{'Accept'|translate}}</button>
+                </div>
+
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail item-start (click)="goProfilePage()">
+                               <img src="../../assets/img/15.jpg">
+                </ion-thumbnail>
+                <h2>حسام علي</h2>
+                <h4> الخميس <span item-end class="time">10/12/2017</span></h4>
+                <div class="bottom-btn">
+                    <button ion-button outline (click)="ConfirmReservationmodal()">{{'Refuse'|translate}}</button>
+                    <button ion-button outline (click)="accepted()">{{'Accept'|translate}}</button>
+                </div>
+
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail item-start (click)="goProfilePage()">
+                               <img src="../../assets/img/16.jpg">
+                </ion-thumbnail>
+                <h2>على حمدي</h2>
+                <h4> الاربعاء <span item-end class="time">15/9/2017</span></h4>
+                <div class="bottom-btn">
+                    <button ion-button outline (click)="ConfirmReservationmodal()">{{'Refuse'|translate}}</button>
+                    <button ion-button outline (click)="accepted()">{{'Accept'|translate}}</button>
+                </div>
+
+            </ion-item>
+        </ion-list>
+
+        <ion-list *ngIf=" !x ">
+            <ion-item>
+                <ion-thumbnail item-start (click)="goProfilePage()">
+                               <img src="../../assets/img/12.jpg">
+                </ion-thumbnail>
+                <h2>حسين محمود</h2>
+                <h4> السبت <span item-end class="time">12/10/2017</span></h4>
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail item-start (click)="goProfilePage()">
+                               <img src="../../assets/img/13.jpg">
+                </ion-thumbnail>
+                <h2>حاتم محمود</h2>
+                <h4> الاحد <span item-end class="time">20/10/2017</span></h4>
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail item-start (click)="goProfilePage()">
+                               <img src="../../assets/img/14.jpg">
+                </ion-thumbnail>
+                <h2>اسامة محمد</h2>
+                <h4> الثلاثاء <span item-end class="time">1/10/2017</span></h4>
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail item-start (click)="goProfilePage()">
+                               <img src="../../assets/img/15.jpg">
+                </ion-thumbnail>
+                <h2>حسام علي</h2>
+                <h4> الخميس <span item-end class="time">10/12/2017</span></h4>
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail item-start (click)="goProfilePage()">
+                               <img src="../../assets/img/16.jpg">
+                </ion-thumbnail>
+                <h2>على حمدي</h2>
+                <h4> الاربعاء <span item-end class="time">15/9/2017</span></h4>
+
+            </ion-item>
+        </ion-list>
+
+
+    </div>
+</ion-content>
+
+
