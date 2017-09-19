@@ -1,3 +1,4 @@
+import { TranslateModule } from 'ng2-translate/ng2-translate';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { Messages } from './messages';
@@ -8,6 +9,7 @@ import { Messages } from './messages';
   ],
   imports: [
     IonicPageModule.forChild(Messages),
+    TranslateModule
   ],
   exports: [
     Messages

@@ -4,9 +4,8 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {TranslateService} from 'ng2-translate';
 
-import {Users} from "../providers/users";
 
-import {Tabs} from '../pages/tabs/tabs';
+//import {Tabs} from '../pages/tabs/tabs';
 // import { HomePage } from '../pages/home/home';
 // import { ListPage } from '../pages/list/list';
 // import { Intro } from '../pages/intro/intro';
@@ -21,7 +20,7 @@ import {Login} from '../pages/login/login';
 })
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
-    rootPage: any = Tabs;
+    rootPage: any = 'Tabs';
     textDir: any;
     language: any;
     userLogin: any = false;
@@ -50,7 +49,7 @@ export class MyApp {
             this.translate.setDefaultLang('ar');
             this.textDir = 'rtl';
             this.platform.setDir('rtl', true);
-
+            this.translate.use('ar');
 
         });
 

@@ -14,7 +14,7 @@
                 <ion-list-header>
                     {{'Settings' | translate}}
                 </ion-list-header>
-                <ion-item (click)="goEditProfile()">
+                <ion-item (click)="navigateTo('EditProfile', true)">
                     <ion-icon ios="ios-settings-outline" md="ios-settings-outline" item-start></ion-icon>
                     <div class="inner-item">
                         {{'Edit profile' | translate}}
@@ -23,7 +23,7 @@
 
                 </ion-item>
 
-                <ion-item (click)="goProfile()">
+                <ion-item (click)="navigateTo('ProfilePage')">
                     <ion-icon ios="ios-person-outline" md="ios-person-outline" item-start></ion-icon>
                     <div class="inner-item">
                         {{'Profile' | translate}}
@@ -31,7 +31,7 @@
                     </div>
                 </ion-item>
              
-                <ion-item (click)="goReservationsList()">
+                <ion-item (click)="navigateTo('ReservationsList')">
                     <ion-icon ios="ios-flag-outline" md="ios-flag-outline" item-start></ion-icon>
                     <div class="inner-item">
                         {{'Reservations' | translate}}
@@ -39,7 +39,7 @@
                     </div>
                 </ion-item>
               
-                <ion-item (click)="goMyBalance()" >
+                <ion-item (click)="navigateTo('MyBalance')" >
                     <ion-icon ios="ios-card-outline" md="ios-card-outline" item-start></ion-icon>
                     <div class="inner-item">
                         {{'My Balance' | translate}}
@@ -62,7 +62,7 @@
                     </div>
                 </ion-item>
 
-                <ion-item (click)="contactus()">
+                <ion-item (click)="navigateTo('Contactus', true)">
                     <ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon>
                     <div class="inner-item">
                         {{'Contact us' | translate}}

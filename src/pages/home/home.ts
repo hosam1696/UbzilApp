@@ -6,7 +6,7 @@ import {IonicPage, NavController, NavParams, ToastController, } from 'ionic-angu
 
 
 // Req Pages
-import {SubCategory} from "../subcategory/subcategory";
+//import {SubCategory} from "../subcategory/subcategory";
 import {SearchResults} from "../search-results/search-results";
 
 
@@ -32,7 +32,7 @@ export class HomePage {
 
 
     gosubcategory(type) {
-        this.navCtrl.push(SubCategory,{type:type});
+        this.navCtrl.push('SubCategory',{type:type});
         console.log(type);
     }
     goSearchResults() {

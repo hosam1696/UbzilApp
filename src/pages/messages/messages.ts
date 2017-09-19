@@ -34,7 +34,7 @@ export class Messages {
 
     }
         MessagesDetail() {
-        let MessagesDetailModal = this.modalctrl.create(MessagesDetail);
+        let MessagesDetailModal = this.modalctrl.create('MessagesDetail');
         MessagesDetailModal.present();
         MessagesDetailModal.onDidDismiss(data => {
             // Saving this info to local storage after updating user profile info
