@@ -1,16 +1,7 @@
-import { TranslateService } from 'ng2-translate';
-import { AppUtilFunctions } from './../../app/appglobal/app.utilfuns';
+import {AppUtilFunctions} from '../../app/appglobal/app.utilfuns';
 // Main Components
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController, } from 'ionic-angular';
-
-// Providers
-
-
-// Req Pages
-//import {SubCategory} from "../subcategory/subcategory";
-//import {SearchResults} from "../search-results/search-results";
-
+import {IonicPage, NavController, NavParams,} from 'ionic-angular';
 
 
 @IonicPage()
@@ -18,7 +9,7 @@ import {IonicPage, NavController, NavParams, ToastController, } from 'ionic-angu
     selector: 'page-home',
     templateUrl: 'home.html',
 })
-export class HomePage extends AppUtilFunctions{
+export class HomePage {
 
     segment: any;
     name: any;
@@ -27,16 +18,14 @@ export class HomePage extends AppUtilFunctions{
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
-        public translate: TranslateService,
-        public toastCtrl: ToastController
+       public appUtils: AppUtilFunctions
     ) {
-        super( toastCtrl,translate)
 
 
     }
 
 
-    gosubcategory(type) {
+    goSubCategory(type) {
         this.navCtrl.push('SubCategory',{type:type});
         console.log(type);
 
@@ -53,7 +42,7 @@ export class HomePage extends AppUtilFunctions{
     ionViewDidLoad() {
         this.segment = "services";
 
-        super.getLangValue('language')
+        this.appUtils.getLangValue('language')
             .then(val=>{
                 console.log('Get Lang Value of key (language)', val);
             })
