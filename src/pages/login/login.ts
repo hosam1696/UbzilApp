@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, Events } from 'ionic-angular';
-
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams, AlertController, Events} from 'ionic-angular';
 
 
 @IonicPage()
@@ -13,21 +12,19 @@ export class Login {
   type: any;
   id: any;
   headerimg: any;
-  username:any;
-  password:any;
-  loginload:any;
-  Token:any;
+  username: any;
+  password: any;
+  loginload: any;
+  Token: any;
 
-  constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams,
-    public alertCtrl: AlertController,
-    public events: Events
-  ) {
-    this.loginload = false ;
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public alertCtrl: AlertController,
+              public events: Events) {
+    this.loginload = false;
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     console.log('enter');
     // Run After Page Already Entered
   }
@@ -35,20 +32,18 @@ export class Login {
   ionViewDidLoad() {
     console.log('load');
     // Run After Page Already Loaded
-    this.headerimg = '../../assets/img/ba_logo.png';    
-   
+    this.headerimg = '../../assets/img/ba_logo.png';
+
   }
 
-  goSignup(){
+  goSignup() {
     this.navCtrl.push('Signup');
   }
 
-  goForgetPass(){
+  goForgetPass() {
     this.navCtrl.push('ForgetPass')
-    
+
   }
-
-
 
 
 }

@@ -6,50 +6,49 @@ import {IonicPage, NavController, NavParams,} from 'ionic-angular';
 
 @IonicPage()
 @Component({
-    selector: 'page-home',
-    templateUrl: 'home.html',
+  selector: 'page-home',
+  templateUrl: 'home.html',
 })
 export class HomePage {
 
-    segment: any;
-    name: any;
-    type:any;
+  segment: any;
+  name: any;
+  type: any;
 
-    constructor(
-        public navCtrl: NavController,
-        public navParams: NavParams,
-        public appUtils: AppUtilFunctions
-    ) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public appUtils: AppUtilFunctions) {
 
 
-    }
+  }
 
 
-    goSubCategory(type) {
-        this.navCtrl.push('SubCategory',{type:type});
-        console.log(type);
+  goSubCategory(type) {
+    this.navCtrl.push('SubCategory', {type: type});
+    console.log(type);
 
-        console.log('Active View Controller is', this.navCtrl.getActive());
-    }
-    goSearchResults() {
-        this.navCtrl.push('SearchResults');
-    }
+    console.log('Active View Controller is', this.navCtrl.getActive());
+  }
 
-    async ionViewDidEnter() {
-        // Run After Page Already Entered
+  goSearchResults() {
+    this.navCtrl.push('SearchResults');
+  }
 
-      let currentLang = await this.appUtils.CurrentLang;
+  async ionViewDidEnter() {
+    // Run After Page Already Entered
 
-      console.log('%s%c%s','The Language you are using now is ', 'color: red;font-weight:bold', currentLang);
+    let currentLang = await this.appUtils.CurrentLang;
 
-    }
+    console.log('%s%c%s', 'The Language you are using now is ', 'color: red;font-weight:bold', currentLang);
 
-   ionViewDidLoad() {
-        this.segment = "services";
+  }
 
-        console.log('%s%c%s','component class name we are using now ', 'color: green;font-weight:bold',this.navCtrl.getActive().id);
+  ionViewDidLoad() {
+    this.segment = "services";
 
-    }
+    console.log('%s%c%s', 'component class name we are using now ', 'color: green;font-weight:bold', this.navCtrl.getActive().id);
+
+  }
 
 
 }
