@@ -1,7 +1,7 @@
 import { TranslateModule } from 'ng2-translate/ng2-translate';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { SearchResults } from './search-results/search-results';
+import { SearchResults } from './search-results';
 
 @NgModule({
   declarations: [
@@ -15,4 +15,4 @@ import { SearchResults } from './search-results/search-results';
     SearchResults
   ]
 })
-export class SettingsModule {}
+export class SearchResultsModule {}

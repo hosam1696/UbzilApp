@@ -1,3 +1,4 @@
+import { TranslateModule } from 'ng2-translate/ng2-translate';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { SearchService } from './search-service';
@@ -8,6 +9,7 @@ import { SearchService } from './search-service';
   ],
   imports: [
     IonicPageModule.forChild(SearchService),
+    TranslateModule
   ],
   exports: [
     SearchService

@@ -1,5 +1,5 @@
 page-get-location{
-    direction: rtl!important;
+    //direction: rtl!important;
     .center-loader {
         display: flex;
         align-items: center;
@@ -20,12 +20,12 @@ page-get-location{
 
 
     }
-    #save-loc {
+   /* #save-loc {
         position: absolute;
         bottom: 15px;
         left: 10px;
         box-shadow: 0 14px 7px -6px #404838;
-    }
+    }*/
     .small {
         font-size: 12px !important
     }
@@ -37,11 +37,11 @@ page-get-location{
         height: 100% !important;
         width: 100%;}
 }
-html[dir="ltr"] {
+/*html[dir="ltr"] {
     page-get-location{
         direction: ltr!important;
         ion-content{
 
         }
     }
-}
+}*/

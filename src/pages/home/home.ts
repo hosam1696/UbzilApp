@@ -47,7 +47,7 @@ export class HomePage {
    ionViewDidLoad() {
         this.segment = "services";
 
-      console.log('component class name we are using now',this.navCtrl.getActive().id, this.navCtrl.getActiveChildNav());
+        console.log('%s%c%s','component class name we are using now ', 'color: green;font-weight:bold',this.navCtrl.getActive().id);
 
     }
 
