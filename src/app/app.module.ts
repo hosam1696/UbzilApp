@@ -1,3 +1,5 @@
+import { Network } from '@ionic-native/network';
+import { Push } from '@ionic-native/push';
 import {BrowserModule} from '@angular/platform-browser';
 //import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ErrorHandler, NgModule} from '@angular/core';
@@ -159,6 +161,8 @@ export function createTranslateLoader(http: Http) {
 //    BrowserAnimationsModule,
      Geolocation,
      AppUtilFunctions,
+     Network,
+     Push,
     SMS,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {ToastController, ToastOptions} from 'ionic-angular';
 //import { AsyncPipe } from '@angular/common';
 import "rxjs/add/operator/toPromise";
-
+import { Network} from '@ionic-native/network';
 
 
 @Injectable()
@@ -11,7 +11,7 @@ import "rxjs/add/operator/toPromise";
 export class AppUtilFunctions {
 
     constructor(
-
+        public network: Network,
         public toastCtrl: ToastController,
         public translate: TranslateService
     ){}
@@ -31,6 +31,10 @@ export class AppUtilFunctions {
 
     public getLangValue(valKey:string):Promise<string> {
        return this.translate.get(valKey).toPromise();
+    }
+
+    public get IsConnected():boolean {
+        return this.network.type != 'none'
     }
 }
 
