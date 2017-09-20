@@ -41,12 +41,13 @@ export class Settings {
 
     ionViewDidLoad() {
         // Run After Page Already Loaded
-        console.log(decodeURI(location.href).split('/').splice(4));
+        console.log(decodeURI(location.href).split('/').splice(5)+' component');
         console.info('The current Lang we are using is', this.translate.getLangs(),this.translate.currentLang)
 
-        this.globFuns.AppToast('Your current Lang is '+this.globFuns.CurrentLang)
+        this.globFuns.AppToast('Your current Lang is '+this.globFuns.CurrentLang);
 
-        console.warn(this.globFuns.getLangValue('language'));
+        
+
 
         this.translate.get('language')
             .subscribe(val=> {

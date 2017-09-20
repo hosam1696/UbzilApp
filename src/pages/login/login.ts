@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, Events } from 'ionic-angular';
 
-import { Signup } from '../signup/signup';
-import { ForgetPass } from '../forget-pass/forget-pass';
-
 
 
 @IonicPage()
@@ -43,22 +40,14 @@ export class Login {
   }
 
   goSignup(){
-    this.navCtrl.push(Signup);
+    this.navCtrl.push('Signup');
   }
 
   goForgetPass(){
-    this.navCtrl.push(ForgetPass)
+    this.navCtrl.push('ForgetPass')
     
   }
 
-
-  userToken(){
-    this.events.publish('user:getToken');
-  }
-
-  userLogin() {
-    
-  }
 
 
 

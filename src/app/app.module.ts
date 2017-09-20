@@ -12,10 +12,9 @@ import { MyApp } from './app.component';
 //import { Tabs } from '../pages/tabs/tabs';
 //import { RequestsTabs } from '../pages/requests-tabs/requests-tabs';
 import { ListPage } from '../pages/list/list';
-import { Intro } from '../pages/intro/intro';
-import { Login } from '../pages/login/login';
-import { ForgetPass } from '../pages/forget-pass/forget-pass';
-import { Signup } from '../pages/signup/signup';
+//import { Login } from '../pages/login/login';
+//import { ForgetPass } from '../pages/forget-pass/forget-pass';
+//import { Signup } from '../pages/signup/signup';
 //import { HomePage } from '../pages/home/home';
 //import { Settings } from '../pages/settings/settings';
 //import { Contactus } from '../pages/contactus/contactus';
@@ -66,10 +65,9 @@ export function createTranslateLoader(http: Http) {
     //Tabs,
     //RequestsTabs,
     ListPage,
-    Intro,
-    Login,
-    ForgetPass,
-    Signup,
+    //Login,
+    //ForgetPass,
+    //Signup,
     //HomePage,
     //Settings,
     //SubCategory,
@@ -122,10 +120,9 @@ export function createTranslateLoader(http: Http) {
     //Tabs, 
     //RequestsTabs,
     ListPage,
-    Intro,
-    Login,
-    ForgetPass,
-    Signup,
+    //Login,
+    //ForgetPass,
+    //Signup,
     //HomePage,
     //SubCategory,
     //Settings,

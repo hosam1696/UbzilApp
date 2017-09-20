@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, Events, LoadingController, AlertCo
 
 
 import { SMS } from "../../providers/sms";
-import { Login } from "../login/login";
+//import { Login } from "../login/login";
 
 @IonicPage()
 @Component({
@@ -80,7 +80,7 @@ export class Signup {
 
 
     goSignin() {
-        this.navCtrl.push(Login);
+        this.navCtrl.push('Login');
     }
 
 

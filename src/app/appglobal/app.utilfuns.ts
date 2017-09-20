@@ -16,13 +16,11 @@ export class AppUtilFunctions {
 
 
     
-    public AppToast(message:string){
+    public AppToast(message:string, settings?:{duration?:number, position?:string,showCloseButton?:boolean,closeButtonText:string}):void{
 
-        let toast = this.toastCtrl.create({
-            message,
-            duration: 3000
-        })
+        let toast = this.toastCtrl.create({message, ...settings})
 
+    
         toast.present()
     }
 
@@ -30,8 +28,8 @@ export class AppUtilFunctions {
         return this.translate.currentLang
     }
 
-    public getLangValue(valKey:string):string {
-       return  AsyncPipe.call((this, this.translate.get(valKey)));
+    public getLangValue(valKey:string):Promise<string> {
+       return this.translate.get(valKey).toPromise();
         
         
     }

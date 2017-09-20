@@ -9,7 +9,7 @@ import {TranslateService} from 'ng2-translate';
 // import { HomePage } from '../pages/home/home';
 // import { ListPage } from '../pages/list/list';
 // import { Intro } from '../pages/intro/intro';
-import {Login} from '../pages/login/login';
+//import {Login} from '../pages/login/login';
 // import { Signup } from '../pages/signup/signup';
 // import { Routes } from '../pages/routes/routes';
 // import { RoutesNew } from '../pages/routes-new/routes-new';
