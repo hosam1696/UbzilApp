@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {Nav, Platform, Events, LoadingController, ModalController} from 'ionic-angular';
+import {Events, Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {TranslateService} from 'ng2-translate';
@@ -32,7 +32,7 @@ export class MyApp {
         public statusBar: StatusBar,
         public splashScreen: SplashScreen,
         public translate: TranslateService,
-        public events: Events,
+        public events: Events
 
     ) {
 
@@ -54,7 +54,10 @@ export class MyApp {
         });
 
         // this language will be used as a fallback when a translation isn't found in the current language
-
+        /*this.app.viewDidLoad
+          .subscribe(d=>{
+            console.log('component class name you are using is', this.nav.getActive().component.name)
+          });*/
         this.events.subscribe('lang:Changed', (lang) => {
             if (lang == 'ar') {
                 this.textDir = 'rtl';
@@ -70,11 +73,11 @@ export class MyApp {
             this.translate.use(lang);
         });
 
-       
+
 
     }
 
-    
 
-    
+
+
 }

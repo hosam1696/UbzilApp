@@ -1,11 +1,6 @@
 // Main Components
 import {Component} from '@angular/core';
-import {IonicPage, NavController, ModalController, NavParams, Events} from 'ionic-angular';
-
-// Providers
-
-// Req Pages
-import { BalanceHistory } from '../balance-history/balance-history';
+import {Events, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 
 
 @IonicPage()
@@ -34,7 +29,7 @@ export class MyBalance {
 
     }
         BalanceHistorymodal() {
-        let BalanceHistoryModal = this.modalctrl.create(BalanceHistory);
+        let BalanceHistoryModal = this.modalctrl.create('BalanceHistory');
         BalanceHistoryModal.present();
         BalanceHistoryModal.onDidDismiss(data => {
             // Saving this info to local storage after updating user profile info

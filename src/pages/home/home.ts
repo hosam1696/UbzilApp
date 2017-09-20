@@ -18,7 +18,7 @@ export class HomePage {
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
-       public appUtils: AppUtilFunctions
+        public appUtils: AppUtilFunctions
     ) {
 
 
@@ -35,17 +35,19 @@ export class HomePage {
         this.navCtrl.push('SearchResults');
     }
 
-    ionViewDidEnter() {
+    async ionViewDidEnter() {
         // Run After Page Already Entered
+
+      let currentLang = await this.appUtils.CurrentLang;
+
+      console.log('%s%c%s','The Language you are using now is ', 'color: red;font-weight:bold', currentLang);
+
     }
 
-    ionViewDidLoad() {
+   ionViewDidLoad() {
         this.segment = "services";
 
-        this.appUtils.getLangValue('language')
-            .then(val=>{
-                console.log('Get Lang Value of key (language)', val);
-            })
+      console.log('component class name we are using now',this.navCtrl.getActive().id, this.navCtrl.getActiveChildNav());
 
     }
 

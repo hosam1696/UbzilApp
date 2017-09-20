@@ -1,12 +1,12 @@
 // Main Components
 import {Component} from '@angular/core';
-import {ViewController, NavParams} from 'ionic-angular';
+import {IonicPage, NavParams, ViewController} from 'ionic-angular';
 
 // Providers
 
 // Req Pages
 
-
+@IonicPage()
 @Component({
     selector: 'page-popover',
     templateUrl: 'popover.html',

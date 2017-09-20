@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
-import { Requests } from './requests';
+import {NgModule} from '@angular/core';
+import {IonicPageModule} from 'ionic-angular';
+import {Requests} from './requests';
+import {TranslateModule} from "ng2-translate";
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { Requests } from './requests';
   ],
   imports: [
     IonicPageModule.forChild(Requests),
+    TranslateModule
   ],
   exports: [
     Requests

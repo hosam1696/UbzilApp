@@ -1,11 +1,6 @@
 // Main Components
 import {Component} from '@angular/core';
-import {IonicPage, NavController, ModalController, NavParams, Events, ViewController} from 'ionic-angular';
-
-// Providers
-
-// Req Pages
-import {MessagesDetail} from '../messages-detail/messages-detail';
+import {Events, IonicPage, ModalController, NavController, NavParams, ViewController} from 'ionic-angular';
 
 
 @IonicPage()
@@ -34,7 +29,7 @@ export class BalanceHistory {
 
     }
         MessagesDetail() {
-        let MessagesDetailModal = this.modalctrl.create(MessagesDetail);
+        let MessagesDetailModal = this.modalctrl.create('MessagesDetail');
         MessagesDetailModal.present();
         MessagesDetailModal.onDidDismiss(data => {
             // Saving this info to local storage after updating user profile info

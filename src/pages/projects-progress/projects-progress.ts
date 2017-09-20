@@ -1,13 +1,9 @@
 // Main Components
 import {Component} from '@angular/core';
-import {IonicPage, NavController, ModalController, NavParams, Events, ActionSheetController} from 'ionic-angular';
+import {ActionSheetController, Events, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 
 // Providers
 
-// Req Pages
-import {RequestsDetail} from '../requests-detail/requests-detail';
-import {AddReview} from '../addreview/addreview';
-import {ProfilePage} from '../profile/profile';
 
 
 @IonicPage()
@@ -35,17 +31,17 @@ export class ProjectsProgress {
         // Run After Page Already Loaded
     }
     goRequestsDetail() {
-        this.navCtrl.push(RequestsDetail);
+        this.navCtrl.push('RequestsDetail');
     }
     addreviewmodal() {
-        let addreviewmodal = this.modalCtrl.create(AddReview);
+        let addreviewmodal = this.modalCtrl.create('AddReview');
         addreviewmodal.present();
         addreviewmodal.onDidDismiss(data => {
             // Saving this info to local storage after updating user profile info
         })
     }
     goProfilePage() {
-        this.navCtrl.push(ProfilePage);
+        this.navCtrl.push('ProfilePage');
     }
 
 

@@ -1,11 +1,10 @@
 // Main Components
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, Events, ModalController} from 'ionic-angular';
+import {Events, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 
 // Providers
 
 // Req Pages
-import {NotificationsDetail} from "../notifications-detail/notifications-detail";
 @IonicPage()
 @Component({
     selector: 'page-notifications',
@@ -29,7 +28,7 @@ export class Notifications {
     }
 
 NotificationsDetail(){
-    this.navCtrl.push(NotificationsDetail);
+    this.navCtrl.push('NotificationsDetail');
 }
 
 }

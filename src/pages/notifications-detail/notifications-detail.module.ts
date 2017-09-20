@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
-import { NotificationsDetail } from './notifications-detail';
+import {NgModule} from '@angular/core';
+import {IonicPageModule} from 'ionic-angular';
+import {NotificationsDetail} from './notifications-detail';
+import {TranslateModule} from "ng2-translate";
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { NotificationsDetail } from './notifications-detail';
   ],
   imports: [
     IonicPageModule.forChild(NotificationsDetail),
+    TranslateModule
   ],
   exports: [
     NotificationsDetail

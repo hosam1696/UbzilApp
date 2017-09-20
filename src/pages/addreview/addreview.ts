@@ -1,6 +1,6 @@
 // Main Components
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController, ToastController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ToastController, ViewController} from 'ionic-angular';
 import {Ionic2RatingModule} from 'ionic2-rating';
 import {TranslateService} from 'ng2-translate';
 
@@ -66,5 +66,7 @@ export class AddReview {
 
     }
 
-
+  onModelChange(val) {
+      console.log('Val changed',val);
+  }
 }

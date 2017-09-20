@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
-import { BalanceHistory } from './balance-history';
+import {NgModule} from '@angular/core';
+import {IonicPageModule} from 'ionic-angular';
+import {BalanceHistory} from './balance-history';
+import {TranslateModule} from "ng2-translate";
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { BalanceHistory } from './balance-history';
   ],
   imports: [
     IonicPageModule.forChild(BalanceHistory),
+    TranslateModule
   ],
   exports: [
     BalanceHistory

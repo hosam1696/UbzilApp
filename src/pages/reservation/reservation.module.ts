@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
-import { Reservation  } from './reservation';
+import {NgModule} from '@angular/core';
+import {IonicPageModule} from 'ionic-angular';
+import {Reservation} from './reservation';
+import {TranslateModule} from "ng2-translate";
 
 @NgModule({
   declarations: [
@@ -8,9 +9,10 @@ import { Reservation  } from './reservation';
   ],
   imports: [
     IonicPageModule.forChild(Reservation),
+    TranslateModule
   ],
   exports: [
     Reservation
   ]
 })
-export class SettingsModule {}
+export class ReservationModule{}

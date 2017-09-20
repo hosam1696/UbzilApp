@@ -1,6 +1,6 @@
 import {TranslateService} from 'ng2-translate';
 import {Injectable} from '@angular/core';
-import {ToastController} from 'ionic-angular';
+import {ToastController, ToastOptions} from 'ionic-angular';
 //import { AsyncPipe } from '@angular/common';
 import "rxjs/add/operator/toPromise";
 
@@ -18,12 +18,11 @@ export class AppUtilFunctions {
 
 
 
-    public AppToast(message:string, settings?:{duration?:number, position?:string,showCloseButton?:boolean,closeButtonText:string}):void{
+    public AppToast(message:string, settings?:ToastOptions):void{
 
-        let toast = this.toastCtrl.create({message, ...settings})
-
-
-        toast.present()
+        let toast = this.toastCtrl.create({message,...{duration: 2500, position:'top'}, ...settings});
+        // dev test only console.log(toast);
+        toast.present();
     }
 
     public get CurrentLang():string {

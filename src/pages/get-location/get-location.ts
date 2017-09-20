@@ -1,9 +1,9 @@
-import {Component, ViewChild, ElementRef} from '@angular/core';
-import {NavController, ViewController} from 'ionic-angular';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {IonicPage, NavController, ViewController} from 'ionic-angular';
 import {Geolocation} from '@ionic-native/geolocation';
 
 declare var google;
-
+@IonicPage()
 @Component({
     selector: 'page-get-location',
     templateUrl: 'get-location.html',
@@ -14,7 +14,7 @@ export class GetLocation {
     map: any;
 
     constructor(
-        public navCtrl: NavController, 
+        public navCtrl: NavController,
         public viewCtrl: ViewController,
         public geolocation: Geolocation
     ) {
@@ -36,9 +36,9 @@ export class GetLocation {
             }
 
             this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-            
+
             this.addMarker();
-            
+
         }, (err) => {
             console.log(err);
         });
@@ -71,7 +71,7 @@ export class GetLocation {
         });
 
     }
-    
+
        dismiss(data) {
     this.viewCtrl.dismiss(data);
   }
