@@ -1,6 +1,6 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {IonicPage, NavController, ViewController} from 'ionic-angular';
-import {Geolocation} from '@ionic-native/geolocation';
+import {Geolocation, Geoposition} from '@ionic-native/geolocation';
 
 declare var google;
 @IonicPage()
@@ -22,11 +22,13 @@ export class GetLocation {
     ionViewDidLoad() {
         this.loadMap();
         console.log('get location modal')
+
     }
 
     loadMap() {
 
-        this.geolocation.getCurrentPosition().then((position) => {
+        this.geolocation.getCurrentPosition()
+          .then((position:Geoposition) => {
 
             let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 

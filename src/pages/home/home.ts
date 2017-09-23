@@ -37,7 +37,7 @@ export class HomePage {
   async ionViewDidEnter() {
     // Run After Page Already Entered
 
-    let currentLang = await this.appUtils.CurrentLang;
+    let currentLang:string = await this.appUtils.CurrentLang;
 
     console.log('%s%c%s', 'The Language you are using now is ', 'color: red;font-weight:bold', currentLang);
 
