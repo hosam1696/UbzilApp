@@ -52,5 +52,9 @@ export class HomePage {
 
   }
 
+  navigateTo(page, pageData) {
+    this.navCtrl.push(page, {pageData})
+  }
+
 
 }

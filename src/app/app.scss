@@ -51,7 +51,10 @@ ion-navbar{
 .action-sheet-container {
     padding: 0 10px;
 }
+ion-list-header {
+    background-color: transparent !important;
 
+}
 ion-action-sheet{
     .action-sheet-container {
         padding: 0 10px!important;

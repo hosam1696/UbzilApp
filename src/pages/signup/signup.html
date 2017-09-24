@@ -5,7 +5,7 @@
         <ion-img src="assets/img/logofin.png"></ion-img>
     </div>
 
-    <div class="bottom-content" dir="ltr">
+    <div class="bottom-content" >
         <ion-grid *ngIf="step == 1">
 
             <ion-card>
@@ -21,12 +21,12 @@
             </ion-list>
 
             <ion-row>
-                <button ion-button full (click)="Step2()">Next
+                <button ion-button full (click)="step=2">Next
                         <ion-spinner *ngIf="spinner == 1" name="circles" duration="3000"></ion-spinner>
                 </button>
 
                 <ion-col>
-                    <button class="back-btn" ion-button (click)="goSignin()"><ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon></button>
+                    <button clear class="back-btn" ion-button (click)="goSignin()"><ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon></button>
                 </ion-col>
             </ion-row>
 
@@ -48,7 +48,7 @@
 
 
             <ion-row>
-                <button ion-button full (click)="Step3()">Confirm</button>
+                <button ion-button full (click)="step=3">Confirm</button>
             </ion-row>
 
             <ion-row>

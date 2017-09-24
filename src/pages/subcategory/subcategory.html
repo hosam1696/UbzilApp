@@ -15,7 +15,7 @@
 <ion-list>
     <ion-item (click)="goAddRequest()" *ngFor="let item of items">
         <ion-thumbnail item-start>
-            <img src="{{ item.img }}" alt=""/>
+            <img [src]="item.img" alt=""/>
         </ion-thumbnail>
         <h2>{{ item.name }}</h2>
         <ion-icon ios="ios-arrow-back" md="ios-arrow-back"></ion-icon>

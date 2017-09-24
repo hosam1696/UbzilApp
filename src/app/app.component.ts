@@ -41,16 +41,16 @@ export class MyApp {
 
     initializeApp() {
         this.platform.ready().then(() => {
-            // Okay, so the platform is ready and our plugins are available.
-            // Here you can do any higher level native things you might need.
+
             this.statusBar.styleDefault();
             this.splashScreen.hide();
 
-            this.translate.setDefaultLang('ar');
-            this.textDir = 'rtl';
-            this.platform.setDir('rtl', true);
-            this.translate.use('ar');
 
+            this.translate.setDefaultLang('ar');
+            this.translate.use('ar');
+            this.platform.setDir('rtl', true);
+            
+            //this.textDir = 'rtl';
         });
 
         // this language will be used as a fallback when a translation isn't found in the current language

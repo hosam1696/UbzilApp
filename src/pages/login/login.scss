@@ -1,4 +1,5 @@
 page-login {
+    
     ion-content{
         /*background-image: url(../../assets/img/bg.png);*/
         background-size:cover;
@@ -49,6 +50,10 @@ page-login {
 
         ion-row{
 
+            &.user-links {
+                display: flex;
+                justify-content: space-between
+            }
 
             button:active{
                 background-color: #2095f6 !important;

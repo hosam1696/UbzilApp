@@ -56,6 +56,9 @@ page-home {
         margin-top:0px!important;
 
         ion-segment{
+            box-shadow: 2px 2px 10px #c3c3c3;
+
+
             position: fixed;
             background-color: #fff;
             border: 0px !important;
@@ -78,7 +81,7 @@ page-home {
             }
         }
         .my-segment{
-            margin-top: 34px;
+            margin-top: 40px;
         }
 
 

@@ -34,7 +34,7 @@ export class Settings {
     console.log(decodeURI(location.href).split('/').splice(5) + ' component');
     console.info('The current Lang we are using is', this.appUtils.CurrentLang);
 
-    this.appUtils.AppToast('Your current Lang is ' + this.appUtils.CurrentLang, {duration:500});
+    //this.appUtils.AppToast('Your current Lang is ' + this.appUtils.CurrentLang, {duration:500});
 
 
     try {

@@ -5,16 +5,17 @@
         <ion-img src="assets/img/logofin.png"></ion-img>
     </div>
 
-    <div class="bottom-content" dir="ltr">
+    <div class="bottom-content" >
         <ion-list>
             <ion-item>
                 <ion-label><ion-icon ios="ios-person-outline" md="ios-person-outline" item-start></ion-icon></ion-label>
-                <ion-input [(ngModel)]="username" type="text" placeholder="{{'Username' | translate}}" item-end></ion-input>
+            
+                <ion-input  [(ngModel)]="username" type="text" placeholder="{{'Username' | translate}}" item-end></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label><ion-icon ios="ios-lock-outline" md="ios-lock-outline" item-start></ion-icon></ion-label>
-                <ion-input [(ngModel)]="password" type="password" placeholder="{{'Password' | translate}}" item-end></ion-input>
+                <ion-input floating [(ngModel)]="password" type="password" placeholder="{{'Password' | translate}}" item-end></ion-input>
             </ion-item>
         </ion-list>
         <ion-grid>
@@ -22,13 +23,12 @@
                 <button ion-button full (click)="userLogin()">{{'Login' | translate}}</button>
         </ion-row>
 
-        <ion-row>
-            <ion-col width-50>
+        <ion-row class="user-links">
+            
                 <a (click)="goSignup()" class="new-account" >{{'New Account?' | translate}}</a>
-            </ion-col>
-            <ion-col width-50>
+
                 <a (click)="goForgetPass()" class="forget-pass">{{'Forget Your Password!' | translate}}</a>
-            </ion-col>
+
         </ion-row>
     </ion-grid>
 </div>

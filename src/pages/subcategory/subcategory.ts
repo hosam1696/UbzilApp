@@ -34,19 +34,19 @@ export class SubCategory {
 
     initializeItems() {
         this.items = [
-            {"id": 0, "name": "iron", "img": "../assets/img/png/iron.png"},
-            {"id": 1, "name": "cleaner", "img": "../assets/img/png/washing-machine.png"},
-            {"id": 2, "name": "washing", "img": "../assets/img/png/liquid-soap.png"},
-            {"id": 3, "name": "home", "img": "../assets/img/png/cleaner.png"},
-            {"id": 4, "name": "fridge", "img": "../assets/img/png/portable-fridge.png"},
-            {"id": 5, "name": "clothes", "img": "../assets/img/png/washing-machine.png"},
-            {"id": 6, "name": "iron", "img": "../assets/img/png/cleaner.png"},
-            {"id": 7, "name": "تنظيف", "img": "../assets/img/png/washing-machine.png"},
-            {"id": 3, "name": "غسيل", "img": "../assets/img/png/cleaner.png"},
-            {"id": 4, "name": "تلاجات", "img": "../assets/img/png/portable-fridge.png"},
-            {"id": 5, "name": "غسيل ملابس", "img": "../assets/img/png/washing-machine.png"},
-            {"id": 6, "name": "سجاد", "img": "../assets/img/png/cleaner.png"},
-            {"id": 5, "name": "اثاث", "img": "../assets/img/png/washing-machine.png"}
+            {"id": 0, "name": "iron", "img": "assets/img/png/iron.png"},
+            {"id": 1, "name": "cleaner", "img": "assets/img/png/washing-machine.png"},
+            {"id": 2, "name": "washing", "img": "assets/img/png/liquid-soap.png"},
+            {"id": 3, "name": "home", "img": "assets/img/png/cleaner.png"},
+            {"id": 4, "name": "fridge", "img": "assets/img/png/portable-fridge.png"},
+            {"id": 5, "name": "clothes", "img": "assets/img/png/washing-machine.png"},
+            {"id": 6, "name": "iron", "img": "assets/img/png/cleaner.png"},
+            {"id": 7, "name": "تنظيف", "img": "assets/img/png/washing-machine.png"},
+            {"id": 3, "name": "غسيل", "img": "assets/img/png/cleaner.png"},
+            {"id": 4, "name": "تلاجات", "img": "assets/img/png/portable-fridge.png"},
+            {"id": 5, "name": "غسيل ملابس", "img": "assets/img/png/washing-machine.png"},
+            {"id": 6, "name": "سجاد", "img": "assets/img/png/cleaner.png"},
+            {"id": 5, "name": "اثاث", "img": "assets/img/png/washing-machine.png"}
         ];
     }
 

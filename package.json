@@ -80,8 +80,6 @@
                 "SENDER_ID": "65467897"
             }
         },
-        "platforms": [
-            "android"
-        ]
+        "platforms": []
     }
 }
