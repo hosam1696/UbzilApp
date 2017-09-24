@@ -22,6 +22,9 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {AppUtilFunctions} from './appglobal/app.utilfuns';
 import { UserProvider } from '../providers/user/user';
+import { ServicesProvider } from '../providers/services/services';
+import { MessagesProvider } from '../providers/messages/messages';
+import { NotificationsProvider } from '../providers/notifications/notifications';
 
 export function createTranslateLoader(http: Http) {
 	return new TranslateStaticLoader(http, './assets/i18n', '.json');
@@ -66,7 +69,10 @@ export function createTranslateLoader(http: Http) {
      Push,
     SMS,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserProvider
+    UserProvider,
+    ServicesProvider,
+    MessagesProvider,
+    NotificationsProvider
   ]
 })
 export class AppModule {}
