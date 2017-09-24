@@ -14,6 +14,15 @@
                 <ion-list-header>
                     {{'Settings' | translate}}
                 </ion-list-header>
+                
+                <ion-item (click)="navigateTo('ProfilePage')">
+                    <ion-icon ios="ios-person-outline" md="ios-person-outline" item-start></ion-icon>
+                    <div class="inner-item">
+                        {{'Profile' | translate}}
+                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" item-end></ion-icon>
+                    </div>
+                </ion-item>
+
                 <ion-item (click)="navigateTo('EditProfile', true)">
                     <ion-icon ios="ios-settings-outline" md="ios-settings-outline" item-start></ion-icon>
                     <div class="inner-item">
@@ -23,13 +32,7 @@
 
                 </ion-item>
 
-                <ion-item (click)="navigateTo('ProfilePage')">
-                    <ion-icon ios="ios-person-outline" md="ios-person-outline" item-start></ion-icon>
-                    <div class="inner-item">
-                        {{'Profile' | translate}}
-                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" item-end></ion-icon>
-                    </div>
-                </ion-item>
+                
              
                 <ion-item (click)="navigateTo('ReservationsList')">
                     <ion-icon ios="ios-flag-outline" md="ios-flag-outline" item-start></ion-icon>
