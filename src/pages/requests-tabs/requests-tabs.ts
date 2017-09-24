@@ -13,7 +13,7 @@ export class RequestsTabs {
     RequestsTab = 'Requests'; // Requests
     ExcutedRequestsTab = 'ExcutedRequests';   // Settings
     ProjectsProgressTab = 'ProjectsProgress';
-    Token: any;
+
 
     constructor(
         public navCtrl: NavController,
@@ -21,13 +21,7 @@ export class RequestsTabs {
     ) {
     }
 
-    ionViewDidLoad() {
-        console.log('request tabs viewdidload')
-    }
-
-    ionViewDidEnter() {
-        console.log('request tabs viewdidenter')
-    }
+  
 
 
 

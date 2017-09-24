@@ -1,0 +1,147 @@
+$thumbnail-height: 80px;
+
+page-projects {
+  .segment-holder {
+           padding: 5px 8px;
+           background-color: #fff;
+           margin-bottom: 5px;
+ion-segment {
+  direction: ltr;
+  ion-segment-button {
+    height: auto;
+    &.segment-button {
+      display: flex;
+      height: 4.5rem !important;
+      font-size: 1rem;
+      line-height: 1.8rem !important;
+      white-space: initial;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+  }
+
+
+
+    ion-header {
+        ion-toolbar {
+            ion-segment {
+                direction: ltr;
+                ion-segment-button {
+                        max-width: 100px;
+                        display: flex;
+                        height: 4.6rem;
+                        font-size: 1.2rem;
+                        line-height: 1.8rem;
+                        /* word-spacing: initial; */
+                        /* word-spacing: initial; */
+
+                        white-space: initial;
+                        align-items: center;
+                        justify-content: center;
+
+                }
+            }
+        }
+    }
+    ion-content {
+
+        &.content {
+            background-color:#f1f1f1;
+
+        }
+
+        ion-list {
+          padding: 0px 8px;
+          border: 0px;
+          ion-item {
+            height: $thumbnail-height;
+            margin-bottom: 8px !important;
+            padding: 0px;
+            border: 0px!important;
+            ion-thumbnail {
+              width: $thumbnail-height;
+              height: 100%;
+              margin: 0 !important;
+              img {
+                width: $thumbnail-height !important;
+                height: $thumbnail-height !important;
+
+              }
+            }
+            .item-inner {
+              padding: 0px!important;
+              background-size: 100px 100px;
+              background-repeat: no-repeat;
+              border: 0px!important;
+              ion-label {
+                h2 {
+                  display: flex;
+                  justify-content: space-between;
+                  font-size: 14px;
+                  font-weight: 700;
+                  /*margin-bottom: 5px;*/
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  color: #20a7f6;
+                  /*max-width:calc(100% - 60px);*/
+                  .time {
+                    color: #999;
+                    font-size: 11px;
+                    font-weight: 400;
+                    margin: auto 5px;
+                  }
+                }
+                h4 {
+                  font-size: 14px;
+                  font-weight: 600;
+                  margin-bottom: 0px;
+                  color: #666;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  text-transform: uppercase;
+                  line-height: 22px;
+                }
+                p {
+                  &.applicants {
+                    display: flex
+                  }
+                  color: #666;
+                  font-size: 12px;
+                  font-weight: 300;
+                  line-height:18px;
+                  ion-icon {
+                    margin: auto 5px;
+                    font-size: 18px;
+                    /*padding-top: 5px;*/
+                  }
+                }
+                .bottom-btn {
+                  position: absolute;
+                  bottom: 10px;
+                  left: 10px;
+                  button {
+                    height: 25px;
+                    min-height: 25px;
+                    line-height: 25px;
+                    border-radius: 4px;
+                    border-color: #20a7f6;
+                    color: #20a7f6;
+                    padding: 0px 8px;
+                    margin: 0px;
+                    font-size: 11px;
+                  }
+                }
+                button.activated {
+                  background-color: #20a7f6;
+                  color: #fff;
+                }
+              }
+            }
+          }
+        }
+
+    }
+}

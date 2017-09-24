@@ -19,6 +19,7 @@ page-projects-progress{
         margin:10px 0;
 
         .main-content{
+            margin-top: 40px;
             .subheader{
                 background-color: #fff;
                 padding: 5px 8px!important;
@@ -36,105 +37,87 @@ page-projects-progress{
                 }
             }
 
-            ion-list{
-                padding:0px 8px;
-                border: 0px;
-                ion-item{
-                    margin-top: 8px;
-                    padding: 0px;
-                    border: 0px!important;
-                    .item-inner{
-                        padding: 0px!important;
-                        /*                        background-image: url("../../assets/img/bb.png");*/
-                        background-size: 100px 100px;
-                        background-repeat: no-repeat;
-                        border: 0px!important;
-
-
-
-
-                        ion-label{
-                            /*margin-left: 10px;*/
-                            margin: 10px!important;
-                            ion-thumbnail {
-                                min-width: 60px!important;
-                                min-height: 60px!important;
-                                width: 60px!important;
-                                height: 60px!important;
-                                float: right!important;
-                                border-radius: 10px;
-                                overflow: hidden;
-                                margin-left: 10px!important;
-                                border:1px solid #20a7f6;
-                                img{
-                                    width: 100%;
-                                    height:100%;
-                                }
-                            }
-
-                            h2{
-                                font-size:14px;
-                                font-weight: 700;
-                                /*margin-bottom: 5px;*/
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                                color: #20a7f6;
-                                /*max-width:calc(100% - 60px);*/
-
-                                .time{
-                                    color: #999;
-                                    font-size: 11px;
-                                    font-weight: 400;
-                                    margin: auto 5px;
-                                } 
-                            }
-                            h4{
-                                font-size:14px;
-                                font-weight: 600;
-                                margin-bottom: 0px;
-                                color: #666;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                                text-transform: uppercase;
-                                line-height: 22px;
-                            }
-
-                            p{
-                                color: #666;
-                                font-size: 12px;
-                                font-weight: 300;
-                                line-height:18px;
-                                ion-icon{
-                                    margin: auto 5px;
-                                    font-size: 18px;
-                                    /*padding-top: 5px;*/
-                                }
-                            }
-                            .bottom-btn{
-                                position: absolute;
-                                bottom: 10px;
-                                left: 10px;
-                                button{
-                                    height: 25px;
-                                    min-height: 25px;
-                                    line-height: 25px;
-                                    border-radius: 4px;
-                                    border-color: #20a7f6;
-                                    color: #20a7f6;
-                                    padding: 0px 8px;
-                                    margin: 0px;
-                                    font-size: 11px;
-                                }
-
-                            }
-                            button.activated{
-                                background-color: #20a7f6;
-                                color: #fff;
-                            }
-                        }
-                    }
-
+              ion-list {
+              padding: 0px 8px;
+              border: 0px;
+              ion-item {
+                height: 82px;
+                margin-top: 8px;
+                padding: 0px;
+                border: 0px!important;
+                ion-thumbnail {
+                  margin: 0 !important
                 }
+                .item-inner {
+                  padding: 0px!important;
+                  background-size: 100px 100px;
+                  background-repeat: no-repeat;
+                  border: 0px!important;
+                  ion-label {
+                    h2 {
+                      display: flex;
+                      justify-content: space-between;
+                      font-size: 14px;
+                      font-weight: 700;
+                      /*margin-bottom: 5px;*/
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                      color: #20a7f6;
+                      /*max-width:calc(100% - 60px);*/
+                      .time {
+                        color: #999;
+                        font-size: 11px;
+                        font-weight: 400;
+                        margin: auto 5px;
+                      }
+                    }
+                    h4 {
+                      font-size: 14px;
+                      font-weight: 600;
+                      margin-bottom: 0px;
+                      color: #666;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                      text-transform: uppercase;
+                      line-height: 22px;
+                    }
+                    p {
+                      &.applicants {
+                        display: flex
+                      }
+                      color: #666;
+                      font-size: 12px;
+                      font-weight: 300;
+                      line-height:18px;
+                      ion-icon {
+                        margin: auto 5px;
+                        font-size: 18px;
+                        /*padding-top: 5px;*/
+                      }
+                    }
+                    .bottom-btn {
+                      position: absolute;
+                      bottom: 10px;
+                      left: 10px;
+                      button {
+                        height: 25px;
+                        min-height: 25px;
+                        line-height: 25px;
+                        border-radius: 4px;
+                        border-color: #20a7f6;
+                        color: #20a7f6;
+                        padding: 0px 8px;
+                        margin: 0px;
+                        font-size: 11px;
+                      }
+                    }
+                    button.activated {
+                      background-color: #20a7f6;
+                      color: #fff;
+                    }
+                  }
+                }
+              }
             }
         }
     }

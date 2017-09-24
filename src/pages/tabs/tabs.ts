@@ -11,7 +11,7 @@ export class Tabs {
     // Transporter Tabs
     HomeTab = 'HomePage'; // Routes
 //    ProfileTab = ProfilePage; // ProfilePage
-    RequestsTab = 'RequestsTabs'; // Requests
+    RequestsTab = 'ProjectsPage'; // Requests
     MessagesTab = 'Messages';   // Messages
     SettingsTab = 'Settings';   // Settings
     NotificationsTab = 'Notifications';   // Notifications
