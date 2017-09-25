@@ -6,6 +6,22 @@
     font-family: 'TypoGraphica';
     src:  url('../assets/fonts/TypoGraphica_demo.otf') format('opentype');
 }
+
+%flex-center {
+  display: flex;
+  justify-content: center
+}
+
+%flex-between {
+  display: flex;
+  justify-content: space-between
+}
+
+%flex-align {
+  @extend %flex-center;
+  align-items: center
+}
+
 $primary: color($colors, primary);
 $secondary: color($colors, secondary);
 $light: color($colors, light);

@@ -1,4 +1,5 @@
 $thumbnail-height: 80px;
+
 page-projects {
   .segment-holder {
     padding: 0 8px;
@@ -168,17 +169,17 @@ page-projects {
                 min-height: 25px;
                 line-height: 25px;
                 border-radius: 4px;
-                border-color: #20a7f6;
-                color: #20a7f6;
+                //border-color: #20a7f6;
+                //color: #20a7f6;
                 padding: 0px 8px;
                 margin: 0px;
                 font-size: 11px;
               }
             }
-            button.activated {
+            /*button.activated {
               background-color: #20a7f6;
               color: #fff;
-            }
+            }*/
           }
         }
       }

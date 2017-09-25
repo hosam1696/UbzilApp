@@ -70,7 +70,7 @@
       <p class="applicants">
         <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
       <div class="bottom-btn" [class.toright]="!isRTL">
-        <button ion-button outline (click)="navigateTo('AddReview', true)">انهاء</button>
+        <button ion-button outline  color="danger" (click)="navigateTo('AddReview', true)">{{"reject"| translate}}</button>
         <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
       </div>
 

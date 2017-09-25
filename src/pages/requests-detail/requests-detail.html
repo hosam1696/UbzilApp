@@ -1,172 +1,185 @@
-
 <ion-header>
-    <ion-navbar>
-        <ion-title>Requests Details</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>{{'Details' | translate}}</ion-title>
+  </ion-navbar>
 
 </ion-header>
 
 <ion-content>
-    <div class="main-content">
+  <div class="main-content">
 
-        <ion-list >
-            <ion-item>
-                <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
-                    <img src="assets/img/12.jpg">
-                </ion-thumbnail>
-                <h2>{{'Hussein Mahmoud'| translate}}<span item-end class="time">week ago</span></h2>
-                <h4>{{'Request title'| translate}}</h4>
-                <p><ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>20 {{'Applicants'|translate}}</p>
-                <ul class="bottom-category">
-                    <li>
-                        <img src="assets/img/png/accesory.png" alt=""/>
-                    </li>
-                    <li>
-                        <h2>{{'Personal'| translate}}</h2>
-                    </li>
-                </ul>
-            </ion-item>
-        </ion-list>
+    <ion-list>
+      <ion-item class="user-request">
+        <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
+          <img src="assets/img/12.jpg">
+        </ion-thumbnail>
+        <h2>{{'Hussein Mahmoud'| translate}}<span item-end class="time">منذ اسبوع</span></h2>
+        <h4>{{'Request title'| translate}}</h4>
 
-
-        <div class="map">
-            <button ion-button full (click)="navigateTo('GetLocation', true)">{{'Location on map'| translate}}</button>
+        <div class="app-category">
+          <p class="applicants">
+            <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>20 {{'Applicants'|translate}}</p>
+          <div class="category">
+            <img src="assets/img/png/accesory.png" alt="" />
+            <p>{{'Personal'| translate}}</p>
+          </div>
         </div>
 
-
-        <ion-list class="more-data">
-            <ion-item>
-                <span>{{'Request status'| translate}}</span>
-                <h2>{{'Executed'| translate}}</h2>
-            </ion-item>
-            <ion-item>
-                <span>{{'Location'| translate}}</span>
-                <h2>Tonamel/Aga/Dakahlia</h2>
-            </ion-item>
-            <ion-item>
-                <span>{{'House area'| translate}}</span>
-                <h2>100 m^2</h2>
-            </ion-item>
-            <ion-item>
-                <span>{{'More details'| translate}}</span>
-                <h2> Please satisfy how much time and cost of this appartment,
-                    Please satisfy how much time and cost of this appartment.
-                </h2>
-            </ion-item>
-        </ion-list>
-
-        <ion-grid>
-            <ion-row>
-                <ion-col col-6>
-                    <button ion-button full (click)="navigateTo('ApplyJop')">{{'Apply Jop'| translate}}</button>
-                </ion-col>
-                <ion-col col-6>
-                    <button ion-button full>{{'Refuse Jop'| translate}}</button>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-
-        <ion-list class="applicatnts">
-            <ion-list-header>
-                {{'Applicants'|translate}}
-            </ion-list-header>
-            <ion-item class="choosen-applicant">
-                <ion-avatar item-start>
-                    <img src="assets/img/14.jpg" alt="" (click)="navigateTo('ProfilePage')"/>
-                    <div class="choose-me" (click)="presentToast()">
-                        <h4>choosed</h4>
-                    </div>
-                    <div class="chat-btn" (click)="navigateTo('MessageDetails')"><ion-icon name="chatbubbles"></ion-icon></div>
-                </ion-avatar>
-                <h2>{{'Hussein Mahmoud'| translate}} <span>moment ago</span></h2>
-                <h4>Time to complete  <span>30 days</span></h4>
-                <div class="user-rate">
-                    <div class="stats-container">
-                        <div class="rating-b" >
-                            <div class="rating-b-1">
-                                <img src="assets/img/rating-b-1.png" alt=""/>
-                            </div>
-                            <div class="rating-b-2" style="width:60%">
-                                <img src="assets/img/rating-b-2.png" alt=""/>
-                            </div>
-                        </div>
-                        <span>3.0</span>
-                        <div class="review-num"><h4>20 {{'Review'| translate}}</h4></div>
-                    </div>
-                </div>
-                <div class="price">
-                    <h2>Price<span> 20$ </span>/h</h2>
-                </div>
-                <p>I've had a pretty messed up day. If we just...</p>
-                
-            </ion-item>
-            <ion-item class="">
-                <ion-avatar item-start>
-                    <img src="assets/img/14.jpg" alt="" (click)="navigateTo('ProfilePage')"/>
-                    <div class="choose-me" (click)="presentToast()">
-                        <h4>choose me</h4>
-                    </div>
-                    <div class="chat-btn" (click)="navigateTo('MessageDetails')"><ion-icon name="chatbubbles"></ion-icon></div>
-                </ion-avatar>
-                <h2>{{'Hussein Mahmoud'| translate}}<span>moment ago</span></h2>
-                <h4>Time to complete  <span>30 days</span></h4>
-                <div class="user-rate">
-                    <div class="stats-container">
-                        <div class="rating-b" >
-                            <div class="rating-b-1">
-                                <img src="assets/img/rating-b-1.png" alt=""/>
-                            </div>
-                            <div class="rating-b-2" style="width:40%">
-                                <img src="assets/img/rating-b-2.png" alt=""/>
-                            </div>
-                        </div>
-                        <span>2.0</span>
-                        <div class="review-num"><h4>25 {{'Review'| translate}}</h4></div>
-                    </div>
-                </div>
-                <div class="price">
-                    <h2>Price<span> 20$ </span>/h</h2>
-                </div>
-                <p>I've had a pretty messed up day. If we just...</p>
-                
-            </ion-item>
-            <ion-item class="">
-                <ion-avatar item-start>
-                    <img src="assets/img/14.jpg" alt="" (click)="navigateTo('ProfilePage')"/>
-                    <div class="choose-me" (click)="presentToast()">
-                        <h4>choose me</h4>
-                    </div>
-                    <div class="chat-btn" (click)="navigateTo('MessageDetails')"><ion-icon name="chatbubbles"></ion-icon></div>
-                </ion-avatar>
-                <h2>{{'Hussein Mahmoud'| translate}}<span>moment ago</span></h2>
-                <h4>Time to complete  <span>30 days</span></h4>
-                <div class="user-rate">
-                    <div class="stats-container">
-                        <div class="rating-b" >
-                            <div class="rating-b-1">
-                                <img src="assets/img/rating-b-1.png" alt=""/>
-                            </div>
-                            <div class="rating-b-2" style="width:80%">
-                                <img src="assets/img/rating-b-2.png" alt=""/>
-                            </div>
-                        </div>
-                        <span>4.0</span>
-                        <div class="review-num"><h4>30 {{'Review'| translate}}</h4></div>
-                    </div>
-                </div>
-                <div class="price">
-                    <h2>Price<span> 20$ </span>/h</h2>
-                </div>
-                <p>I've had a pretty messed up day. If we just...</p>
-                
-            </ion-item>
-
-        </ion-list>
+      </ion-item>
+    </ion-list>
 
 
-
-
+    <div class="map">
+      <button ion-button full (click)="navigateTo('GetLocation', true)">{{'Location on map'| translate}}</button>
     </div>
+
+
+    <ion-list class="more-data">
+      <ion-item>
+        <span>{{'Request status'| translate}}</span>
+        <h2>{{'Executed'| translate}}</h2>
+      </ion-item>
+      <ion-item>
+        <span>{{'Location'| translate}}</span>
+        <h2>Tonamel/Aga/Dakahlia</h2>
+      </ion-item>
+      <ion-item>
+        <span>{{'House area'| translate}}</span>
+        <h2>100 m^2</h2>
+      </ion-item>
+      <ion-item>
+        <span>{{'More details'| translate}}</span>
+        <h2> Please satisfy how much time and cost of this appartment, Please satisfy how much time and cost of this appartment.
+        </h2>
+      </ion-item>
+    </ion-list>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button full (click)="navigateTo('ApplyJop')">{{'Apply Jop'| translate}}</button>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button full>{{'Refuse Jop'| translate}}</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-list class="applicatnts">
+      <ion-list-header>
+        {{'Applicants'|translate}}
+      </ion-list-header>
+      <ion-item class="choosen-applicant">
+        <ion-avatar item-start>
+          <img src="assets/img/14.jpg" alt="" (click)="navigateTo('ProfilePage')" />
+          <div class="choose-me">
+            <!-- //TODO: add toast here (click)="presentToast()" -->
+            <h4>choosed</h4>
+          </div>
+          <div class="chat-btn" (click)="navigateTo('MessageDetails')">
+            <ion-icon name="chatbubbles"></ion-icon>
+          </div>
+        </ion-avatar>
+        <h2>{{'Hussein Mahmoud'| translate}} <span>moment ago</span></h2>
+        <h4>Time to complete <span>30 days</span></h4>
+        <div class="user-rate">
+          <div class="stats-container">
+            <div class="rating-b">
+              <div class="rating-b-1">
+                <img src="assets/img/rating-b-1.png" alt="" />
+              </div>
+              <div class="rating-b-2" style="width:60%">
+                <img src="assets/img/rating-b-2.png" alt="" />
+              </div>
+            </div>
+            <span>3.0</span>
+            <div class="review-num">
+              <h4>20 {{'Review'| translate}}</h4>
+            </div>
+          </div>
+        </div>
+        <div class="price">
+          <h2>{{'Price'|translate}}<span> 20$ </span>/ساعة</h2>
+        </div>
+        <p [dir]="isRTL?'rtl':'ltr'">I've had a pretty messed up day. If we just...</p>
+
+      </ion-item>
+      <ion-item class="">
+        <ion-avatar item-start>
+          <img src="assets/img/14.jpg" alt="" (click)="navigateTo('ProfilePage')" />
+          <div class="choose-me">
+            <!-- //TODO: add toast here (click)="presentToast()" -->
+
+            <h4>choose me</h4>
+          </div>
+          <div class="chat-btn" (click)="navigateTo('MessageDetails')">
+            <ion-icon name="chatbubbles"></ion-icon>
+          </div>
+        </ion-avatar>
+        <h2>{{'Hussein Mahmoud'| translate}}<span>moment ago</span></h2>
+        <h4>Time to complete <span>30 days</span></h4>
+        <div class="user-rate">
+          <div class="stats-container">
+            <div class="rating-b">
+              <div class="rating-b-1">
+                <img src="assets/img/rating-b-1.png" alt="" />
+              </div>
+              <div class="rating-b-2" style="width:40%">
+                <img src="assets/img/rating-b-2.png" alt="" />
+              </div>
+            </div>
+            <span>2.0</span>
+            <div class="review-num">
+              <h4>25 {{'Review'| translate}}</h4>
+            </div>
+          </div>
+        </div>
+        <div class="price">
+          <h2>Price<span> 20$ </span>/h</h2>
+        </div>
+        <p>I've had a pretty messed up day. If we just...</p>
+
+      </ion-item>
+      <ion-item class="">
+        <ion-avatar item-start>
+          <img src="assets/img/14.jpg" alt="" (click)="navigateTo('ProfilePage')" />
+          <!-- //TODO: add toast here (click)="presentToast()" -->
+          <div class="choose-me">
+            <h4>choose me</h4>
+          </div>
+          <div class="chat-btn" (click)="navigateTo('MessageDetails')">
+            <ion-icon name="chatbubbles"></ion-icon>
+          </div>
+        </ion-avatar>
+        <h2>{{'Hussein Mahmoud'| translate}}<span>moment ago</span></h2>
+        <h4>Time to complete <span>30 days</span></h4>
+        <div class="user-rate">
+          <div class="stats-container">
+            <div class="rating-b">
+              <div class="rating-b-1">
+                <img src="assets/img/rating-b-1.png" alt="" />
+              </div>
+              <div class="rating-b-2" style="width:80%">
+                <img src="assets/img/rating-b-2.png" alt="" />
+              </div>
+            </div>
+            <span>4.0</span>
+            <div class="review-num">
+              <h4>30 {{'Review'| translate}}</h4>
+            </div>
+          </div>
+        </div>
+        <div class="price">
+          <h2>Price<span> 20$ </span>/h</h2>
+        </div>
+        <p>I've had a pretty messed up day. If we just...</p>
+
+      </ion-item>
+
+    </ion-list>
+
+
+
+
+  </div>
 </ion-content>
-
-
