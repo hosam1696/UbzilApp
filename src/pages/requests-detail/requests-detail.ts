@@ -53,7 +53,7 @@ export class RequestsDetail {
 
     }
     goProfilePage() {
-        this.navCtrl.push(ProfilePage);
+        this.navCtrl.push('ProfilePage');
     }
     presentToast() {
         let toast = this.toastCtrl.create({
@@ -72,7 +72,7 @@ export class RequestsDetail {
     }
 
     applyjop() {
-        let applyjopModal = this.modalCtrl.create(ApplyJop);
+        let applyjopModal = this.modalCtrl.create('ApplyJop');
         applyjopModal.present();
         applyjopModal.onDidDismiss(data => {
             console.log(data);
@@ -95,4 +95,25 @@ export class RequestsDetail {
 
     }
 
+
+    protected navigateTo(page: string, isModal: boolean = false, pageData?: any): void {
+        if (isModal) {
+            let EditProfileModal = this.modalCtrl.create(page, { pageData });
+            EditProfileModal.present();
+            EditProfileModal.onDidDismiss(dismissData => {
+                // Saving this info to local storage after updating user profile info
+
+                if (page === 'EditProfile') {
+                    // Do some interesting stuff here
+
+                } else if (page === 'Contactus') {
+                    // Do some interesting stuff here
+
+                }
+
+            })
+        } else {
+            this.navCtrl.push(page)
+        }
+    }
 }

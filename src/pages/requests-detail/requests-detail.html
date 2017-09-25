@@ -11,7 +11,7 @@
 
         <ion-list >
             <ion-item>
-                <ion-thumbnail item-start (click)="goProfilePage()">
+                <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
                     <img src="assets/img/12.jpg">
                 </ion-thumbnail>
                 <h2>{{'Hussein Mahmoud'| translate}}<span item-end class="time">week ago</span></h2>
@@ -30,7 +30,7 @@
 
 
         <div class="map">
-            <button ion-button full (click)="locationmodal()">{{'Location on map'| translate}}</button>
+            <button ion-button full (click)="navigateTo('GetLocation', true)">{{'Location on map'| translate}}</button>
         </div>
 
 
@@ -58,7 +58,7 @@
         <ion-grid>
             <ion-row>
                 <ion-col col-6>
-                    <button ion-button full (click)="applyjop()">{{'Apply Jop'| translate}}</button>
+                    <button ion-button full (click)="navigateTo('ApplyJop')">{{'Apply Jop'| translate}}</button>
                 </ion-col>
                 <ion-col col-6>
                     <button ion-button full>{{'Refuse Jop'| translate}}</button>
@@ -72,11 +72,11 @@
             </ion-list-header>
             <ion-item class="choosen-applicant">
                 <ion-avatar item-start>
-                    <img src="assets/img/14.jpg" alt="" (click)="goProfilePage()"/>
+                    <img src="assets/img/14.jpg" alt="" (click)="navigateTo('ProfilePage')"/>
                     <div class="choose-me" (click)="presentToast()">
                         <h4>choosed</h4>
                     </div>
-                    <div class="chat-btn" (click)="MessagesDetail()"><ion-icon name="chatbubbles"></ion-icon></div>
+                    <div class="chat-btn" (click)="navigateTo('MessageDetails')"><ion-icon name="chatbubbles"></ion-icon></div>
                 </ion-avatar>
                 <h2>{{'Hussein Mahmoud'| translate}} <span>moment ago</span></h2>
                 <h4>Time to complete  <span>30 days</span></h4>
@@ -102,11 +102,11 @@
             </ion-item>
             <ion-item class="">
                 <ion-avatar item-start>
-                    <img src="assets/img/14.jpg" alt="" (click)="goProfilePage()"/>
+                    <img src="assets/img/14.jpg" alt="" (click)="navigateTo('ProfilePage')"/>
                     <div class="choose-me" (click)="presentToast()">
                         <h4>choose me</h4>
                     </div>
-                    <div class="chat-btn" (click)="MessagesDetail()"><ion-icon name="chatbubbles"></ion-icon></div>
+                    <div class="chat-btn" (click)="navigateTo('MessageDetails')"><ion-icon name="chatbubbles"></ion-icon></div>
                 </ion-avatar>
                 <h2>{{'Hussein Mahmoud'| translate}}<span>moment ago</span></h2>
                 <h4>Time to complete  <span>30 days</span></h4>
@@ -132,11 +132,11 @@
             </ion-item>
             <ion-item class="">
                 <ion-avatar item-start>
-                    <img src="assets/img/14.jpg" alt="" (click)="goProfilePage()"/>
+                    <img src="assets/img/14.jpg" alt="" (click)="navigateTo('ProfilePage')"/>
                     <div class="choose-me" (click)="presentToast()">
                         <h4>choose me</h4>
                     </div>
-                    <div class="chat-btn" (click)="MessagesDetail()"><ion-icon name="chatbubbles"></ion-icon></div>
+                    <div class="chat-btn" (click)="navigateTo('MessageDetails')"><ion-icon name="chatbubbles"></ion-icon></div>
                 </ion-avatar>
                 <h2>{{'Hussein Mahmoud'| translate}}<span>moment ago</span></h2>
                 <h4>Time to complete  <span>30 days</span></h4>

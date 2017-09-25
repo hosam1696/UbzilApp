@@ -6,7 +6,7 @@
 </ion-header>
 
 <ion-content class="card-background-page" parallax-header>
-
+    <!--<p hideWhen="android">hide when it's android</p>-->
     <div class="main-content">
 
         <div class="inner-content">
@@ -15,11 +15,11 @@
                     {{'Settings' | translate}}
                 </ion-list-header>
                 
-                <ion-item (click)="navigateTo('ProfilePage')">
+                <ion-item [dir]="isRTL?'rtl':'ltr'" (click)="navigateTo('ProfilePage')">
                     <ion-icon ios="ios-person-outline" md="ios-person-outline" item-start></ion-icon>
                     <div class="inner-item">
                         {{'Profile' | translate}}
-                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" item-end></ion-icon>
+                        <ion-icon [name]="!isRTL?'ios-arrow-forward':'ios-arrow-back'" item-end></ion-icon>
                     </div>
                 </ion-item>
 
@@ -27,7 +27,7 @@
                     <ion-icon ios="ios-settings-outline" md="ios-settings-outline" item-start></ion-icon>
                     <div class="inner-item">
                         {{'Edit profile' | translate}}
-                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" item-end></ion-icon>
+                        <ion-icon [name]="!isRTL?'ios-arrow-forward':'ios-arrow-back'" item-end></ion-icon>
                     </div>
 
                 </ion-item>
@@ -38,7 +38,7 @@
                     <ion-icon ios="ios-flag-outline" md="ios-flag-outline" item-start></ion-icon>
                     <div class="inner-item">
                         {{'Reservations' | translate}}
-                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" item-end></ion-icon>
+                        <ion-icon [name]="!isRTL?'ios-arrow-forward':'ios-arrow-back'" item-end></ion-icon>
                     </div>
                 </ion-item>
               
@@ -46,7 +46,7 @@
                     <ion-icon ios="ios-card-outline" md="ios-card-outline" item-start></ion-icon>
                     <div class="inner-item">
                         {{'My Balance' | translate}}
-                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" item-end></ion-icon>
+                        <ion-icon [name]="!isRTL?'ios-arrow-forward':'ios-arrow-back'" item-end></ion-icon>
                     </div>
                 </ion-item>
        
@@ -61,7 +61,7 @@
                     <ion-icon ios="ios-clipboard-outline" md="ios-clipboard-outline" item-start></ion-icon>
                     <div class="inner-item">
                         {{'Usage Policy' | translate}}
-                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" item-end></ion-icon>
+                        <ion-icon [name]="!isRTL?'ios-arrow-forward':'ios-arrow-back'" item-end></ion-icon>
                     </div>
                 </ion-item>
 
@@ -69,14 +69,14 @@
                     <ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon>
                     <div class="inner-item">
                         {{'Contact us' | translate}}
-                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" item-end></ion-icon>
+                        <ion-icon [name]="!isRTL?'ios-arrow-forward':'ios-arrow-back'" item-end></ion-icon>
                     </div>
                 </ion-item>
                 <ion-item (click)="changeLang()">
                     <ion-icon ios="ios-globe-outline" md="ios-globe-outline" item-start></ion-icon>
                     <div class="inner-item">
                         {{'Change language' | translate}}
-                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" item-end></ion-icon>
+                        <ion-icon [name]="!isRTL?'ios-arrow-forward':'ios-arrow-back'" item-end></ion-icon>
                     </div>
                 </ion-item>
 
@@ -89,15 +89,13 @@
 
             <ion-list>
 
-                <ion-list-header>
+                <!--<ion-list-header>
                     {{'sign out' | translate}}
-                </ion-list-header>
-                <ion-item (click)='Logout()'>
+                </ion-list-header> -->
+                <ion-item margin-top (click)='Logout()'>
                     <ion-icon ios="ios-log-out-outline" md="ios-log-out-outline" item-start></ion-icon>
-                    <div class="inner-item">
-                        {{'sign out' | translate}}
-                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back" item-end></ion-icon>
-                    </div>
+                     <span>{{'sign out' | translate}}</span>    
+                
                 </ion-item>
 
                 <!--                <ion-item (click)="goProfile()">

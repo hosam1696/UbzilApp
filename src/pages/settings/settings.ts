@@ -1,7 +1,7 @@
 import {AppUtilFunctions} from './../../app/appglobal/app.utilfuns';
 // Main Components
 import {Component} from '@angular/core';
-import {ActionSheetController, Events, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import { ActionSheetController, Events, IonicPage, ModalController, NavController, Platform } from 'ionic-angular';
 
 
 @IonicPage()
@@ -13,9 +13,8 @@ export class Settings {
 
   titletext: any;
   canceltext: any;
-
+  isRTL: boolean;
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
               public events: Events,
               public appUtils: AppUtilFunctions,
               public actionSheetCtrl: ActionSheetController,
@@ -26,6 +25,9 @@ export class Settings {
 
   ionViewDidEnter() {
 
+    this.isRTL = this.appUtils.isRTL
+
+    console.log('platform right to left', this.isRTL)
 
   }
 
@@ -51,33 +53,24 @@ export class Settings {
 
   changeLang() {
 
-    this.events.subscribe('lang:Changed', (lang) => {
-      if (lang == 'ar') {
-        this.titletext = 'اختر اللغة';
-        this.canceltext = 'الغاء';
-
-      } else {
-        this.titletext = 'Choose Language';
-        this.canceltext = 'Cancel';
-      }
-      this.appUtils.translate.use(lang);
-
-    });
+    this.titletext = this.appUtils.CurrentLang == 'en' ? 'Choose a language' : 'اختر اللغة';
 
 
     let actionSheet = this.actionSheetCtrl.create({
       title: this.titletext,
       buttons: [
         {
-          text: 'عربي',
+          text: 'العربية',
           handler: () => {
             this.events.publish('lang:Changed', ('ar'));
+            this.isRTL = this.appUtils.isRTL
           }
         },
         {
-          text: 'English',
+          text: 'English US',
           handler: () => {
             this.events.publish('lang:Changed', ('en'));
+            this.isRTL = this.appUtils.isRTL
           }
         },
         {
@@ -113,6 +106,10 @@ export class Settings {
     } else {
       this.navCtrl.push(page)
     }
+  }
+
+  Logout() {
+    console.warn('you are attempting to log out')
   }
 
 

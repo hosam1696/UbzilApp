@@ -17,7 +17,7 @@ export class UserProvider extends AppAPi{
 
   LoginUser(userData: IUserData) {
     let body = JSON.stringify(userData);
-    return this.http.post(super.API_URL(), body).map(res=>res.json())
+    return this.http.post(super.API_URL()+'users.php?action=loginUser', body).map(res=>res.json())
   }
 
 }

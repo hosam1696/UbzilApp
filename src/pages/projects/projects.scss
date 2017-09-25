@@ -8,10 +8,34 @@ page-projects {
       padding: 8px !important;
     }
     ion-segment {
-      direction: ltr;
+      
       ion-segment-button {
+        
+
         height: auto;
         &.segment-button {
+          &:first-of-type {
+            
+ border-top-left-radius: 4px;
+ border-top-right-radius: 0;
+ border-bottom-right-radius: 0;
+ border-bottom-left-radius: 4px;
+ margin-right: 0;
+
+            
+          }
+
+          &:last-of-type {
+           border-top-left-radius: 0;
+           border-top-right-radius: 4px;
+           border-bottom-right-radius: 4px;
+           border-bottom-left-radius: 0;
+           margin-left: 0;
+           border-left-width: 0;
+
+
+          }
+
           display: flex;
           height: 4.5rem !important;
           font-size: 1rem;
@@ -46,12 +70,32 @@ page-projects {
     &.content {
       background-color: #f1f1f1;
     }
+    
+    
     ion-list {
       padding: 0px 8px;
       border: 0px;
+      ion-item-sliding {
+        margin-bottom: 8px;
+        ion-item-options {
+          border-bottom: none !important; //z-index: 3;
+          button {
+            min-width: 80px;
+            border-bottom: none !important;
+            font-size: 1.3rem !important;
+            &:first-child {
+              background: radial-gradient(#20a7f6, #0068a5);
+            }
+            &:nth-child(2) {
+              background: radial-gradient(#f53d3d, #a70909);
+            }
+          }
+        }
+      }
+
       ion-item {
         height: $thumbnail-height;
-        margin-bottom: 8px !important;
+       // margin-bottom: 8px !important;
         padding: 0px;
         border: 0px!important;
         ion-thumbnail {
@@ -64,7 +108,7 @@ page-projects {
           }
         }
         .item-inner {
-          padding: 0px!important;
+          padding: 0px 5px!important;
           background-size: 100px 100px;
           background-repeat: no-repeat;
           border: 0px!important;
@@ -114,6 +158,11 @@ page-projects {
               position: absolute;
               bottom: 10px;
               left: 10px;
+              right: auto;
+              &.toright {
+                right: 10px;
+                left: auto
+              }
               button {
                 height: 25px;
                 min-height: 25px;

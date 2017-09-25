@@ -13,13 +13,9 @@ import { IonicPage, NavController, NavParams, AlertController, Events } from 'io
 })
 export class ForgetPass {
 
-  type: any;
-  id: any;
-  headerimg: any;
-  username:any;
-  password:any;
-  loginload:any;
-  Token:any;
+  phone: string;
+  spinLoader:boolean = false;
+
 
   constructor(
     public navCtrl: NavController, 
@@ -27,33 +23,23 @@ export class ForgetPass {
     public alertCtrl: AlertController,
     public events: Events
   ) {
-    this.loginload = false ;
+
   }
 
-  ionViewDidEnter(){
-    console.log('enter');
-    // Run After Page Already Entered
-  }
 
   ionViewDidLoad() {
     console.log('load');
-    // Run After Page Already Loaded
-    this.headerimg = '../../assets/img/ba_logo.png';    
+
     
     
   }
 
-  goSignup(){
-    this.navCtrl.push('s');
+  navigateTo(page: string): void {
+    this.navCtrl.push(page)
+  }
+  sendPhone(phoneNumber) {
+
   }
 
-  gologin(){
-    this.navCtrl.push('Login');
-  }
-
-
-  userConnect(){
-    this.events.publish('user:Connect',this.Token);
-  }
 
 }

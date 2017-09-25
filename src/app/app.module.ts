@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms'; 
 //import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ErrorHandler, NgModule} from '@angular/core';
-import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, Platform } from 'ionic-angular';
 import {Http, HttpModule} from '@angular/http';
 import {TranslateLoader, TranslateModule, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 import {IonicStorageModule} from '@ionic/storage';
@@ -29,7 +29,7 @@ import { NotificationsProvider } from '../providers/notifications/notifications'
 export function createTranslateLoader(http: Http) {
 	return new TranslateStaticLoader(http, './assets/i18n', '.json');
 }
-
+let platform = new Platform();
 @NgModule({
   declarations: [
     MyApp,
@@ -43,7 +43,11 @@ export function createTranslateLoader(http: Http) {
     HttpModule,
     Ionic2RatingModule,
     IonicStorageModule.forRoot(),
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      backButtonText: '',
+      activator: 'ripple',
+      backButtonIcon: !platform.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'
+    }),
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),

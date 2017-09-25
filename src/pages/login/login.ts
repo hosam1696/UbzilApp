@@ -1,7 +1,7 @@
 import { AppUtilFunctions } from './../../app/appglobal/app.utilfuns';
 import { UserProvider } from './../../providers/user/user';
 import {Component} from '@angular/core';
-import { IonicPage, NavController, Events, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, Events } from 'ionic-angular';
 
 
 @IonicPage()
@@ -10,32 +10,23 @@ import { IonicPage, NavController, Events, ToastController } from 'ionic-angular
   templateUrl: 'login.html',
 })
 export class Login {
+  spinLoader: boolean = false;
+  username: string;
+  password: string;
 
-  type: any;
-  id: any;
-  headerimg: any;
-  username: any;
-  password: any;
-  loginload: any;
-  Token: any;
 
   constructor(public navCtrl: NavController,
               public events: Events,
               private userProvider: UserProvider,
               public appUtils: AppUtilFunctions
   ) {
-    this.loginload = false;
   }
 
-  ionViewDidEnter() {
-    console.log('enter');
-    // Run After Page Already Entered
-  }
 
   ionViewDidLoad() {
-    console.log('load');
+    //console.log('load');
     // Run After Page Already Loaded
-    this.headerimg = '../../assets/img/ba_logo.png';
+    ///this.headerimg = '../../assets/img/ba_logo.png';
 
   }
 
@@ -48,16 +39,34 @@ export class Login {
 
   }
 
-  userLogin(username: string, password:string) {
-    if (!username || !password) {
-      this.appUtils.AppToast(!username?'يرجى ادخال اسم المستخدم':'يرجى ادخال كلمة المرور')
+  userLogin(username: string, password: string) {
+    
+    let unvalid:(i:string)=>boolean = (input: string) => !input || !input.trim();
+
+    if (unvalid(username) || unvalid(password)) {
+      
+      this.appUtils.AppToast(unvalid(username) ? 'يرجى ادخال اسم المستخدم' : 'يرجى ادخال كلمة المرور');
+      unvalid(username)?(this.username=''):(this.password='')
     } else {
       console.log('you have entered ', username, password);
       this.userProvider
         .LoginUser({ username, password })
-        .subscribe(userData => {
-          
-        });
+        .subscribe(
+          userData => {
+            console.log(userData);
+          },
+          err => {
+            if (err.error instanceof Error) {
+                console.warn('client side error', err)
+            } else {
+              console.warn('server side error', err);
+              }
+          },
+          () => {
+
+          }
+        
+        );
 
     }
   }

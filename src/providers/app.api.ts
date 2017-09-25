@@ -1,6 +1,6 @@
 export class AppAPi { 
 
-    public ApiUrl: string = 'https://www.ubzil.com/api';
+    public ApiUrl: string = 'http://ubzil.com/api/';
     
     constructor() {
         

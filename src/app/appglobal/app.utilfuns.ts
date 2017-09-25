@@ -41,5 +41,9 @@ export class AppUtilFunctions {
     public get GetPlatform():string {
         return this.platform.is('ios')?'ios':(this.platform.is('windows')?'windows':'android')
     }
+
+    public get isRTL(): boolean {
+        return this.platform.isRTL
+    }
 }
 

@@ -106,7 +106,6 @@
         "To":"To",
         "price list":"price list",
         "Balance":"Balance",
-        "My Balance":"My Balance",
         "Last Recharge":"Last Recharge",
         "view history":"view history",
         "Means of recharging":"Means of recharging",
@@ -159,6 +158,8 @@
         "Upload-Image":"Upload Image",
         "From-file":"From file",
         "From-camera":"From camera",
-        "Choose-Language":"Choose Language"
+        "Choose-Language":"Choose Language",
+        "reject":"reject",
+        "Usage policy": "Usage policy"
 
 }

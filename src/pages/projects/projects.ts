@@ -9,20 +9,26 @@ import { IonicPage, NavController, ModalController } from 'ionic-angular';
 })
 export class ProjectsPage {
   projectID: string = 'myProjects';
-  isIos:boolean = false;
+  isIos: boolean = false;
+  isRTL: boolean;
   constructor(
     public navCtrl: NavController,
     public appUtils: AppUtilFunctions,
     public modalCtrl: ModalController
   ) {
+    this.isRTL = this.appUtils.platform.isRTL
   }
 
+  ionViewWillEnter() {
+    this.isRTL = this.appUtils.platform.isRTL;
+    console.log(this.appUtils.GetPlatform, 'is pltform is RTL', this.isRTL)
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProjectsPage');
 
     this.isIos = this.appUtils.GetPlatform === 'ios' ? true : false;
 
-    console.log(this.appUtils.GetPlatform)
+    
 
    
   }

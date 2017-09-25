@@ -4,10 +4,6 @@ import {IonicPage, NavController, ModalController, NavParams, Events} from 'ioni
 
 // Providers
 
-// Req Pages
-import {MessagesDetail} from '../messages-detail/messages-detail';
-
-
 @IonicPage()
 @Component({
     selector: 'page-messages',
