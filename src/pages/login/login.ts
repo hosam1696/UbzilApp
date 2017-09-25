@@ -1,5 +1,7 @@
+import { AppUtilFunctions } from './../../app/appglobal/app.utilfuns';
+import { UserProvider } from './../../providers/user/user';
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, AlertController, Events} from 'ionic-angular';
+import { IonicPage, NavController, Events, ToastController } from 'ionic-angular';
 
 
 @IonicPage()
@@ -18,9 +20,10 @@ export class Login {
   Token: any;
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              public alertCtrl: AlertController,
-              public events: Events) {
+              public events: Events,
+              private userProvider: UserProvider,
+              public appUtils: AppUtilFunctions
+  ) {
     this.loginload = false;
   }
 
@@ -43,6 +46,20 @@ export class Login {
   goForgetPass() {
     this.navCtrl.push('ForgetPass')
 
+  }
+
+  userLogin(username: string, password:string) {
+    if (!username || !password) {
+      this.appUtils.AppToast(!username?'يرجى ادخال اسم المستخدم':'يرجى ادخال كلمة المرور')
+    } else {
+      console.log('you have entered ', username, password);
+      this.userProvider
+        .LoginUser({ username, password })
+        .subscribe(userData => {
+          
+        });
+
+    }
   }
 
 

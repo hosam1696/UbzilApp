@@ -1,0 +1,75 @@
+
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{'Messages'| translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page" parallax-header>
+
+
+    <div class="main-content">
+
+        <div class="inner-content">
+
+            <ion-list>
+                <ion-item (click)="MessagesDetail()">
+                    <ion-thumbnail item-start >
+                        <img src="assets/img/png/doctor.png">
+                    </ion-thumbnail>
+                    <h2>{{'Vezeta_doctors'| translate}}</h2>
+                    <p>السلام عليكم كيفك استاذ حسين  </p>
+                    <ion-icon name="arrow-back" item-right></ion-icon>
+                </ion-item>
+
+                <ion-item (click)="MessagesDetail()">
+                    <ion-thumbnail item-start >
+                        <img src="assets/img/png/homeserv.png">
+                    </ion-thumbnail>
+                    <h2>{{'Home_services'| translate}}</h2>
+                    <p>يمكننى قضاء جميع المهام التى تريدها أرجو التواصل معي </p>
+                    <ion-icon name="arrow-back" item-right></ion-icon>
+
+                </ion-item > 
+               
+                <ion-item (click)="MessagesDetail()">
+                    <ion-thumbnail item-start>
+                        <img src="assets/img/png/iron.png">
+                    </ion-thumbnail>
+                    <h2>{{'Personal'| translate}}</h2>
+                    <p>لقد قمت بكي جميع ملابسك ارجو الحضور لاخذها</p>
+                    <ion-icon name="arrow-back" item-right></ion-icon>
+
+                </ion-item>
+
+                <ion-item (click)="MessagesDetail()">
+                    <ion-thumbnail item-start >
+                        <img src="assets/img/png/accesory.png">
+                    </ion-thumbnail>
+                    <h2>{{'Personal'| translate}}</h2>
+                    <p>الموديلات التى كنت بانتظارها وصلت ويمكنك رؤيتها الان</p>
+                    <ion-icon name="arrow-back" item-right></ion-icon>
+
+                </ion-item> 
+                <ion-item (click)="MessagesDetail()">
+                    <ion-thumbnail item-start>
+                        <img src="assets/img/png/doctor.png">
+                    </ion-thumbnail>
+                    <h2>{{'Vezeta_doctors'| translate}}</h2>
+                    <p>يرجى تأكيد ميعاد الحجز عند دكتور محمد</p>
+                    <ion-icon name="arrow-back" item-right></ion-icon>
+
+                </ion-item> 
+            </ion-list>
+
+
+        </div>
+
+    </div>
+
+</ion-content>
+
+
