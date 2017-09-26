@@ -1,6 +1,8 @@
+import { ServicesProvider } from './../../providers/services/services';
+import { AppUtilFunctions } from './../../app/appglobal/app.utilfuns';
 // Main Components
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController, ModalController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 
 // Providers
 // Req Pages
@@ -16,20 +18,24 @@ export class SubCategory {
 
     searchQuery: string = '';
     items: any[];
-
+    pageData: any;
     public sec: any;
 
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
-        public modalCtrl: ModalController,
-        public toastCtrl: ToastController
+        public appUtils: AppUtilFunctions,
+        public services: ServicesProvider
 
     ) {
+
+        this.pageData = this.navParams.get('pageData');
+
+        console.log(this.pageData);
+
+
         this.initializeItems();
-        for (let i in this.items) {
-            console.log("name is " + this.items[i].name);
-        }
+
     }
 
     initializeItems() {
@@ -55,17 +61,26 @@ export class SubCategory {
     }
 
     ionViewDidLoad() {
-
-
-    }
-    Servicelocationmodal() {
-        let ServicelocationModal = this.modalCtrl.create(SearchService);
-        ServicelocationModal.present();
-        ServicelocationModal.onDidDismiss(data => {
-            // Saving this info to local storage after updating user profile info
+        this.services.getSubDirectory(
+            {
+                "user_id": "3",
+                "verifycode": "$2y$12$XQBdOjshGvoSRcT6uTlJaOkOiV.htMTyyT09IXxdjHrSQeoc/vgkO",
+                "service_id": this.pageData.id,
+                "lang_code": this.appUtils.CurrentLang
+            }
+        ).subscribe(res => {
+            console.log(res);
+            }, err => {
+                if (err.error instanceof Error) {
+                    console.warn('client side error', err);
+                } else {
+                    console.warn('server side error ', err);    
+            }
         })
-    }
 
+    }
+  
+/*
     goAddRequest() {
         this.sec = this.navParams.get('type');
         console.log(this.sec);
@@ -79,7 +94,7 @@ export class SubCategory {
         }
     }
 
-
+*/
 
     getItems(ev: any) {
         // Reset items back to all of the items

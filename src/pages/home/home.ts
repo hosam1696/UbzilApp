@@ -40,6 +40,13 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
+
+    this.services.getSubDirectory({ "user_id": "3", "service_id": "143", "verifycode": "$2y$12$XQBdOjshGvoSRcT6uTlJaOkOiV.htMTyyT09IXxdjHrSQeoc/vgkO", "lang_code": "ar" })
+
+      .subscribe(res => {
+      console.log(res)
+    })
+
     this.services.getDefaultServices({
       user_id: 2,
       verifycode: '$2y$12$FCtEqMB9xLO4FZxj0KUeyuzOwMB/ojRxD9olFk2ReBq5oBtpGO70K',

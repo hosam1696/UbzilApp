@@ -28,7 +28,7 @@
       <ion-row>
 
         <ion-col *ngFor="let service of nearByServices" class="category-col">
-          <div class="category" (click)="navigateTo('SubCategory', service.id)">
+          <div class="category" (click)="navigateTo('SubCategory', service)">
             <div class='category-img'>
               <img [src]="'assets/img/png/'+service.id+'.png'" alt="" />
             </div>

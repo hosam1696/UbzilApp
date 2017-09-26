@@ -18,4 +18,11 @@ export class ServicesProvider extends AppAPi{
     return this.http.post(super.API_URL() +'home.php?action=getMainServices' ,body).map(res=>res.json())
   }
 
+
+  getSubDirectory(subData) {
+    let body = JSON.stringify(subData);
+
+    return this.http.post(super.API_URL() + 'home.php?action=getSubServices', body).map(res => res.json());
+  }
+
 }

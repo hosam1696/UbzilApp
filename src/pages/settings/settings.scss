@@ -1,8 +1,14 @@
 
 page-settings {
-.item-ios {
+.item-ios, .item-md {
     padding-left: 10px !important;
 }
+
+.item-md ion-icon[item-start]+.item-inner,
+{
+    margin-left:0
+}
+
     ion-content{
         background-color:#f1f1f1!important;
 
