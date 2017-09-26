@@ -167,7 +167,7 @@
         <div class="add-reviews" item-end (click)="navigateTo('AddReview')"><h2><ion-icon name="add"></ion-icon>{{'Add'| translate}}</h2></div>
     </ion-list-header>
     <ion-item>
-        <ion-avatar item-start>
+        <ion-avatar item-start (click)="navigateTo('ProfilePage', true)">
             <img src="assets/img/14.jpg" alt=""/>
         </ion-avatar>
         <h2>حسين محمود  <span>منذ دقيقة</span></h2>

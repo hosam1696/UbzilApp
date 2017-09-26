@@ -222,7 +222,8 @@ page-profile {
           display: flex;
           align-items: flex-start;
           ion-avatar {
-            margin: 8px !important
+            margin: 18px 8px !important
+
           }
 
           .item-inner {
@@ -352,7 +353,7 @@ page-profile {
   .user-rate {
     .stats-container {
       .rating-b {
-        margin-left: 10px;
+        margin-left: 0;
         margin-right: 0px;
       }
       span {

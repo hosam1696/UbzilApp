@@ -18,6 +18,9 @@ export class HomePage {
   segment: string = "nearbyServices";
   name: any;
   type: any;
+  ubzilLoader: boolean = true;
+
+
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -26,8 +29,6 @@ export class HomePage {
               
 
   }
-
-
 
   async ionViewDidEnter() {
     // Run After Page Already Entered
@@ -62,11 +63,14 @@ export class HomePage {
       
       
       }, err => {
+        this.ubzilLoader = false;
         if (err.error instanceof Error) {
           console.warn('client side error', err);
         } else {
           console.warn('server side error', err);
         }
+      }, () => {
+        this.ubzilLoader = false;
       }
       
     )

@@ -21,9 +21,7 @@
     </ion-segment-button>
   </ion-segment>
 
-  <section id="loader-holder">
-    <div class="loader" [ngClass]="{'animate': true}"></div>
-  </section>
+  <uz-loader *ngIf="ubzilLoader"></uz-loader>
 
   <div [ngSwitch]="segment" class="my-segment">
     <ion-grid *ngSwitchCase="'nearbyServices'">
