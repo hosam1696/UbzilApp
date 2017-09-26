@@ -1,7 +1,8 @@
 <ion-header>
   <ion-toolbar>
     <ion-searchbar placeholder="{{'Search service'| translate}}"></ion-searchbar>
-    <div class="logo" (click)="goSearchResults()"><span>U</span><span>b</span><span>z</span><span>i</span><span>l</span>
+<div class="logo" (click)="navigateTo('SearchResults')"><span>U</span><span>b</span><span>z</span><span>i</span><span>l</span>
+
       <span>|</span></div>
   </ion-toolbar>
 </ion-header>
@@ -9,8 +10,8 @@
 <ion-content>
 
   <ion-segment [(ngModel)]="segment">
-    <ion-segment-button value="services">
-      {{'Close-services' | translate}}
+    <ion-segment-button value="nearbyServices">
+      {{'nearby-services' | translate}}
     </ion-segment-button>
     <ion-segment-button value="qoutes">
       {{'Get-qoutes' | translate}}
@@ -19,164 +20,184 @@
       {{'Book-schedule' | translate}}
     </ion-segment-button>
   </ion-segment>
+
+  <section id="loader-holder">
+    <div class="loader" [ngClass]="{'animate': true}"></div>
+  </section>
+
   <div [ngSwitch]="segment" class="my-segment">
-    <ion-grid *ngSwitchCase="'services'">
+    <ion-grid *ngSwitchCase="'nearbyServices'">
       <ion-row>
-        <ion-col col-4 class="category-col">
-          <div class="category" (click)="navigateTo('SubCategory')">
+
+        <ion-col *ngFor="let service of nearByServices" class="category-col">
+          <div class="category" (click)="navigateTo('SubCategory', service.id)">
             <div class='category-img'>
-              <img src="assets/img/png/homeserv.png" alt=""/>
+              <img [src]="'assets/img/png/'+service.id+'.png'" alt="" />
             </div>
             <div class="title">
-              <h4>{{'Home_services' | translate}}</h4>
+              <h4>{{service.service_name}}</h4>
             </div>
             <div class="wight-effect"></div>
           </div>
         </ion-col>
+       <!-- 
+<ion-col col-4 class="category-col">
+  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+    <div class='category-img'>
+      <img src="assets/img/png/homeserv.png" alt="" />
+    </div>
+    <div class="title">
+      <h4>{{'Home_services' | translate}}</h4>
+    </div>
+    <div class="wight-effect"></div>
+  </div>
+</ion-col>
 
 
-        <ion-col col-4 class="category-col">
-          <div class="category" (click)="navigateTo('SubCategory')">
-            <div class='category-img'>
-              <img src="assets/img/png/wedding.png" alt=""/>
-            </div>
-            <div class="title">
-              <h4>{{'Events_Weddings' | translate}}</h4>
-            </div>
-            <div class="wight-effect"></div>
-          </div>
-        </ion-col>
+<ion-col col-4 class="category-col">
+  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+    <div class='category-img'>
+      <img src="assets/img/png/wedding.png" alt="" />
+    </div>
+    <div class="title">
+      <h4>{{'Events_Weddings' | translate}}</h4>
+    </div>
+    <div class="wight-effect"></div>
+  </div>
+</ion-col>
 
 
-        <ion-col col-4 class="category-col">
-          <div class="category" (click)="navigateTo('SubCategory')">
-            <div class='category-img'>
-              <img src="assets/img/png/doctor.png" alt=""/>
-            </div>
-            <div class="title">
-              <h4>{{'Vezeta_doctors' | translate}}</h4>
-            </div>
-            <div class="wight-effect"></div>
-          </div>
-        </ion-col>
+<ion-col col-4 class="category-col">
+  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+    <div class='category-img'>
+      <img src="assets/img/png/doctor.png" alt="" />
+    </div>
+    <div class="title">
+      <h4>{{'Vezeta_doctors' | translate}}</h4>
+    </div>
+    <div class="wight-effect"></div>
+  </div>
+</ion-col>
 
 
-        <ion-col col-4 class="category-col">
-          <div class="category" (click)="navigateTo('SubCategory')">
-            <div class='category-img'>
-              <img src="assets/img/png/accesory.png" alt=""/>
-            </div>
-            <div class="title">
-              <h4>{{'Personal' | translate}}</h4>
-            </div>
-            <div class="wight-effect"></div>
-          </div>
-        </ion-col>
+<ion-col col-4 class="category-col">
+  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+    <div class='category-img'>
+      <img src="assets/img/png/accesory.png" alt="" />
+    </div>
+    <div class="title">
+      <h4>{{'Personal' | translate}}</h4>
+    </div>
+    <div class="wight-effect"></div>
+  </div>
+</ion-col>
 
 
-        <ion-col col-4 class="category-col">
-          <div class="category" (click)="navigateTo('SubCategory')">
-            <div class='category-img'>
-              <img src="assets/img/png/24-hours.png" alt=""/>
-            </div>
-            <div class="title">
-              <h4>{{'On_demand' | translate}}</h4>
-            </div>
-            <div class="wight-effect"></div>
-          </div>
-        </ion-col>
+<ion-col col-4 class="category-col">
+  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+    <div class='category-img'>
+      <img src="assets/img/png/24-hours.png" alt="" />
+    </div>
+    <div class="title">
+      <h4>{{'On_demand' | translate}}</h4>
+    </div>
+    <div class="wight-effect"></div>
+  </div>
+</ion-col>
 
 
-        <ion-col col-4 class="category-col">
-          <div class="category" (click)="navigateTo('SubCategory')">
-            <div class='category-img'>
-              <img src="assets/img/png/customer-service.png" alt=""/>
-            </div>
-            <div class="title">
-              <h4>{{'Business_services' | translate}}</h4>
-            </div>
-            <div class="wight-effect"></div>
-          </div>
-        </ion-col>
+<ion-col col-4 class="category-col">
+  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+    <div class='category-img'>
+      <img src="assets/img/png/customer-service.png" alt="" />
+    </div>
+    <div class="title">
+      <h4>{{'Business_services' | translate}}</h4>
+    </div>
+    <div class="wight-effect"></div>
+  </div>
+</ion-col>
 
 
-        <ion-col col-4 class="category-col">
-          <div class="category" (click)="navigateTo('SubCategory')">
-            <div class='category-img'>
-              <img src="assets/img/png/homeserv.png" alt=""/>
-            </div>
-            <div class="title">
-              <h4>{{'Home_services' | translate}}</h4>
-            </div>
-            <div class="wight-effect"></div>
-          </div>
-        </ion-col>
+<ion-col col-4 class="category-col">
+  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+    <div class='category-img'>
+      <img src="assets/img/png/homeserv.png" alt="" />
+    </div>
+    <div class="title">
+      <h4>{{'Home_services' | translate}}</h4>
+    </div>
+    <div class="wight-effect"></div>
+  </div>
+</ion-col>
 
 
-        <ion-col col-4 class="category-col">
-          <div class="category" (click)="navigateTo('SubCategory')">
-            <div class='category-img'>
-              <img src="assets/img/png/wedding.png" alt=""/>
-            </div>
-            <div class="title">
-              <h4>{{'Events_Weddings' | translate}}</h4>
-            </div>
-            <div class="wight-effect"></div>
-          </div>
-        </ion-col>
+<ion-col col-4 class="category-col">
+  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+    <div class='category-img'>
+      <img src="assets/img/png/wedding.png" alt="" />
+    </div>
+    <div class="title">
+      <h4>{{'Events_Weddings' | translate}}</h4>
+    </div>
+    <div class="wight-effect"></div>
+  </div>
+</ion-col>
 
 
-        <ion-col col-4 class="category-col">
-          <div class="category" (click)="navigateTo('SubCategory')">
-            <div class='category-img'>
-              <img src="assets/img/png/doctor.png" alt=""/>
-            </div>
-            <div class="title">
-              <h4>{{'Vezeta_doctors' | translate}}</h4>
-            </div>
-            <div class="wight-effect"></div>
-          </div>
-        </ion-col>
+<ion-col col-4 class="category-col">
+  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+    <div class='category-img'>
+      <img src="assets/img/png/doctor.png" alt="" />
+    </div>
+    <div class="title">
+      <h4>{{'Vezeta_doctors' | translate}}</h4>
+    </div>
+    <div class="wight-effect"></div>
+  </div>
+</ion-col>
 
 
-        <ion-col col-4 class="category-col">
-          <div class="category" (click)="navigateTo('SubCategory')">
-            <div class='category-img'>
-              <img src="assets/img/png/accesory.png" alt=""/>
-            </div>
-            <div class="title">
-              <h4>{{'Personal' | translate}}</h4>
-            </div>
-            <div class="wight-effect"></div>
-          </div>
-        </ion-col>
+<ion-col col-4 class="category-col">
+  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+    <div class='category-img'>
+      <img src="assets/img/png/accesory.png" alt="" />
+    </div>
+    <div class="title">
+      <h4>{{'Personal' | translate}}</h4>
+    </div>
+    <div class="wight-effect"></div>
+  </div>
+</ion-col>
 
 
-        <ion-col col-4 class="category-col">
-          <div class="category" (click)="navigateTo('SubCategory')">
-            <div class='category-img'>
-              <img src="assets/img/png/24-hours.png" alt=""/>
-            </div>
-            <div class="title">
-              <h4>{{'On_demand' | translate}}</h4>
-            </div>
-            <div class="wight-effect"></div>
-          </div>
-        </ion-col>
+<ion-col col-4 class="category-col">
+  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+    <div class='category-img'>
+      <img src="assets/img/png/24-hours.png" alt="" />
+    </div>
+    <div class="title">
+      <h4>{{'On_demand' | translate}}</h4>
+    </div>
+    <div class="wight-effect"></div>
+  </div>
+</ion-col>
 
 
-        <ion-col col-4 class="category-col">
-          <div class="category" (click)="navigateTo('')">
-            <div class='category-img'>
-              <img src="assets/img/png/customer-service.png" alt=""/>
-            </div>
-            <div class="title">
-              <h4>{{'Business_services' | translate}}</h4>
-            </div>
-            <div class="wight-effect"></div>
-          </div>
-        </ion-col>
+<ion-col col-4 class="category-col">
+  <div class="category" (click)="navigateTo('')">
+    <div class='category-img'>
+      <img src="assets/img/png/customer-service.png" alt="" />
+    </div>
+    <div class="title">
+      <h4>{{'Business_services' | translate}}</h4>
+    </div>
+    <div class="wight-effect"></div>
+  </div>
+</ion-col>
 
+
+       -->
 
       </ion-row>
     </ion-grid>
@@ -184,18 +205,18 @@
 
     <ion-grid *ngSwitchCase="'qoutes'">
       <ion-row>
-        <ion-col col-4 class="category-col">
-          <div class="category" (click)="navigateTo('qoutes')">
+        <ion-col *ngFor="let service of requestServices" col-4 class="category-col">
+          <div class="category" (click)="navigateTo('SubCategory', service.id)">
             <div class='category-img'>
-              <img src="assets/img/png/homeserv.png" alt=""/>
+              <img [src]="'assets/img/png/'+service.id+'.png'" alt=""/>
             </div>
             <div class="title">
-              <h4>{{'Home_services' | translate}}</h4>
+              <h4>{{service.service_name }}</h4>
             </div>
             <div class="wight-effect"></div>
           </div>
         </ion-col>
-
+<!--
         <ion-col col-4 class="category-col">
           <div class="category" (click)="navigateTo('qoutes')">
             <div class='category-img'>
@@ -220,7 +241,7 @@
             <div class="wight-effect"></div>
           </div>
         </ion-col>
-
+      -->
 
       </ion-row>
     </ion-grid>
@@ -230,19 +251,19 @@
       <ion-row>
 
 
-        <ion-col col-6 class="category-col">
-          <div class="category" (click)="navigateTo('book')">
+        <ion-col *ngFor="let service of bookDate" col-6 class="category-col">
+          <div class="category" (click)="navigateTo('SubCategory', service.id)">
             <div class='category-img'>
-              <img src="assets/img/png/doctor.png" alt=""/>
+              <img [src]="'assets/img/png/'+service.id+'.png'" alt=""/>
             </div>
             <div class="title">
-              <h4>{{'Clinics' | translate}}</h4>
+              <h4>{{service.service_name}}</h4>
             </div>
             <div class="wight-effect"></div>
           </div>
         </ion-col>
 
-
+<!--
         <ion-col col-6 class="category-col">
           <div class="category" (click)="navigateTo('book')">
             <div class='category-img'>
@@ -255,9 +276,9 @@
           </div>
         </ion-col>
 
+      -->
       </ion-row>
     </ion-grid>
   </div>
-
 
 </ion-content>

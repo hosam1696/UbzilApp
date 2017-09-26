@@ -1,18 +1,21 @@
+import { AppAPi } from './../app.api';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-/*
-  Generated class for the ServicesProvider provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular DI.
-*/
 @Injectable()
-export class ServicesProvider {
+export class ServicesProvider extends AppAPi{
 
   constructor(public http: Http) {
-    console.log('Hello ServicesProvider Provider');
+    super()
+  }
+
+
+  getDefaultServices(servicesData) {
+
+    let body = JSON.stringify(servicesData);
+
+    return this.http.post(super.API_URL() +'home.php?action=getMainServices' ,body).map(res=>res.json())
   }
 
 }

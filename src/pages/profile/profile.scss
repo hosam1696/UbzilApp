@@ -219,17 +219,23 @@ page-profile {
         ion-item {
           border: 0px!important;
           margin-bottom: 1px;
+          display: flex;
+          align-items: flex-start;
+          ion-avatar {
+            margin: 8px !important
+          }
+
           .item-inner {
             border: 0px!important;
+            padding-left: 8px;
+            
+
             ion-label {
-              ion-avatar {
-                float: right;
-                margin-left: 10px;
-              }
+              
               h2 {
                 font-size: 14px;
                 color: #666;
-                margin-right: 46px;
+                @extend %flex-between;
                 span {
                   font-size: 10px;
                   color: #999;
@@ -238,7 +244,7 @@ page-profile {
               p {
                 font-size: 12px;
                 color: #666;
-                margin-right: 46px;
+               
                 white-space: normal;
                 line-height: 16px;
                 margin-top: 5px;
@@ -281,6 +287,7 @@ page-profile {
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 margin-right: 0px;
+                margin-top: 0;
               }
               button {
                 position: absolute;
@@ -321,8 +328,7 @@ page-profile {
                 color: #444!important;
                 text-overflow: ellipsis;
                 white-space: nowrap;
-                float: right;
-                margin-right: 0px;
+
               }
               p {
                 margin-left: 0px;
@@ -331,7 +337,6 @@ page-profile {
                 height: auto;
                 line-height: 16px;
                 overflow: hidden;
-                float: left;
                 margin-top: 0px;
                 text-overflow: ellipsis;
                 white-space: nowrap;
@@ -352,10 +357,16 @@ page-profile {
       }
       span {
         color: #666;
+        display: inline-block
       }
       .review-num {
-        margin-top: -5px;
+        //margin-top: -5px;
+        @extend %flex-between;
+        //display: flex;
+        align-items: center;
+        width: 90px; 
         h4 {
+          
           font-size: 12px;
           font-weight: 600!important;
           color: #444!important;
@@ -427,9 +438,7 @@ html[dir="ltr"] {
                 h2 {
                   margin-right: auto;
                 }
-                p {
-                  margin-right: auto;
-                }
+                
               }
             }
           }
@@ -457,28 +466,10 @@ html[dir="ltr"] {
                 h2 {
                   float: left;
                 }
-                p {
-                  float: right;
-                }
+                
               }
             }
           }
-        }
-      }
-    }
-    /*/////////////////////rating review////////////////*/
-    .user-rate {
-      text-align: left;
-      margin-left: 46px;
-      margin-right: auto;
-      .stats-container {
-        .rating-b {
-          margin-right: 10px;
-          margin-left: 0px;
-          float: left;
-        }
-        .review-num {
-          margin-top: 0px;
         }
       }
     }

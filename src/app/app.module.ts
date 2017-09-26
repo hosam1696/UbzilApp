@@ -46,7 +46,7 @@ let platform = new Platform();
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
       activator: 'ripple',
-      backButtonIcon: !platform.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'
+      //backButtonIcon: !platform.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'
     }),
     TranslateModule.forRoot({
       provide: TranslateLoader,
