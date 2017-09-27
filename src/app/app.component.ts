@@ -75,7 +75,6 @@ export class MyApp {
                 this.platform.setDir('ltr', true);
                 this.config.set('backButtonIcon', 'ios-arrow-back');
                 console.log('config change detector', this.config.get('backButtonIcon'))
-
             }
             // Change Global Lang to Selected one
             this.translate.use(lang);
