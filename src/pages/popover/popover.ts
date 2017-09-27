@@ -18,9 +18,9 @@ export class PopoverContentPage {
         public viewCtrl: ViewController
     ) {
 
-        this.phonenum = this.navParams.get('TelList');
-        for (let i in this.phonenum) {
-            console.log("number is " + this.phonenum[i].number);
+        this.phonenum = this.navParams.get('TellList');
+        for (let i of this.phonenum) {
+            console.log("number is " + i);
         }
 
         console.log(this.phonenum);
