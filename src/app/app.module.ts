@@ -15,7 +15,6 @@ import {MyApp} from './app.component';
 
 import {ListPage} from '../pages/list/list';
 
-import {UserList} from '../pages/user-list/user-list';
 import {SearchService} from '../pages/search-service/search-service';
 import {SMS} from '../providers/sms';
 import {StatusBar} from '@ionic-native/status-bar';
@@ -34,7 +33,7 @@ let platform = new Platform();
   declarations: [
     MyApp,
     ListPage,
-    UserList,
+    
     SearchService,
 
   ],
@@ -46,6 +45,7 @@ let platform = new Platform();
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
       activator: 'ripple',
+      iconMode: 'ios'
       //backButtonIcon: !platform.isRTL ? 'ios-arrow-forward' : 'ios-arrow-back'
     }),
     TranslateModule.forRoot({
@@ -59,7 +59,7 @@ let platform = new Platform();
   entryComponents: [
     MyApp,
     ListPage,
-    UserList,
+    
     SearchService,
 
   ],

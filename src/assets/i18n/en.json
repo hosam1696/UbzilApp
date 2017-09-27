@@ -160,6 +160,9 @@
         "From-camera":"From camera",
         "Choose-Language":"Choose Language",
         "reject":"reject",
-        "Usage policy": "Usage policy"
+        "Usage policy": "Usage policy",
+        "km": "KM",
+        "serProvs": "Service providers",
+        "subCat":"Sub Category"
 
 }

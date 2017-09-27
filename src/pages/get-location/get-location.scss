@@ -1,5 +1,28 @@
 page-get-location{
     //direction: rtl!important;
+
+    ion-content {
+          button {
+
+          position: absolute;
+          bottom: 8px;
+          left: 20px;
+          z-index: 99999
+        }
+        &.content {
+          background-color: #eee;
+          height: 100%;
+        }
+
+       #map {
+           height: 100% !important;
+           width: 100%;
+         }
+       }
+
+
+
+    }
     .center-loader {
         display: flex;
         align-items: center;
@@ -26,17 +49,9 @@ page-get-location{
         left: 10px;
         box-shadow: 0 14px 7px -6px #404838;
     }*/
-    .small {
-        font-size: 12px !important
-    }
-    ion-content.content {
-        background-color: #eee;
-        height: 100%;
-    }
-    ion-content #map {
-        height: 100% !important;
-        width: 100%;}
-}
+
+    
+
 /*html[dir="ltr"] {
     page-get-location{
         direction: ltr!important;

@@ -31,6 +31,8 @@ $colors: (
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222,
+  lightDark: #666,
+
   app-color:    #20a7f6
 );
 
@@ -63,6 +65,7 @@ $toast-md-title-color: #fff;
 
 // App Theme
 // --------------------------------------------------
+$thumbnail-height: 80px;
 
 $text-color: #20a7f6;
 $toolbar-background: #fff;

@@ -1,19 +1,26 @@
 
 <ion-header>
     <ion-navbar>
-        <ion-title>{{'Clinics' | translate}}</ion-title>
+        <ion-title>{{'serProvs' | translate}}</ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
+    <uz-loader *ngIf="ubzilLoader"></uz-loader>
     <div class="main-content">
         <ion-list>
-            <ion-item>
+            <ion-item *ngFor="let provider of providers">
                 <ion-thumbnail item-start (click)="goProfilePage()">
-                               <img src="assets/img/12.jpg">
+                               <img [src]="provider.avatar?provider.avatar:'assets/img/12.jpg'">
                 </ion-thumbnail>
-                <h2>حسين محمود</h2>
-                <span item-end class="distance">50 km</span>
+                <h2>
+                    {{provider.fullname}} 
+                    <span class="distance">
+                    <ion-icon color="primary" name="pin"></ion-icon>    
+                    {{provider.distance | number:'.2-2'}} {{'km'|translate}}
+                    </span>
+                </h2>
+                
                 <div class="user-rate">
                     <div class="stats-container">
                         <div class="rating-b" >
@@ -29,12 +36,12 @@
                     </div>
                 </div>
                 <div class='button-div'>
-                    <ion-icon name="chatbubbles" (click)="MessagesDetail()"></ion-icon> 
+                    <ion-icon name="chatbubbles" (click)="MessagesDetail(provider.id)"></ion-icon> 
                     <ion-icon name="call" (click)="openPopover($event)"></ion-icon>     
                 </div>
 
             </ion-item>
-            <ion-item>
+            <!-- <ion-item>
                 <ion-thumbnail item-start (click)="goProfilePage()">
                                <img src="assets/img/13.jpg">
                 </ion-thumbnail>
@@ -159,7 +166,7 @@
                     <ion-icon name="chatbubbles" (click)="MessagesDetail()"></ion-icon> 
                     <ion-icon name="call" (click)="openPopover($event)"></ion-icon>     
                 </div>
-            </ion-item>
+            </ion-item> -->
         </ion-list>
 
 

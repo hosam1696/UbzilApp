@@ -19,10 +19,11 @@ export class AppUtilFunctions {
 
 
 
-    public AppToast(message:string, settings?:ToastOptions):void{
+    public AppToast(message:string, settings?:ToastOptions, callback?:any):void{
 
         let toast = this.toastCtrl.create({message,...{duration: 2500, position:'top'}, ...settings});
         // dev test only console.log(toast);
+        toast.onDidDismiss(callback)
         toast.present();
     }
 

@@ -2,7 +2,7 @@ import { ServicesProvider } from './../../providers/services/services';
 import {AppUtilFunctions} from '../../app/appglobal/app.utilfuns';
 // Main Components
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams,} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { EServicesCat } from '../../app/appglobal/app.enums';
 import { IHomeServices, IHomeServiceResponse } from '../../app/appglobal/app.interfaces';
@@ -25,7 +25,9 @@ export class HomePage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public services: ServicesProvider,
-              public appUtils: AppUtilFunctions) {
+              public appUtils: AppUtilFunctions,
+              public modalCtrl: ModalController
+  ) {
               
 
   }
@@ -40,14 +42,7 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-
-    this.services.getSubDirectory({ "user_id": "3", "service_id": "143", "verifycode": "$2y$12$XQBdOjshGvoSRcT6uTlJaOkOiV.htMTyyT09IXxdjHrSQeoc/vgkO", "lang_code": "ar" })
-
-      .subscribe(res => {
-      console.log(res)
-    })
-
-    this.services.getDefaultServices({
+    this.services.getHomeServices({
       user_id: 2,
       verifycode: '$2y$12$FCtEqMB9xLO4FZxj0KUeyuzOwMB/ojRxD9olFk2ReBq5oBtpGO70K',
       lang_code: this.appUtils.CurrentLang
@@ -88,8 +83,19 @@ export class HomePage {
 
   }
 
-  navigateTo(page, pageData?:any) {
-    this.navCtrl.push(page, {pageData})
+  navigateTo(page: string, subCount: number, pageData?: any): void {
+    
+    if (subCount) {
+      
+      this.navCtrl.push(page, { pageData })
+
+    } else {
+      const modal = this.modalCtrl.create('GetLocation', { pageData });
+
+      modal.present();
+   
+
+    }
   }
 
 

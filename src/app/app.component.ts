@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {Events, Nav, Platform} from 'ionic-angular';
+import { Events, Nav, Platform, Config } from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {TranslateService} from 'ng2-translate';
@@ -32,7 +32,8 @@ export class MyApp {
         public statusBar: StatusBar,
         public splashScreen: SplashScreen,
         public translate: TranslateService,
-        public events: Events
+        public events: Events,
+        public config: Config
 
     ) {
 
@@ -49,6 +50,7 @@ export class MyApp {
             this.translate.setDefaultLang('ar');
             this.translate.use('ar');
             this.platform.setDir('rtl', true);
+            this.config.set('backButtonIcon', 'ios-arrow-forward') //'ios-arrow-back'
             
             //this.textDir = 'rtl';
         });
@@ -63,18 +65,27 @@ export class MyApp {
                 this.textDir = 'rtl';
                 this.language = 'arabic';
                 this.platform.setDir('rtl', true);
+                this.config.set('backButtonIcon', 'ios-arrow-forward');
+
+                console.log('config change detector', this.config.get('backButtonIcon'))
 
             } else {
                 this.textDir = 'ltr';
                 this.language = 'english';
                 this.platform.setDir('ltr', true);
+                this.config.set('backButtonIcon', 'ios-arrow-back');
+                console.log('config change detector', this.config.get('backButtonIcon'))
+                
             }
             // Change Global Lang to Selected one
             this.translate.use(lang);
         });
 
 
-
+        this.events.subscribe('changeConfig', (key, value) => {
+            this.config.set(key, value);
+            console.log('config value \"'+key+'\" is ',this.config.get(key))
+        })
     }
 
 

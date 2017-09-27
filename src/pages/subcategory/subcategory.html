@@ -1,22 +1,23 @@
 <ion-header>
     <ion-navbar>
      
-        <ion-title>قسم فرعي</ion-title>
+        <ion-title>{{'subCat'|translate}}</ion-title>
     </ion-navbar>
     <ion-toolbar>
-        <ion-searchbar (ionInput)="getItems($event)" placeholder="{{'Search'| translate}}"></ion-searchbar>
+        <ion-searchbar (ionInput)="filterServices($event)" placeholder="{{'Search'| translate}}"></ion-searchbar>
     </ion-toolbar>
 </ion-header>
 
 
 <ion-content>
+    <uz-loader *ngIf="ubzilLoader"></uz-loader>
 <ion-list>
-    <ion-item (click)="goAddRequest()" *ngFor="let item of items">
+    <ion-item  *ngFor="let service of subServices" (click)="navigateTo(service)">
         <ion-thumbnail item-start>
-            <img [src]="item.img" alt=""/>
+            <img src="assets/img/png/washing-machine.png" alt=""/>
         </ion-thumbnail>
-        <h2>{{ item.name }}</h2>
-        <ion-icon ios="ios-arrow-back" md="ios-arrow-back"></ion-icon>
+        <h2>{{ service.service_name }}</h2>
+        <ion-icon color="lightDark" ios="ios-arrow-back" md="ios-arrow-back"></ion-icon>
     </ion-item>
 </ion-list>
 </ion-content>

@@ -11,7 +11,7 @@ export class ServicesProvider extends AppAPi{
   }
 
 
-  getDefaultServices(servicesData) {
+  getHomeServices(servicesData) {
 
     let body = JSON.stringify(servicesData);
 
@@ -19,10 +19,25 @@ export class ServicesProvider extends AppAPi{
   }
 
 
-  getSubDirectory(subData) {
-    let body = JSON.stringify(subData);
+  getSubCategory(serviceData) {
+    let body = JSON.stringify(serviceData);
 
     return this.http.post(super.API_URL() + 'home.php?action=getSubServices', body).map(res => res.json());
+  }
+
+
+  getServiceProviders(serviceData) {
+    
+    let body = JSON.stringify(serviceData);
+
+    return this.http.post(super.API_URL() + 'services.php?action=getServiceProviders', body).map(res=>res.json());
+
+  }
+
+
+  getServiceFormShape(requestData) {
+    let body = JSON.stringify(requestData);
+    return this.http.post(super.API_URL() +'services.php?action=getServiceformShapes',body).map(res=>res.json())
   }
 
 }

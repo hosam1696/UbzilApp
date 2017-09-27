@@ -1,5 +1,5 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {IonicPage, NavController, ViewController} from 'ionic-angular';
+import { IonicPage, NavController, ViewController, NavParams } from 'ionic-angular';
 import {Geolocation, Geoposition} from '@ionic-native/geolocation';
 
 declare var google;
@@ -12,18 +12,25 @@ declare var google;
 export class GetLocation {
     @ViewChild('map') mapElement: ElementRef;
     map: any;
+    pageParams: any;
 
     constructor(
         public navCtrl: NavController,
+        public navParams: NavParams,
         public viewCtrl: ViewController,
         public geolocation: Geolocation
     ) {
+        this.pageParams = this.navParams.get('pageData');
+
+        console.log('getlocation data', this.pageParams);
     }
     ionViewDidLoad() {
         this.loadMap();
         console.log('get location modal')
 
     }
+
+    
 
     loadMap() {
 
@@ -75,8 +82,12 @@ export class GetLocation {
 
     }
 
-       dismiss(data) {
-    this.viewCtrl.dismiss(data);
+    dismiss(direct:boolean = false) {
+        if (this.navParams && this.pageParams.lat && this.pageParams.lng&&!direct)
+            this.navCtrl.push('UserList', { pageData: this.pageParams })
+        else 
+            this.viewCtrl.dismiss(this.pageParams);
+            
   }
 }
 
