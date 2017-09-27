@@ -19,6 +19,8 @@ import {WorkTime} from '../work-time/work-time';
 import {PopoverContentPage} from '../popover/popover';
 import {Reservation} from '../reservation/reservation';
 import {PriceList} from '../price-list/price-list';
+import {AppPlugins} from "../../app/appglobal/app.plugins";
+import {ICameraType} from "../../app/appglobal/app.enums";
 
 @IonicPage()
 @Component({
@@ -42,7 +44,8 @@ export class ProfilePage {
               public modalCtrl: ModalController,
               public translate: TranslateService,
               public actionSheetCtrl: ActionSheetController,
-              public popoverCtrl: PopoverController) {
+              public popoverCtrl: PopoverController,
+              public appPlugins: AppPlugins) {
     this.priceList = [
       {"id": 0, "name": "أشعة مقطعية", "price": "250"},
       {"id": 1, "name": "صورة دم كاملة", "price": "50"},
@@ -86,14 +89,18 @@ export class ProfilePage {
         {
           icon: 'folder',
           text: this.foldertext,
-          handler: () => {
-            console.log('Destructive clicked');
+          handler:  () => {
+            console.log('folder clicked');
+            this.getCameraImage(ICameraType.PHOTOLIBRARY)
           }
         }, {
           icon: 'camera',
           text: this.cameratext,
           handler: () => {
-            console.log('Archive clicked');
+
+            console.log('camera clicked');
+
+            this.getCameraImage(ICameraType.CAMERA)
           }
         }, {
           text: this.canceltext,
@@ -106,8 +113,17 @@ export class ProfilePage {
     })
     imageactionSheet.present();
 
+
   }
 
+  async getCameraImage(CameraType:ICameraType) {
+
+
+    let img = await this.appPlugins.openCamera(CameraType);
+
+
+    console.log('img from camera' , img);
+  }
 
   openPopover(myEvent) {
     let popover = this.popoverCtrl.create('PopoverContentPage', {TelList: this.TelList});

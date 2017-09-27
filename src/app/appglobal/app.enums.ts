@@ -7,5 +7,11 @@ export enum EServicesCat {
 export enum EServicesImg {
     design,
     business,
-    
+
+}
+
+export enum ICameraType {
+       PHOTOLIBRARY = 0,
+CAMERA,
+     SAVEDPHOTOALBUM
 }

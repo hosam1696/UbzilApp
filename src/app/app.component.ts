@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import { Events, Nav, Platform, Config } from 'ionic-angular';
+import {Config, Events, Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {TranslateService} from 'ng2-translate';
@@ -43,7 +43,7 @@ export class MyApp {
     initializeApp() {
         this.platform.ready().then(() => {
 
-            this.statusBar.styleDefault();
+            this.statusBar.backgroundColorByHexString('#FFF');
             this.splashScreen.hide();
 
 
@@ -51,7 +51,7 @@ export class MyApp {
             this.translate.use('ar');
             this.platform.setDir('rtl', true);
             this.config.set('backButtonIcon', 'ios-arrow-forward') //'ios-arrow-back'
-            
+
             //this.textDir = 'rtl';
         });
 
@@ -75,7 +75,7 @@ export class MyApp {
                 this.platform.setDir('ltr', true);
                 this.config.set('backButtonIcon', 'ios-arrow-back');
                 console.log('config change detector', this.config.get('backButtonIcon'))
-                
+
             }
             // Change Global Lang to Selected one
             this.translate.use(lang);
