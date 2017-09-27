@@ -2,10 +2,12 @@
     font-family: 'JF-Flat';
     src:  url('../assets/fonts/flat-jooza-regular.ttf') format('truetype');
 }
+
+/*
 @font-face {
     font-family: 'TypoGraphica';
     src:  url('../assets/fonts/TypoGraphica_demo.otf') format('opentype');
-}
+}*/
 
 %flex-center {
   display: flex;
@@ -26,6 +28,7 @@ $primary: color($colors, primary);
 $secondary: color($colors, secondary);
 $light: color($colors, light);
 $dark: color($colors, dark);
+$lightDark: color($colors, lightDark);
 
 
 html[dir="rtl"] {

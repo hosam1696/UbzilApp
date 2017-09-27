@@ -21,14 +21,14 @@
     </ion-segment-button>
   </ion-segment>
 
-  <uz-loader *ngIf="ubzilLoader"></uz-loader>
+  <uz-loader *ngIf="ubzilLoader" [full]="false" [relative]="false"></uz-loader>
 
   <div [ngSwitch]="segment" class="my-segment">
     <ion-grid *ngSwitchCase="'nearbyServices'">
       <ion-row>
 
         <ion-col *ngFor="let service of nearByServices" class="category-col">
-          <div class="category" (click)="navigateTo('SubCategory', service)">
+          <div class="category" (click)="navigateTo('SubCategory',service.subCount, service)">
             <div class='category-img'>
               <img [src]="'assets/img/png/'+service.id+'.png'" alt="" />
             </div>
@@ -38,9 +38,9 @@
             <div class="wight-effect"></div>
           </div>
         </ion-col>
-       <!-- 
+       <!--
 <ion-col col-4 class="category-col">
-  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+  <div class="category" (click)="navigateTo('SubCategory',service.subCount, 'type')">
     <div class='category-img'>
       <img src="assets/img/png/homeserv.png" alt="" />
     </div>
@@ -53,7 +53,7 @@
 
 
 <ion-col col-4 class="category-col">
-  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+  <div class="category" (click)="navigateTo('SubCategory',service.subCount, 'type')">
     <div class='category-img'>
       <img src="assets/img/png/wedding.png" alt="" />
     </div>
@@ -66,7 +66,7 @@
 
 
 <ion-col col-4 class="category-col">
-  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+  <div class="category" (click)="navigateTo('SubCategory',service.subCount, 'type')">
     <div class='category-img'>
       <img src="assets/img/png/doctor.png" alt="" />
     </div>
@@ -79,7 +79,7 @@
 
 
 <ion-col col-4 class="category-col">
-  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+  <div class="category" (click)="navigateTo('SubCategory',service.subCount, 'type')">
     <div class='category-img'>
       <img src="assets/img/png/accesory.png" alt="" />
     </div>
@@ -92,7 +92,7 @@
 
 
 <ion-col col-4 class="category-col">
-  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+  <div class="category" (click)="navigateTo('SubCategory',service.subCount, 'type')">
     <div class='category-img'>
       <img src="assets/img/png/24-hours.png" alt="" />
     </div>
@@ -105,7 +105,7 @@
 
 
 <ion-col col-4 class="category-col">
-  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+  <div class="category" (click)="navigateTo('SubCategory',service.subCount, 'type')">
     <div class='category-img'>
       <img src="assets/img/png/customer-service.png" alt="" />
     </div>
@@ -118,7 +118,7 @@
 
 
 <ion-col col-4 class="category-col">
-  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+  <div class="category" (click)="navigateTo('SubCategory',service.subCount, 'type')">
     <div class='category-img'>
       <img src="assets/img/png/homeserv.png" alt="" />
     </div>
@@ -131,7 +131,7 @@
 
 
 <ion-col col-4 class="category-col">
-  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+  <div class="category" (click)="navigateTo('SubCategory',service.subCount, 'type')">
     <div class='category-img'>
       <img src="assets/img/png/wedding.png" alt="" />
     </div>
@@ -144,7 +144,7 @@
 
 
 <ion-col col-4 class="category-col">
-  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+  <div class="category" (click)="navigateTo('SubCategory',service.subCount, 'type')">
     <div class='category-img'>
       <img src="assets/img/png/doctor.png" alt="" />
     </div>
@@ -157,7 +157,7 @@
 
 
 <ion-col col-4 class="category-col">
-  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+  <div class="category" (click)="navigateTo('SubCategory',service.subCount, 'type')">
     <div class='category-img'>
       <img src="assets/img/png/accesory.png" alt="" />
     </div>
@@ -170,7 +170,7 @@
 
 
 <ion-col col-4 class="category-col">
-  <div class="category" (click)="navigateTo('SubCategory', 'type')">
+  <div class="category" (click)="navigateTo('SubCategory',service.subCount, 'type')">
     <div class='category-img'>
       <img src="assets/img/png/24-hours.png" alt="" />
     </div>
@@ -204,7 +204,7 @@
     <ion-grid *ngSwitchCase="'qoutes'">
       <ion-row>
         <ion-col *ngFor="let service of requestServices" col-4 class="category-col">
-          <div class="category" (click)="navigateTo('SubCategory', service.id)">
+          <div class="category" (click)="navigateTo('SubCategory',service.subCount, service.id)">
             <div class='category-img'>
               <img [src]="'assets/img/png/'+service.id+'.png'" alt=""/>
             </div>
@@ -250,7 +250,7 @@
 
 
         <ion-col *ngFor="let service of bookDate" col-6 class="category-col">
-          <div class="category" (click)="navigateTo('SubCategory', service.id)">
+          <div class="category" (click)="navigateTo('SubCategory',service.subCount, service.id)">
             <div class='category-img'>
               <img [src]="'assets/img/png/'+service.id+'.png'" alt=""/>
             </div>

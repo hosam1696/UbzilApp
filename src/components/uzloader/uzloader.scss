@@ -1,27 +1,39 @@
 uz-loader {
 #loader-holder {
-  position: absolute;
-  top: 50%;
-  left: calc(50% - 40px);
+
   z-index: 9999;
   box-shadow: 1px 1px #fff;
+  &.abs-loader {
+      position: absolute;
+      top: 50%;
+      left: calc(50% - 40px);
+  }
+  &.rel-loader {
+    position: relative;
+  }
   .loader {
     @keyframes movebg {
       0% {
         background-position-x: 0
       }
       100% {
-        background-position-x: 240px
+        background-position-x: 160px
       }
     }
+    @keyframes movefullbg {
+      0% {
+        background-position-x: 0
+      }
+      100% {
+        background-position-x: 200vw
+      }
+    }
+
     position: relative;
     background-position: 0;
-    width: 80px;
-    height: 8px;
-    border-radius: 5px;
     background-image: linear-gradient(to left, #224269, #233447 20%, #80362d 20%, #80362d 40%, #f9432f 40%, #ff3f27 60%, #E0A31E 60%, #dba404 80%, #20a7f6 80%, #0E93E0 80%);
     overflow: hidden;
-    animation: movebg 2s linear forwards infinite;
+    
     &:after {
       position: absolute;
       height: 50%;
@@ -31,6 +43,21 @@ uz-loader {
       background-color: rgba(255, 255, 255, 0.15);
       ;
       content: '';
+    }
+    &.full-width {
+      width: 100%;
+      height: 8px;
+      animation: movefullbg 2s linear forwards infinite;
+
+      
+    }
+    &.small {
+      width: 80px;
+      height: 8px;
+      border-radius: 5px;
+      animation: movebg 2s linear forwards infinite;
+
+
     }
   }
 }

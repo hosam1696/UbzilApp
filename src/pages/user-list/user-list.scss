@@ -6,10 +6,21 @@ page-user-list{
             ion-list{
                 padding:0px 8px;
                 border: 0px;
-                ion-item{
+                  ion-item {
                     margin-top: 8px;
-                    padding: 0px;
-                    border: 0px!important;
+                  height: $thumbnail-height; // margin-bottom: 8px !important;
+                  padding: 0px;
+                  border: 0px!important;
+                  ion-thumbnail {
+                    width: $thumbnail-height;
+                    height: 100%;
+                    margin: 0 !important;
+                    img {
+                      width: $thumbnail-height !important;
+                      height: $thumbnail-height !important;
+                    }
+                  }
+
                     .item-inner{
                         padding: 0px!important;
                         /*                        background-image: url("../../assets/img/bb.png");*/
@@ -38,23 +49,20 @@ page-user-list{
                             }
 
                             h2{
+                                @extend %flex-between;
+                                align-items: center;
                                 font-size:14px;
                                 font-weight: 300;
                                 margin-bottom: 2px;
                                 overflow: hidden;
                                 text-overflow: ellipsis;
                                 color: #666;
-                                max-width:calc(100% - 110px);
+                               // max-width:calc(100% - 110px);
+                               span {
+
+                               }
                             }
-                            .distance{
-                                color: #666;
-                                font-size: 12px;
-                                font-weight: 400;
-                                margin: auto 5px;
-                                position: absolute;
-                                left: 10px;
-                                top: 8px;
-                            }
+                            
                             .button-div{
                                 position: absolute;
                                 left: 10px;
