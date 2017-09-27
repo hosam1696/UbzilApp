@@ -89,8 +89,8 @@ export class UserList {
         })
 
     }
-        openPopover(myEvent) {
-            let popover = this.popoverCtrl.create('PopoverContentPage');
+        openPopover(myEvent, mobile) {
+            let popover = this.popoverCtrl.create('PopoverContentPage', { TellList:[mobile]});
         popover.present({
             ev: myEvent
         });
