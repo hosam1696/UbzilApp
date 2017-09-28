@@ -19,7 +19,10 @@
 
 
 <ion-content>
-  <uz-loader *ngIf="ubzilLoader"></uz-loader>
+  <div class="loader-holder">
+
+    <uz-loader *ngIf="ubzilLoader"></uz-loader>
+  </div>
   <ion-list>
     <ion-item  
      *ngFor="let place of Places"

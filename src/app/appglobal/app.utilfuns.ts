@@ -47,5 +47,9 @@ export class AppUtilFunctions {
     public get isRTL(): boolean {
         return this.platform.isRTL
     }
+
+    public getUserInfo() {
+        return this.storage.get('localUserInfo');
+    }
 }
 

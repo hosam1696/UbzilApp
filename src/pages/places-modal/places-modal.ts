@@ -44,31 +44,14 @@ export class PlacesModalPage {
         if (status === 'success') {
           this.Places = data;
           
-          if (this.parentCount > 0) {
-            if (this.parentCount === 1) {
+          
+          
+          
 
-              this.targetPlace.governorate = selectedPlaceName;
-              this.targetPlace.governorate_id = parent;
-            }
-            if (this.parentCount === 2) {
-
-              this.targetPlace.city = selectedPlaceName;
-              this.targetPlace.city_id = parent;
-            }
-            if (this.parentCount === 3) {
-
-              this.targetPlace.district = selectedPlaceName;
-              this.targetPlace.district_id = parent;
-            }
-
-
-          }
-
-          this.parentCount++;
-          console.log(this.parentCount);
+          
         } else {
           console.warn(error);
-          if (this.parentCount === 3) {
+          if (this.parentCount === 3 && !this.targetPlace.district) {
 
             this.targetPlace.district = selectedPlaceName;
             this.targetPlace.district_id = parent;
@@ -81,7 +64,29 @@ export class PlacesModalPage {
         console.warn(err);
         this.ubzilLoader = false
       }, () => {
-        this.ubzilLoader = false
+        this.ubzilLoader = false;
+        
+        console.log(this.parentCount);
+        if (this.parentCount > 0) {
+          if (this.parentCount === 1) {
+
+            this.targetPlace.governorate = selectedPlaceName;
+            this.targetPlace.governorate_id = parent;
+          }
+          if (this.parentCount === 2) {
+
+            this.targetPlace.city = selectedPlaceName;
+            this.targetPlace.city_id = parent;
+          }
+          if (this.parentCount === 3) {
+
+            this.targetPlace.district = selectedPlaceName;
+            this.targetPlace.district_id = parent;
+          }
+
+
+        }
+        this.parentCount++;
       })
   }
 

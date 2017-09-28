@@ -1,100 +1,94 @@
 <ion-header>
 
-    <ion-navbar>
-        <ion-title>{{'Add Request'|translate}}</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>{{'Add Request'|translate}}</ion-title>
+  </ion-navbar>
 
 </ion-header>
 
 
 <ion-content dir="ltr">
-    <div class="inner-content">
-        <ion-list>
-            <ion-item>
-<ion-label stacked>{{'project title'|translate}}</ion-label>
+  <div class="inner-content">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>{{'project title'|translate}}</ion-label>
 
-                <ion-input type="text" placeholder="Request title"></ion-input>
-            </ion-item>
-            <ion-item  (click)="openModal()">
-<ion-label >{{'Request location'|translate}}</ion-label>
+        <ion-input type="text" placeholder="Request title"></ion-input>
+      </ion-item>
+      <ion-item (click)="openModal()">
+        <ion-label>{{'Request location'|translate}}</ion-label>
 
-                <ion-label>{{MreqAddress}}</ion-label>
-            </ion-item>
-            <ion-item>
-                <ion-label>{{'Request Add location'|translate}}</ion-label>
-                <ion-label (click)="locationmodal()" color="lighDark"><ion-icon item-start ios="ios-pin" md="ios-pin" color="primary"></ion-icon>{{'Click to add location'|translate}}</ion-label>
-            </ion-item>
+        <ion-label>{{MreqAddress}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'Request Add location'|translate}}</ion-label>
+        <ion-label (click)="locationmodal()" color="lighDark">
+          <ion-icon item-start ios="ios-pin" md="ios-pin" color="primary"></ion-icon>{{'Click to add location'|translate}}</ion-label>
+      </ion-item>
 
-        </ion-list>
+    </ion-list>
 
-        <!-- input form-->
-        <ion-list *ngIf="newFormDs?.input">
+    <!-- input form-->
+    <ion-list *ngIf="newFormDs?.input">
 
-<ion-item *ngFor="let input of newFormDs.input">
-<ion-label stacked>{{input.label}}</ion-label>
-<ion-input [type]="input.type|translate" [placeholder]="input.place_holder"></ion-input>
+      <ion-item *ngFor="let input of newFormDs.input">
+        <ion-label stacked>{{input.label}}</ion-label>
+        <ion-input [type]="input.type|translate" [placeholder]="input.place_holder"></ion-input>
 
-</ion-item>
+      </ion-item>
 
-        </ion-list>
+    </ion-list>
 
-        <ion-list *ngIf="newFormDs?.select">
-            <ion-item *ngFor="let selectBox of newFormDs.select">
-                <ion-label>
-                    {{selectBox.label}}
-                </ion-label>
-                <ion-select 
-                    [placeholder]="selectBox.accurate_message"
-                    [okText]="pageParams.lang_code=='ar'?'تم':'ok'"
+    <ion-list *ngIf="newFormDs?.select">
+      <ion-item *ngFor="let selectBox of newFormDs.select">
+        <ion-label>
+          {{selectBox.label}}
+        </ion-label>
+        <ion-select [placeholder]="selectBox.accurate_message" [okText]="pageParams.lang_code=='ar'?'تم':'ok'" [okText]="pageParams.lang_code=='ar'?'الغاء':'cancel'">
+          <!--<ion-option selected>{{selectBox.accurate_message}}</ion-option> -->
+          <ion-option *ngFor="let subSelect of selectBox.sub" [value]="subSelect.id">{{subSelect.label}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <section *ngIf="newFormDs?.checkbox">
+      <ion-list *ngFor="let checkInput of newFormDs.checkbox" class="checkbox-list">
+        <ion-list-header>
+          {{checkInput.label}}
+        </ion-list-header>
+        <ion-item *ngFor="let checkOption of checkInput.sub">
+          <ion-label>{{checkOption.label}}</ion-label>
+          <ion-checkbox checked="true"></ion-checkbox>
+        </ion-item>
 
-                     [okText]="pageParams.lang_code=='en'?'الغاء':'cancel'"
-                >
-                    <!--<ion-option selected>{{selectBox.accurate_message}}</ion-option> -->
-                    <ion-option *ngFor="let subSelect of selectBox.sub" [value]="subSelect.id">{{subSelect.label}}</ion-option>
-                </ion-select>
-            </ion-item>    
-        </ion-list>    
-<section *ngIf="newFormDs?.checkbox">
-        <ion-list *ngFor="let checkInput of newFormDs.checkbox" class="checkbox-list">
-            <ion-list-header>
-                {{checkInput.label}}
-            </ion-list-header>
-            <ion-item *ngFor="let checkOption of checkInput.sub">
-                <ion-label>{{checkOption.label}}</ion-label>
-                <ion-checkbox checked="true" ></ion-checkbox>
-            </ion-item>
+      </ion-list>
 
-        </ion-list>
+    </section>
+    <section *ngIf="newFormDs?.radio">
+      <ion-list *ngFor="let radioInput of newFormDs.radio" radio-group class="radio-list">
+        <ion-list-header>
+          {{radioInput.label}}
+        </ion-list-header>
 
-    </section>      
-        <section *ngIf="newFormDs?.radio">
-<ion-list *ngFor="let radioInput of newFormDs.radio" radio-group class="radio-list">
-    <ion-list-header>
-        {{radioInput.label}}
-    </ion-list-header>
+        <ion-item *ngFor="let radioOption of radioInput.sub">
+          <ion-label>{{radioOption.label}}</ion-label>
+          <ion-radio checked="false" [value]="radioOption.id"></ion-radio>
+        </ion-item>
+      </ion-list>
+    </section>
 
-    <ion-item *ngFor = "let radioOption of radioInput.sub">
-        <ion-label>{{radioOption.label}}</ion-label>
-        <ion-radio  checked="false" [value]="radioOption.id"></ion-radio>
-    </ion-item>
-</ion-list>
-        </section>
+    <section *ngIf="newFormDs.textarea" class="sec-textarea">
+      <div class="texarea-item" *ngFor="let textArea of newFormDs.textarea">
+        <p class="as-label">
+          {{textArea.label}}
+        </p>
 
-        <section *ngIf="newFormDs.textarea" class="sec-textarea">
-            <div class="texarea-item" *ngFor="let textArea of newFormDs.textarea">
-                <p class="as-label">
-                    {{textArea.label}}
-                </p>
-
-                <textarea [placeholder]="textArea.accurate_message||textArea.place_holder"></textarea>
-            </div>
-            
-
-        </section>
+        <textarea [placeholder]="textArea.accurate_message||textArea.place_holder"></textarea>
+      </div>
 
 
+    </section>
 
-            <button margin-top ion-button full>{{'Add Request'|translate}}</button>
-     
-    </div>
+    <button margin-top ion-button full (click)="sendRequest()">{{'Add Request'|translate}}</button>
+
+  </div>
 </ion-content>
