@@ -58,7 +58,7 @@ export class Login {
             if (userData.status === 'success') {
               this.appUtils.storage.set('localUserInfo', userData.data)
                 .then(() => {
-                  this.navCtrl.setRoot('Tabs');
+                  this.events.publish('changeRoot', 'Tabs');
                 })
             }
           },

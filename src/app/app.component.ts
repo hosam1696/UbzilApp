@@ -75,7 +75,7 @@ export class MyApp {
             console.log('config value \"' + key + '\" is ', this.config.get(key))
         });
 
-        this.events.subscribe('changeRoot', (root) => this.rootPage = root);
+        this.events.subscribe('changeRoot', (root) =>{ console.info('%c%s%c%s','color:#2196f3','changing root to > ','color:#f44336;font-weight:bold', root);this.rootPage = root});
     }
 
     
