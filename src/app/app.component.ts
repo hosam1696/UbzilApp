@@ -1,26 +1,15 @@
-import {Component, ViewChild} from '@angular/core';
-import {Config, Events, Nav, Platform} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {Config, Events, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {TranslateService} from 'ng2-translate';
+import { Storage } from '@ionic/storage';
 
-
-//import {Tabs} from '../pages/tabs/tabs';
-// import { HomePage } from '../pages/home/home';
-// import { ListPage } from '../pages/list/list';
-// import { Intro } from '../pages/intro/intro';
-//import {Login} from '../pages/login/login';
-// import { Signup } from '../pages/signup/signup';
-// import { Routes } from '../pages/routes/routes';
-// import { RoutesNew } from '../pages/routes-new/routes-new';
-// import { RoutesEdit } from '../pages/routes-edit/routes-edit';
-// import { Settings } from '../pages/settings/settings';
 @Component({
     templateUrl: 'app.html'
 })
 export class MyApp {
-    @ViewChild(Nav) nav: Nav;
-    rootPage: any = 'Login';
+    rootPage: any;
     textDir: any;
     language: any;
     userLogin: any = false;
@@ -33,11 +22,19 @@ export class MyApp {
         public splashScreen: SplashScreen,
         public translate: TranslateService,
         public events: Events,
-        public config: Config
-
+        public config: Config,
+        public storage: Storage
     ) {
-
+        this.storage.get('localUserInfo')
+            .then((ud) => {
+                (ud == null) ? (this.rootPage = 'Login') : (this.rootPage = 'Tabs')
+                console.log(ud);
+            })
+            .catch(err => { console.warn('no user', err); this.rootPage = 'Login' });
+        
         this.initializeApp()
+
+
     }
 
     initializeApp() {
@@ -50,16 +47,9 @@ export class MyApp {
             this.translate.setDefaultLang('ar');
             this.translate.use('ar');
             this.platform.setDir('rtl', true);
-            this.config.set('backButtonIcon', 'ios-arrow-forward') //'ios-arrow-back'
-
-            //this.textDir = 'rtl';
+            this.config.set('backButtonIcon', 'ios-arrow-forward') 
         });
 
-        // this language will be used as a fallback when a translation isn't found in the current language
-        /*this.app.viewDidLoad
-          .subscribe(d=>{
-            console.log('component class name you are using is', this.nav.getActive().component.name)
-          });*/
         this.events.subscribe('lang:Changed', (lang) => {
             if (lang == 'ar') {
                 this.textDir = 'rtl';
@@ -76,18 +66,19 @@ export class MyApp {
                 this.config.set('backButtonIcon', 'ios-arrow-back');
                 console.log('config change detector', this.config.get('backButtonIcon'))
             }
-            // Change Global Lang to Selected one
             this.translate.use(lang);
         });
 
 
         this.events.subscribe('changeConfig', (key, value) => {
             this.config.set(key, value);
-            console.log('config value \"'+key+'\" is ',this.config.get(key))
-        })
+            console.log('config value \"' + key + '\" is ', this.config.get(key))
+        });
+
+        this.events.subscribe('changeRoot', (root) => this.rootPage = root);
     }
 
-
+    
 
 
 }

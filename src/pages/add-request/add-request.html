@@ -22,7 +22,7 @@
             </ion-item>
             <ion-item>
                 <ion-label>{{'Request Add location'|translate}}</ion-label>
-                <ion-label (click)="locationmodal()"><ion-icon item-start ios="ios-pin" md="ios-pin"></ion-icon>{{'Click to add location'|translate}}</ion-label>
+                <ion-label (click)="locationmodal()" color="lighDark"><ion-icon item-start ios="ios-pin" md="ios-pin" color="primary"></ion-icon>{{'Click to add location'|translate}}</ion-label>
             </ion-item>
 
         </ion-list>
@@ -43,7 +43,12 @@
                 <ion-label>
                     {{selectBox.label}}
                 </ion-label>
-                <ion-select [placeholder]="selectBox.accurate_message">
+                <ion-select 
+                    [placeholder]="selectBox.accurate_message"
+                    [okText]="pageParams.lang_code=='ar'?'تم':'ok'"
+
+                     [okText]="pageParams.lang_code=='en'?'الغاء':'cancel'"
+                >
                     <!--<ion-option selected>{{selectBox.accurate_message}}</ion-option> -->
                     <ion-option *ngFor="let subSelect of selectBox.sub" [value]="subSelect.id">{{subSelect.label}}</ion-option>
                 </ion-select>

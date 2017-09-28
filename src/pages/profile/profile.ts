@@ -1,3 +1,4 @@
+import { AppUtilFunctions } from './../../app/appglobal/app.utilfuns';
 // Main Components
 import {Component} from '@angular/core';
 import {
@@ -37,7 +38,7 @@ export class ProfilePage {
   foldertext: any;
   cameratext: any;
   canceltext: any;
-
+  currentLang: string;
   constructor(public navCtrl: NavController,
               public events: Events,
               public navParams: NavParams,
@@ -45,6 +46,7 @@ export class ProfilePage {
               public translate: TranslateService,
               public actionSheetCtrl: ActionSheetController,
               public popoverCtrl: PopoverController,
+              public appUtils: AppUtilFunctions,
               public appPlugins: AppPlugins) {
     this.priceList = [
       {"id": 0, "name": "أشعة مقطعية", "price": "250"},
@@ -56,6 +58,8 @@ export class ProfilePage {
       {"id": 1, "number": "01201750134"},
       {"id": 2, "number": "01221465858"}
     ];
+
+    this.currentLang = this.appUtils.CurrentLang;
 
   }
 
@@ -84,18 +88,18 @@ export class ProfilePage {
       })
 
     let imageactionSheet = this.actionSheetCtrl.create({
-      title: this.titletext,
+      title: this.currentLang === 'ar'?'تحميل صورة':'Upload Image',
       buttons: [
         {
           icon: 'folder',
-          text: this.foldertext,
+          text: this.currentLang==='ar'?'اختيار من البوم الصور':'choose from Photo Library',
           handler:  () => {
-            console.log('folder clicked');
+            console.log('Photo Library clicked');
             this.getCameraImage(ICameraType.PHOTOLIBRARY)
           }
         }, {
           icon: 'camera',
-          text: this.cameratext,
+          text: this.currentLang === 'ar'?'التقاط من الكاميرا':'Capture from Camera',
           handler: () => {
 
             console.log('camera clicked');
@@ -103,7 +107,7 @@ export class ProfilePage {
             this.getCameraImage(ICameraType.CAMERA)
           }
         }, {
-          text: this.canceltext,
+          text: this.currentLang === 'ar'?'الغاء':'Cancel',
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');

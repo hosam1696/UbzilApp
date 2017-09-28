@@ -74,7 +74,7 @@ export class Settings {
           }
         },
         {
-          text: this.canceltext,
+          text: this.isRTL?'الغاء':'Cancel',
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
@@ -109,7 +109,11 @@ export class Settings {
   }
 
   Logout() {
-    console.warn('you are attempting to log out')
+    console.warn('you are attempting to log out');
+    this.appUtils.storage.remove('localUserInfo')
+      .then(() => {
+        this.events.publish('changeRoot', 'Login')
+      })
   }
 
 
