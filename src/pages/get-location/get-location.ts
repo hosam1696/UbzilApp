@@ -26,7 +26,6 @@ export class GetLocation {
     }
     ionViewDidLoad() {
         this.loadMap();
-        console.log('get location modal')
 
     }
 

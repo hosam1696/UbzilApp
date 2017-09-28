@@ -12,6 +12,8 @@ import {GetLocation} from "../get-location/get-location";
 })
 export class AddRequest {
   pageParams: any;
+  newFormDs: any = {};
+  MreqAddress: string;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -38,13 +40,29 @@ export class AddRequest {
         "verifycode": "$2y$12$XQBdOjshGvoSRcT6uTlJaOkOiV.htMTyyT09IXxdjHrSQeoc/vgkO", "lang_code": this.pageParams.lang_code,
         "service_id": this.pageParams.id,
       }
-    ).subscribe(res => {
-      console.log(res);
+    ).subscribe(({status, data, error}) => {
+      if (status === 'success') {
+        let groupByType = type => data.forms.filter(x => x.type == type);
+        let currentFormInputs = ['select', 'input', 'textarea', 'checkbox', 'file'];
+
+        console.log(data.forms);
+
+        
+        for (let input of currentFormInputs) {
+          if (groupByType(input).length > 0)
+            this.newFormDs[input] = groupByType(input)
+        }
+
+        console.log('new Form Data structure', this.newFormDs);
+        
+      } else {
+        console.warn(error)
+        }
     })
   }
 
     locationmodal() {
-        let getlocationModal = this.modalCtrl.create(GetLocation);
+      let getlocationModal = this.modalCtrl.create('GetLocation', { pageData: { lat: '30.4446546', lng: '20.484897', service_id: this.pageParams.id } });
         getlocationModal.present();
         getlocationModal.onDidDismiss(data => {
             // Saving this info to local storage after updating user profile info
@@ -52,4 +70,15 @@ export class AddRequest {
     }
 
 
+  
+    openModal() {
+      let modal = this.modalCtrl.create('PlacesModalPage');
+
+      modal.onDidDismiss(data => {
+        console.log('data from modal', data);
+        this.MreqAddress = data.country + ' - ' + (data.governorate ? data.governorate +' - '+(data.district?data.district:''): '');
+      });
+
+      modal.present()
+    }
 }

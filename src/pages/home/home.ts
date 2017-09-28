@@ -56,7 +56,7 @@ export class HomePage {
         this.requestServices = homeRes.data.serviceRequest;
         this.nearByServices = homeRes.data.nearByServices;
 
-        console.log(this.bookDate, this.requestServices, this.nearByServices);
+        //console.log(this.bookDate, this.requestServices, this.nearByServices);
 
       } else {
         console.warn('somthing went wrong when getting services')

@@ -23,6 +23,7 @@ export class SubCategory {
     subServices: any[];
     subServicesAlt: any[];
     ubzilLoader: boolean = true;
+    noSearch: boolean = false;
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -35,7 +36,7 @@ export class SubCategory {
 
         this.pageData = this.navParams.get('pageData');
 
-        console.log(this.pageData);
+        console.log('page params Data',this.pageData);
 
 
         this.initializeItems();
@@ -62,10 +63,10 @@ export class SubCategory {
 
     ionViewWillEnter() {
         // Run After Page Already Entered
-        this.events.publish('changeConfig', 'tabsHideOnSubPages', true)
+       // this.events.publish('changeConfig', 'tabsHideOnSubPages', true)
     }
     ionViewWillLeave() {
-        this.events.publish('changeConfig', 'tabsHideOnSubPages', false)
+        //this.events.publish('changeConfig', 'tabsHideOnSubPages', false)
     }
 
     ionViewDidLoad() {
@@ -78,8 +79,8 @@ export class SubCategory {
             }
         ).subscribe(({ status, error, data}) => {
             if (status === 'success') {
-                this.subServices = data;
-                this.subServicesAlt = data;
+                this.subServices = data.reverse();
+                this.subServicesAlt = data.reverse();
             } else {
                 this.appUtils.AppToast(error);
             }
@@ -119,7 +120,7 @@ export class SubCategory {
     filterServices(ev: any) {
         
         let val = ev.target.value;
-        
+        this.noSearch = false;
         this.subServices = this.subServicesAlt;
 
         if (val && val.trim()) {
@@ -128,6 +129,7 @@ export class SubCategory {
             });
             if (this.subServices.length == 0) {
                 console.log("this is empty");
+                this.noSearch = true
             }
         }
     }

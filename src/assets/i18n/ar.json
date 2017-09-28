@@ -118,10 +118,10 @@
     "Behavior and Ethics": "السلوكيات والاخلاق",
     "Add more": " المزيد",
     "Add Request": "إضافة طلب",
-    "project title": "ما هو اسم الطلب ؟",
-    "Request location": "ما هو عنوان الطلب ؟ ",
-    "Request Add location": "هل تود إضافة العنوان على الخريطة ؟",
-    "Click to add location": "إضافة عنوان ",
+    "project title": "  اسم الطلب",
+    "Request location": "  عنوان الطلب  ",
+    "Request Add location": " الموقع على الخريطة",
+    "Click to add location": "إضافة الموقع ",
     "Name": "الاسم",
     "Jop Duration": "مدة العمل",
     "Your estmated time": "الوقت المتوقع",
@@ -162,5 +162,6 @@
     "Usage policy": "سياسة الاستخدام",
     "km": "كم",
     "serProvs": "مقدمى الخدمة",
-    "subCat":"قسم فرعي"
+    "subCat":"قسم فرعي",
+    "رقم": "number"
 }
