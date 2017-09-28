@@ -1,8 +1,12 @@
 
 
 <ion-content>
+    <div class="loader-holder">
+        <uz-loader *ngIf="ubzilLoader"></uz-loader>
+    </div>
     <div class="top-content">
         <ion-img src="assets/img/logofin.png"></ion-img>
+        
     </div>
 
     <div class="bottom-content" >
@@ -20,8 +24,11 @@
         </ion-list>
         <ion-grid>
             <ion-row>
-                <button ion-button full (click)="userLogin(username, password)">{{'Login' | translate}}</button>
-        </ion-row>
+                <button ion-button full (click)="userLogin(username, password)">{{'Login' | translate}}
+                   
+                </button>
+
+            </ion-row>
 
         <ion-row class="user-links">
             

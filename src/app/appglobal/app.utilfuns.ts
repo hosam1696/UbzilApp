@@ -4,7 +4,7 @@ import { ToastController, ToastOptions, Platform } from 'ionic-angular';
 //import { AsyncPipe } from '@angular/common';
 import "rxjs/add/operator/toPromise";
 import { Network} from '@ionic-native/network';
-
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 
@@ -14,7 +14,8 @@ export class AppUtilFunctions {
         public network: Network,
         public toastCtrl: ToastController,
         public translate: TranslateService,
-        public platform: Platform
+        public platform: Platform,
+        public storage: Storage
     ){}
 
 

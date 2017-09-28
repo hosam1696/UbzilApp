@@ -5,6 +5,12 @@ page-login {
         background-size:cover;
         background-color: #20a7f6!important;
 
+.loader-holder {
+    min-height: 8px;
+    background-color: #fff;
+    position: absolute;
+    width: 100%;
+}
 
         .top-content{
             background-color: #fff;

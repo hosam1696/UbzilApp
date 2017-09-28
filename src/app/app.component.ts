@@ -20,7 +20,7 @@ import {TranslateService} from 'ng2-translate';
 })
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
-    rootPage: any = 'Tabs';
+    rootPage: any = 'Login';
     textDir: any;
     language: any;
     userLogin: any = false;

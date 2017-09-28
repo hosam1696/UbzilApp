@@ -13,7 +13,7 @@ export class Login {
   spinLoader: boolean = false;
   username: string;
   password: string;
-
+  ubzilLoader: boolean = false;
 
   constructor(public navCtrl: NavController,
               public events: Events,
@@ -48,14 +48,22 @@ export class Login {
       this.appUtils.AppToast(unvalid(username) ? 'يرجى ادخال اسم المستخدم' : 'يرجى ادخال كلمة المرور');
       unvalid(username)?(this.username=''):(this.password='')
     } else {
+      this.ubzilLoader = true;
       console.log('you have entered ', username, password);
       this.userProvider
         .LoginUser({ username, password })
         .subscribe(
           userData => {
             console.log(userData);
+            if (userData.status === 'success') {
+              this.appUtils.storage.set('localUserInfo', userData.data)
+                .then(() => {
+                  this.navCtrl.setRoot('Tabs');
+                })
+            }
           },
           err => {
+            this.ubzilLoader = false;
             if (err.error instanceof Error) {
                 console.warn('client side error', err)
             } else {
@@ -63,7 +71,7 @@ export class Login {
               }
           },
           () => {
-
+            this.ubzilLoader = false;
           }
         
         );

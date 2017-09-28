@@ -79,7 +79,10 @@ export class HomePage {
     
     console.log('%s%c%s', 'component class name we are using now ', 'color: green;font-weight:bold', this.navCtrl.getActive().id);
 
-    console.log(`You are ${this.appUtils.IsConnected?'':'not'} connected to the internet`)
+    console.log(`You are ${this.appUtils.IsConnected ? '' : 'not'} connected to the internet`);
+
+    this.appUtils.storage.get('localUserInfo')
+      .then(userInfo=>console.log('Local User Info', userInfo))
 
   }
 
