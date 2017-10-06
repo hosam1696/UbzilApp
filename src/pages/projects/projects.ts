@@ -8,6 +8,7 @@ import { IonicPage, NavController, ModalController } from 'ionic-angular';
   templateUrl: 'projects.html',
 })
 export class ProjectsPage {
+  ubzilLoader: boolean = false;
   projectID: string = 'myProjects';
   isIos: boolean = false;
   isRTL: boolean;
@@ -51,7 +52,7 @@ export class ProjectsPage {
 
       })
     } else {
-      this.navCtrl.push(page)
+      this.navCtrl.push(page, pageData)
     }
   }
 
