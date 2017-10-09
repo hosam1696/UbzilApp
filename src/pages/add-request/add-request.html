@@ -18,16 +18,16 @@
       <ion-item (click)="openModal()">
         <ion-label>{{'Request location'|translate}}</ion-label>
 
-        <ion-label>{{MreqAddress}}</ion-label>
+        <ion-label text-center>{{MreqAddress}}</ion-label>
       </ion-item>
       <ion-item>
         <ion-label>{{'Request Add location'|translate}}</ion-label>
-        <ion-label (click)="locationmodal()" color="lighDark">
+        <ion-label text-center (click)="locationmodal()" color="lighDark">
           <ion-icon item-start ios="ios-pin" md="ios-pin" color="primary"></ion-icon>{{'Click to add location'|translate}}</ion-label>
       </ion-item>
 
     </ion-list>
-
+    <section formGroupName="forms">
     <!-- input form-->
     <ion-list *ngIf="newFormDs?.input">
 
@@ -87,7 +87,7 @@
 
 
     </section>
-
+  </section>
     <button type="submit" margin-top ion-button full >{{'Add Request'|translate}}</button>
 
   </form>

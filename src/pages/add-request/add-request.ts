@@ -16,7 +16,7 @@ import { ILocalUser } from '../../app/appglobal/app.interfaces';
 export class AddRequest {
   pageParams: any;
   newFormDs: any = {};
-  MreqAddress: string = '| | |';
+  MreqAddress: string = 'لم يتم التحديد';
   DataFromModal: any = {};
   RequestForm: FormGroup;
   localUser: ILocalUser;
@@ -33,11 +33,12 @@ export class AddRequest {
     this.pageParams = this.navParams.get('pageData');
 
     console.log('params data from sub category page', this.pageParams);
-
+    
     this.RequestForm = formBuilder.group({
       title: ['', Validators.required],
       address: ['', Validators.required],
-      location: ['']
+      location: [''],
+      forms: formBuilder.group({})
     });
 
   }
@@ -72,7 +73,10 @@ export class AddRequest {
             this.newFormDs[input] = groupByType(input)
             this.newFormDs[input].forEach(inputControl => {
               
-              this.RequestForm.addControl(inputControl.id,new FormControl(''))
+              let forms = this.RequestForm.get('forms') as FormGroup;
+
+              forms.addControl(inputControl.id,new FormControl('', Validators.required))
+
             });
           }
         }
@@ -108,6 +112,7 @@ export class AddRequest {
         console.log('data from modal', data);
         this.DataFromModal = data;
         this.MreqAddress = data.governorate + (data.city ? ' - ' + data.city  + (data.district ? ' - ' + data.district:''): '');
+        this.RequestForm.get('address').setValue(data.governorate + (data.city ? ' - ' + data.city  + (data.district ? ' - ' + data.district:''): ''));
       });
 
       modal.present()
@@ -127,17 +132,13 @@ export class AddRequest {
          city_id: this.DataFromModal.city_id || 65,
          district_id: this.DataFromModal.district_id || 56,
          user_id: this.localUser.id,
-         form: [
-           {
-             formshape_id: 46,
-             value: 'fsdf'
-           }
-         ]
+         ...this.RequestForm.value
        };
 
 
-       console.log('almost request data', {...requesrDetails, ...this.RequestForm.value}, this.RequestForm
-      )
+       console.log('almost request data',requesrDetails, this.RequestForm);
+
+       this.RequestForm.valid?(console.info('Your Form is Valid')):(console.warn('You form Errors', this.RequestForm.errors))
     }
   
 }
