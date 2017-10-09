@@ -41,14 +41,13 @@ export class ProjectsPage {
       EditProfileModal.present();
       EditProfileModal.onDidDismiss(dismissData => {
         // Saving this info to local storage after updating user profile info
-
+        //#region various pages code
         if (page === 'EditProfile') {
-          // Do some interesting stuff here
 
         } else if (page === 'Contactus') {
-          // Do some interesting stuff here
 
         }
+        //endregion
 
       })
     } else {

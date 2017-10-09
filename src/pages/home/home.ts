@@ -5,7 +5,7 @@ import {Component} from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { EServicesCat } from '../../app/appglobal/app.enums';
-import { IHomeServices, IHomeServiceResponse } from '../../app/appglobal/app.interfaces';
+import { IHomeServices, IHomeServiceResponse, ILocalUser } from '../../app/appglobal/app.interfaces';
 @IonicPage()
 @Component({
   selector: 'page-home',
@@ -19,7 +19,7 @@ export class HomePage {
   name: any;
   type: any;
   ubzilLoader: boolean = true;
-
+  localUser: ILocalUser;
 
 
   constructor(public navCtrl: NavController,
@@ -32,19 +32,20 @@ export class HomePage {
 
   }
 
-  async ionViewDidEnter() {
-    // Run After Page Already Entered
-
-    let currentLang:string = await this.appUtils.CurrentLang;
-
+  ionViewWillEnter() {
+    
+    let currentLang:string = this.appUtils.CurrentLang
+    
+    
     console.log('%s%c%s', 'The Language you are using now is ', 'color: red;font-weight:bold', currentLang);
-
+    
   }
-
-  ionViewDidLoad() {
+  
+  async ionViewDidLoad() {
+    this.localUser = await this.appUtils.getUserInfo();
     this.services.getHomeServices({
-      user_id: 2,
-      verifycode: '$2y$12$FCtEqMB9xLO4FZxj0KUeyuzOwMB/ojRxD9olFk2ReBq5oBtpGO70K',
+      user_id: this.localUser.id,
+      verifycode: this.localUser.verifycode||'$2y$12$FCtEqMB9xLO4FZxj0KUeyuzOwMB/ojRxD9olFk2ReBq5oBtpGO70K',
       lang_code: this.appUtils.CurrentLang
     }).subscribe((homeRes: IHomeServiceResponse) => {
       console.log('main services response',homeRes);

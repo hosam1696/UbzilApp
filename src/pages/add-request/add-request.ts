@@ -4,6 +4,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events, ModalController } from 'ionic-angular';
 
 import {GetLocation} from "../get-location/get-location";
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { ILocalUser } from '../../app/appglobal/app.interfaces';
 
 
 @IonicPage()
@@ -15,37 +17,46 @@ export class AddRequest {
   pageParams: any;
   newFormDs: any = {};
   MreqAddress: string = '| | |';
-  localUser: any;
-  DataFromModal: any;
+  DataFromModal: any = {};
+  RequestForm: FormGroup;
+  localUser: ILocalUser;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public modalCtrl: ModalController,
      public appUtils:AppUtilFunctions,
      public events: Events,
-    public services: ServicesProvider
+    public services: ServicesProvider,
+    formBuilder: FormBuilder
   ) {    
 
     this.pageParams = this.navParams.get('pageData');
 
-    console.log('params data from sub category page', this.pageParams)
+    console.log('params data from sub category page', this.pageParams);
+
+    this.RequestForm = formBuilder.group({
+      title: ['', Validators.required],
+      address: ['', Validators.required],
+      location: ['']
+    });
+
   }
 
-  async ionViewWillEnter(){
+  ionViewWillEnter(){
 
-    this.localUser = await this.appUtils.getUserInfo();
-
-    console.log('awaited user Info', this.localUser)
-
+    
+    
   }
-
-  ionViewDidLoad() {
+  
+  async ionViewDidLoad() {
     // Run After Page Already Loaded
-
+    
+    this.localUser = await this.appUtils.getUserInfo();
+    
     this.services.getServiceFormShape(
       {
-        "user_id": "3",
-        "verifycode": "$2y$12$XQBdOjshGvoSRcT6uTlJaOkOiV.htMTyyT09IXxdjHrSQeoc/vgkO", "lang_code": this.pageParams.lang_code,
+        "user_id":  3 ,
+        "verifycode": this.localUser.verifycode || "$2y$12$XQBdOjshGvoSRcT6uTlJaOkOiV.htMTyyT09IXxdjHrSQeoc/vgkO", "lang_code": this.pageParams.lang_code,
         "service_id": this.pageParams.id,
       }
     ).subscribe(({status, data, error}) => {
@@ -57,8 +68,13 @@ export class AddRequest {
 
         
         for (let input of currentFormInputs) {
-          if (groupByType(input).length > 0)
+          if (groupByType(input).length > 0) {
             this.newFormDs[input] = groupByType(input)
+            this.newFormDs[input].forEach(inputControl => {
+              
+              this.RequestForm.addControl(inputControl.id,new FormControl(''))
+            });
+          }
         }
 
         console.log('new Form Data structure', this.newFormDs);
@@ -66,7 +82,13 @@ export class AddRequest {
       } else {
         console.warn(error)
         }
-    })
+    });
+
+
+    // For Development Only 
+
+    this.sendRequest();
+
   }
 
     locationmodal() {
@@ -101,9 +123,9 @@ export class AddRequest {
          request_title: 'service title',
          longitude: this.localUser.longitude,
          latitude: this.localUser.latitude,
-         country_id: this.DataFromModal.country_id,
-         city_id: this.DataFromModal.city_id,
-         district_id: this.DataFromModal.district_id,
+         country_id: this.DataFromModal.country_id || 45,
+         city_id: this.DataFromModal.city_id || 65,
+         district_id: this.DataFromModal.district_id || 56,
          user_id: this.localUser.id,
          form: [
            {
@@ -114,7 +136,8 @@ export class AddRequest {
        };
 
 
-       console.log('almost request data', requesrDetails)
+       console.log('almost request data', {...requesrDetails, ...this.RequestForm.value}, this.RequestForm
+      )
     }
   
 }

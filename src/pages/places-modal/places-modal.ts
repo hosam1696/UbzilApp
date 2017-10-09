@@ -43,12 +43,6 @@ export class PlacesModalPage {
 
         if (status === 'success') {
           this.Places = data;
-          
-          
-          
-          
-
-          
         } else {
           console.warn(error);
           if (this.parentCount === 3 && !this.targetPlace.district) {
