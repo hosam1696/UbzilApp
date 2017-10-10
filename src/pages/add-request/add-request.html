@@ -25,6 +25,24 @@
         <ion-label text-center (click)="locationmodal()" color="lighDark">
           <ion-icon item-start ios="ios-pin" md="ios-pin" color="primary"></ion-icon>{{'Click to add location'|translate}}</ion-label>
       </ion-item>
+<!--<section *ngFor="let shape of FormsShapes">-->
+  <!--<ion-item *ngIf="shape.type === 'input'">-->
+
+    <!--<ion-label stacked>{{shape.label}}</ion-label>-->
+    <!--<ion-input [type]="shape.type" [formControlName]="shape.id" [placeholder]="shape.place_holder"></ion-input>-->
+
+  <!--</ion-item>-->
+  <!--<ion-item *ngIf="shape.type === 'select'">-->
+    <!--<ion-label>-->
+      <!--{{shape.label}}-->
+    <!--</ion-label>-->
+    <!--<ion-select [placeholder]="shape.accurate_message" [formControlName]="shape.id" [okText]="pageParams.lang_code=='ar'?'تم':'ok'" [okText]="pageParams.lang_code=='ar'?'الغاء':'cancel'">-->
+      <!--&lt;!&ndash;<ion-option selected>{{selectBox.accurate_message}}</ion-option> &ndash;&gt;-->
+      <!--<ion-option *ngFor="let subSelect of shape.sub" [value]="subSelect.id">{{subSelect.label}}</ion-option>-->
+    <!--</ion-select>-->
+  <!--</ion-item>-->
+<!--</section>-->
+
 
     </ion-list>
     <section formGroupName="forms">
@@ -51,13 +69,18 @@
       </ion-item>
     </ion-list>
     <section *ngIf="newFormDs?.checkbox">
-      <ion-list *ngFor="let checkInput of newFormDs.checkbox" class="checkbox-list">
+      <ion-list 
+        *ngFor="let checkInput of newFormDs.checkbox" 
+        class="checkbox-list"
+        [formGroupName]="checkInput.id">
         <ion-list-header>
           {{checkInput.label}}
         </ion-list-header>
-        <ion-item *ngFor="let checkOption of checkInput.sub">
+        <ion-item  
+        *ngFor="let checkOption of checkInput.sub;let i = index"
+        >
           <ion-label>{{checkOption.label}}</ion-label>
-          <ion-checkbox  ></ion-checkbox>
+          <ion-checkbox checked="false"  [formControlName]="checkOption.id"></ion-checkbox>
         </ion-item>
 
       </ion-list>
