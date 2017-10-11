@@ -60,6 +60,7 @@ export class AddRequest {
         "service_id": this.pageParams.id,
       }
     ).subscribe(({status, data, error}) => {
+
       if (status === 'success') {
 
         let groupByType = type => data.forms.filter(x => x.type == type);
@@ -77,10 +78,17 @@ export class AddRequest {
             
             this.newFormDs[input].forEach(inputControl => {
 
-              
-
               let forms = this.RequestForm.get('forms') as FormGroup;
               if (input === 'checkbox') {
+                // fill checkbox array with valueId
+                
+                let fillCheckControls = ()=>{
+
+                };
+
+                forms.addControl(inputControl.id, new FormArray([]))
+
+                /* fill checkboxs with object {valueId: boolean Val}
                 let fillCheckControls = ()=>{
 
                   let controlsArray = {};
@@ -91,6 +99,8 @@ export class AddRequest {
 
                 }
                 forms.addControl(inputControl.id, new FormGroup(fillCheckControls()))
+
+                */
               }
               else {
 
@@ -111,7 +121,7 @@ export class AddRequest {
 
     // For Development Only
 
-    this.sendRequest();
+    //this.sendRequest();
 
   }
 
@@ -172,6 +182,19 @@ export class AddRequest {
 
   doClick(option) {
     console.log('do click', option)
+  }
+
+  changed(event,checkInputId, checkOptionId) {
+    console.log('checkbox changed', event.value, checkInputId, checkOptionId);
+
+    let checkInput = this.RequestForm.get('forms').get(checkInputId) as FormArray;
+    if (event.value === true) {
+
+      checkInput.push(new FormControl(checkOptionId));
+    } else {
+      checkInput.removeAt(checkInput.value.indexOf(checkOptionId))
+      
+    }
   }
 
 }
