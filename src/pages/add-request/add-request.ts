@@ -34,9 +34,8 @@ export class AddRequest {
     console.log('params data from sub category page', this.pageParams);
 
     this.RequestForm = formBuilder.group({
-      title: ['', Validators.required],
+      order_title: ['', Validators.required],
       address: ['', Validators.required],
-      location: [''],
       forms: formBuilder.group({})
     });
 
@@ -86,7 +85,7 @@ export class AddRequest {
 
                 };
 
-                forms.addControl(inputControl.id, new FormArray([]))
+                forms.addControl(inputControl.id, new FormArray([], Validators.required))
 
                 /* fill checkboxs with object {valueId: boolean Val}
                 let fillCheckControls = ()=>{
@@ -163,7 +162,6 @@ export class AddRequest {
 
     let requesrDetails = {
       service_id: this.pageParams.id,
-      order_title: 'service title',
       longitude: this.localUser.longitude,
       latitude: this.localUser.latitude,
       country_id: this.DataFromModal.country_id || 45,
@@ -177,7 +175,20 @@ export class AddRequest {
 
     console.log('almost request data', requesrDetails, this.RequestForm);
 
-    this.RequestForm.valid ? (console.info('Your Form is Valid')) : (console.warn('You form Errors', this.RequestForm.errors))
+    this.RequestForm.valid ? (console.info('Your Form is Valid')) : (console.warn('You form Errors is Not Valid'))
+
+    let loopErrors = (formGroup:FormGroup)=>{
+      for (let control of Object.keys(formGroup.controls)) {
+        if (formGroup.get(control) instanceof FormGroup) {
+          loopErrors(formGroup.get(control) as FormGroup)
+        } else {
+          console.warn(control, formGroup.get(control).errors)
+        }       
+      }
+    }
+
+    loopErrors(this.RequestForm);
+    
   }
 
   doClick(option) {

@@ -78,7 +78,4 @@ export class MyApp {
         this.events.subscribe('changeRoot', (root) =>{ console.info('%c%s%c%s','color:#2196f3','changing root to > ','color:#f44336;font-weight:bold', root);this.rootPage = root});
     }
 
-    
-
-
 }
