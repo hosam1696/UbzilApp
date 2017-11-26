@@ -1,0 +1,220 @@
+page-edit-profile {
+    direction: rtl!important;
+
+    ion-content{
+        background-color:#f1f1f1!important;
+        .top-header{
+            background-color: #fff;
+            background-image: url('../../assets/img/bgimg.png');
+            border-bottom: 1px solid #ddd;
+            padding: 5px;
+            ion-row{
+                ion-col{
+                    text-align: center;
+                    height: 100px;
+                    margin: 10px 0;
+                    padding: 0px;
+                    .user-img{
+                        display: inline-block;
+                        margin: auto;
+                        height: 100px;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        width: 100px;
+
+                        img {
+                            border-radius: 50%;
+                            width: 100%;
+                            /*border:5px solid #20a7f6;*/
+                            height: 100%;
+                            margin: auto;
+                        }
+
+                    }
+                    .change-img{
+                        height: 34px;
+                        width: 34px; 
+                        line-height: 34px; 
+                        background-color: #20a7f6;
+                        border-radius: 50%;
+                        text-align: center;
+                        padding: 3px;
+                        position: relative;
+                        margin: auto;
+                        margin-left: calc(50% - 50px);
+                        margin-top: -40px;
+                        ion-icon{
+                            font-size: 24px;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        ion-list{
+            margin:0px!important;
+
+            ion-list-header{
+                padding-right: 10px!important;
+                padding-left: 10px!important;
+                height: 30px;
+                min-height: 30px;
+                border:0px !important;
+                margin-top:0px!important;
+                ion-label{
+                    margin: 0px!important;
+                    font-weight: 600;
+                    color: #999;
+                }
+            }
+
+            ion-item{
+                border:0px !important;
+                margin-bottom: 1px!important;
+                padding:0px 10px!important;
+                /*height: 40px;*/
+                min-height: 40px;
+                line-height: 40px;
+
+                .item-inner{
+                    border-bottom:0px solid #ddd!important;
+                    padding: 0px!important;
+
+                    ion-label{
+                        margin: 0px !important; 
+                        /*height: 100%;*/
+                        font-size: 14px;
+                        color: #666;
+                        width: 100px!important;
+                        max-width: 100px!important;
+                        line-height: 20px;
+                        white-space: normal;
+                    }
+
+                    ion-input{
+                        input{
+                            color: #666!important;
+                            font-size: 14px;
+                        }
+                    }
+
+                    ion-icon{
+                        /*margin-top: 13px;*/
+                        font-size: 20px;
+                        line-height: 26px;
+                        margin-left: 10px!important;
+                        color: #666;
+                    }
+
+                    ion-select{
+                        max-width: calc(100% - 100px)!important;
+                        width: calc(100% - 100px)!important;
+                        padding: 11px 8px 11px 10px;
+
+                        .select-icon{
+                            margin-top: 5px;
+                            .select-icon-inner{
+                                color: #666!important;
+                                left:0px;
+                            }
+                        }
+                        .select-text{
+                            color: #666;
+                            font-size: 14px;
+                        }
+
+                    }
+
+
+                }
+
+            }
+
+            .add-btn{
+                text-align:right;
+                padding:5px 10px;
+                button{
+                    height: 30px!important;
+                    padding: 0px 5px!important;
+                    min-height: 30px!important;
+                    font-size: 12px!important;
+                    color: #2095f6!important;
+                    border-color: #2095f6!important;
+
+                }
+                button:active{
+                    background:#2095f6!important;
+                    color:#fff!important;
+                }
+            }
+        }
+
+        .user-data{
+            ion-item{
+                height: 40px;
+            }
+        }
+        .location-data{
+            .location-map{
+                ion-label{
+                    padding: 5px 0px;
+                }
+            }
+            .city{
+                height: 40px!important;
+            }
+        }
+    }
+
+    ion-footer{
+        .toolbar-background{
+            background: #20a7f6!important;
+
+        }
+        ion-title{
+            .toolbar-title{
+                color: #fff!important;
+                font-size: 14px;
+                font-weight: 300;
+
+            }
+        }
+    }
+}
+
+html[dir="ltr"]{
+    page-edit-profile {
+        direction: ltr!important;
+        ion-content{
+            ion-list{
+                ion-item{
+                    .item-inner{
+
+                        ion-icon{
+                            margin-left: auto!important;
+                            margin-right: 10px!important;
+                        }
+
+                        ion-select{
+                            .select-icon{
+                                .select-icon-inner{
+                                    left:auto;
+                                    right:0px;
+                                }
+                            }
+                        }
+                    }
+
+                }
+                .add-btn{
+                    text-align:left;
+                }
+            }
+        }
+
+    }
+}
+

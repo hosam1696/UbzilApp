@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{'subCat'|translate}}</ion-title>
+    <button ion-button  item-end (click)="navigateToStep5()">{{'done' | translate}}
+    </button>
+  </ion-navbar>
+  <ion-toolbar>
+    <ion-searchbar (ionInput)="filterServices($event)" placeholder="{{'Search'| translate}}"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <uz-loader *ngIf="ubzilLoader"></uz-loader>
+
+  <p *ngIf="noSearch">{{'no-result'|translate}}</p>
+
+  <ion-list>
+    <ion-item *ngFor="let service of subServices" (click)="navigateTo(service)">
+      <ion-thumbnail item-start>
+        <img [src]="(service.ser_icon)?imagePath(service.ser_icon):'assets/img/no-image.png'" alt="" />
+      </ion-thumbnail>
+      <h2>{{ service.service_name }}</h2>
+      <ion-icon *ngIf="service.subCount != 0" color="lightDark" ios="ios-arrow-back" md="ios-arrow-back"></ion-icon>
+      <ion-label *ngIf="service.subCount == 0"><h2>{{ service.service_name }}</h2></ion-label>
+      <ion-checkbox item-end *ngIf="service.subCount == 0 && !service.isCheked " (ionChange)="changCheckBox(service.parent_name, service.id, service.service_name, service.type, $event.checked)" color="danger" checked="false" ></ion-checkbox>
+      <ion-checkbox item-end *ngIf="service.subCount == 0 && service.isCheked =='yesChecked'" (ionChange)="changCheckBox(service.parent_name,service.id, service.service_name, service.type, $event.checked)" color="danger" checked="true" ></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

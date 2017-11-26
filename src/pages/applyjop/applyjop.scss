@@ -1,0 +1,175 @@
+page-applyjop {
+    ion-content{
+        position: relative!important;
+        background-color:#f1f1f1!important;
+        .inner-content{
+            margin:0 10px;
+            ion-list{
+                padding:0px;
+                margin: 0 0 20px 0px!important;
+                border: 0px;
+                ion-item{
+                    margin-top:0px!important;
+                    padding: 0px!important;
+                    border-radius: 4px!important;
+                    direction: ltr!important;
+                    background: transparent!important;
+                    border: 0px!important;
+
+                    .item-inner{
+                        padding: 0px!important;
+                        border: 0px!important;
+                        direction: rtl;
+                        text-align:right;
+
+
+                        ion-label{
+                            font-size: 14px;
+                            color: #666;
+                            margin: 5px 0px;
+                            text-transform: uppercase;
+                        }
+                        ion-input{
+                            background: #fff;
+                            color:#666;
+                            height: 34px;
+                            min-height: 34px;
+                            border-radius: 4px !important;
+                            input{
+                                margin: 5px!important;
+                                font-size: 14px;
+                                height: 24px;
+                                line-height: 24px;
+                            }
+
+                        }
+                        .price-input{
+                            .text-input{
+                                width: calc(100% - 90px);
+                                /*margin-right: 70px;*/
+                                border-left: 1px solid #f1f1f1;
+                            }
+
+                        }
+                        ion-textarea{
+                            background: #fff;
+                            color:#666;
+                            border-radius: 4px !important;
+                            textarea{
+                                margin: 5px!important;
+                                font-size: 14px;  
+                                height: 120px;
+                                line-height: 18px;
+                                border-radius: 0px !important;
+                            }
+                        }
+                        ion-select{
+                            position: absolute;
+                            left: 5px;
+                            float: left;
+                            right: auto;
+                            height: 34px;
+                            width: 80px;
+                            margin-top: 33px;
+                            padding: 6px;
+                            .select-text{
+                                font-size: 14px;
+                                color: #666;
+                                margin:0 5px;
+                                height: 24px;
+                                line-height: 24px;
+                            }
+
+                            .select-icon{
+                                height: 26px;
+                                width: 12px;
+                                margin-left:-5px;
+
+                            }
+                        }
+
+
+                    }
+
+                }
+            }
+
+            ion-row{
+                padding: 0px!important;
+                button{
+                    background-color: #20a7f6 !important;
+                    border-radius: 4px !important;
+                    color: #fff !important;
+                }
+                button:active{
+                    background-color: #4a8bfc !important;
+
+                }
+            }
+        }
+    }
+    ion-footer{
+        .toolbar-background{
+            background: #20a7f6!important;
+
+        }
+        ion-title{
+            .toolbar-title{
+                color: #fff!important;
+                font-size: 14px;
+                font-weight: 300;
+
+            }
+        }
+    }
+
+
+}
+
+
+
+
+
+html[dir="ltr"]{
+    page-applyjop {
+        ion-content{
+            .inner-content{
+                ion-list{
+                    ion-item{
+                        direction: rtl!important;
+                        .item-inner{
+                            direction: ltr;
+                            text-align:left;
+                            .price-input{
+                                .text-input{
+                                    width: calc(100% - 90px);
+                                    border-right: 1px solid #f1f1f1;
+                                    border-left: 0px;
+                                }
+                            }
+                            ion-select{
+                                right: 5px;
+                                float: right;
+                                left: auto;
+                                margin-top: 25px;
+                                .select-icon{
+                                    margin-right:0px;
+                                    margin-left:0;
+/*                                    .select-icon-inner{
+                                        margin-top: -6px;
+                                    }*/
+                                }
+                            }
+
+
+                        }
+
+                    }
+                }
+            }
+        }
+
+
+    }
+
+}

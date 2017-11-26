@@ -1,0 +1,344 @@
+
+<ion-content>
+
+    <div class="top-content">
+        <ion-img  src="assets/img/logofin.png"></ion-img>
+        <!-- <div class="service-note" *ngIf="step == 5">{{'service-note' | translate}}</div> -->
+    </div>
+
+    <div class="bottom-content" >
+
+        <!-- step 1 phone number -->
+        <ion-grid *ngIf="step == 1">
+            <ion-card>
+                <ion-card-content>
+                    {{'enter-phone' | translate}}
+                </ion-card-content>
+            </ion-card>
+            <ion-list>
+                <ion-item>
+                    <ion-select  okText="{{'Ok' | translate}}" cancelText="{{'Cancel' | translate}}" [(ngModel)]="CountryCode" value="CountryCode">
+                            <ion-option  value="" selected > {{'select-country-code' | translate}}</ion-option>
+                            <ion-option  value="20">{{'egCode' | translate}}</ion-option>
+                            <ion-option  value="593">{{'ecCode' | translate}}</ion-option>
+                            <ion-option  value="39">{{'itCode' | translate}}</ion-option>
+                            <ion-option  value="212">{{'moCode' | translate}}</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                    <ion-input [(ngModel)]="mobile" [value]="mobile" type="tel" placeholder="{{'Phone number' | translate}}" ></ion-input>
+                </ion-item>
+            </ion-list>
+
+            <ion-row>
+                <button ion-button full (click)="signUpNext()">{{'next' | translate}}
+                        <ion-spinner *ngIf="spinner == 1" name="circles" duration="3000"></ion-spinner>
+                </button>
+
+                <ion-col>
+                    <button clear class="back-btn" ion-button (click)="goSignin()"><ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon></button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <!-- step 2 confirm code -->
+        <ion-grid *ngIf="step == 2">
+
+            <ion-card>
+                <ion-card-content>
+                    {{'enter-confirm-code' | translate}}         
+                </ion-card-content>
+            </ion-card>
+            <ion-list>
+                <ion-item>
+                    <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                    <ion-input [(ngModel)]="inputVerCode" [value]="inputVerCode" type="number" placeholder="{{'confirm-code' | translate}}" ></ion-input>
+                </ion-item>
+            </ion-list>
+
+
+            <ion-row>
+                <button ion-button full (click)="signUpConfirm()">{{'confirm' | translate}}</button>
+            </ion-row>
+
+            <ion-row>
+                <ion-col class="resend">
+                    <a (click)="signUpNext()" class="resend-code" >{{'resend-confirm-code' | translate}}</a>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <button  class="back-btn" ion-button (click)="Step1()"> <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon></button>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+
+        <!-- step 3 select MembershipType -->
+        <ion-grid *ngIf="step == 3">
+
+            <ion-card>
+                <ion-card-content>
+                    {{'specify-membership' | translate}}
+                </ion-card-content>
+            </ion-card>
+            <!--<ion-row>
+                <button ion-button full (click)="selectType()">Membership Type : {{MembershipType}}</button>
+            </ion-row>-->
+
+            <ion-row>
+                <button ion-button full (click)="Step4('finder')" >{{'service-finder' | translate}}
+                        <ion-spinner *ngIf="loader" name="circles"></ion-spinner>
+                </button>
+            </ion-row>
+            <ion-row>
+                <button ion-button full (click)="Step4('provider')">{{'service-provider' | translate}}
+                        <ion-spinner *ngIf="loader" name="circles"></ion-spinner>
+                </button>
+            </ion-row>
+
+            <ion-col>
+                <button  class="back-btn" ion-button (click)="Step1()"> <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon></button>
+            </ion-col>
+
+        </ion-grid>
+
+        <!-- step 4 main Personal Data -->
+        <ion-grid *ngIf="step == 4">
+            <ion-grid *ngIf="MembershipType == 'finder'">
+                <ion-list>
+                    <ion-item>
+                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-input [(ngModel)]="fullname" type="text"  placeholder="{{'full-name' | translate}}"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-input [(ngModel)]="username" type="text"  placeholder="{{'Username' | translate}}"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-input [(ngModel)]="email" type="mail" placeholder="{{'email' | translate}}"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-input [(ngModel)]="password" type="password" placeholder="{{'Password' | translate}}" ></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-input [(ngModel)]="repassword" type="password" placeholder="{{'confirm Password' | translate}}"></ion-input>
+                    </ion-item>
+
+                </ion-list>
+                <ion-list radio-group [(ngModel)]="gender" class="radio-gender">
+                    <ion-list-header>
+                            {{'gender' | translate}}
+                    </ion-list-header>
+                    <ion-item>
+                        <ion-label>{{'male' | translate}}</ion-label>
+                        <ion-radio value="male" checked></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>{{'female' | translate}}</ion-label>
+                        <ion-radio value="female"></ion-radio>
+                    </ion-item>
+                </ion-list>
+
+                <ion-row>
+
+                    <button ion-button full (click)="SignUpFinsh()">{{'Signup' | translate}}
+                            <ion-spinner *ngIf="signupload" name="circles"></ion-spinner>
+                    </button>
+
+
+                    <ion-col>
+                        <button class="back-btn" ion-button (click)="Step3()"><ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon></button>
+                    </ion-col>
+                    <ion-col>
+                        <h4 class="have-account"> {{'Have Account?' | translate}} <a (click)="goSignin()" class="new-account" >{{'Login' | translate}}</a></h4>
+                    </ion-col>
+                </ion-row>
+
+            </ion-grid>
+
+            <ion-grid *ngIf="MembershipType == 'provider'">
+                <ion-list>
+                    <ion-item>
+                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-input [(ngModel)]="fullname" type="text"  placeholder="{{'full-name' | translate}}"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-input [(ngModel)]="username" type="text"  placeholder="{{'Username' | translate}}"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-input [(ngModel)]="email" type="mail" placeholder="{{'email' | translate}}"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-input [(ngModel)]="password" type="password" placeholder="{{'Password' | translate}}" ></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-input [(ngModel)]="repassword" type="password" placeholder="{{'confirm Password' | translate}}"></ion-input>
+                    </ion-item>
+
+                    <ion-item *ngFor="let phone of phonenum; let i = index" [attr.data-index]="i">
+                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-input type="tel" value="{{phone.num_value}}" [(ngModel)]="phone.num_value" placeholder="{{'Phone number' | translate}}"></ion-input>
+                        <ion-icon ios="ios-close-circle-outline" md="ios-close-circle-outline" item-right (click)="removePhones(i)"></ion-icon>
+                    </ion-item>
+                    <div class="add-btn">
+                        <button outline ion-button (click)="addmorePhones(phonenum)">{{'Add more' | translate}}</button>
+                    </div>
+                </ion-list>
+
+                <ion-row>
+
+                    <button ion-button full (click)="Step5()">{{'next' | translate}}
+                            <ion-spinner *ngIf="signupload" name="circles"></ion-spinner>
+                    </button>
+                    <ion-col>
+                        <button class="back-btn" ion-button (click)="Step3()"><ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon></button>
+                    </ion-col>
+                </ion-row>
+
+            </ion-grid>
+        </ion-grid>
+
+        <!-- step 5 services -->
+        <ion-grid *ngIf="step == 5" class="geay-grid">
+            <div class="service-note">{{'service-note' | translate}}</div>
+
+            <button ion-button  (click)="navigateTo('SignCategory','')">{{'add-service-btn' | translate}}
+            </button>
+
+            <ion-list *ngIf="userServices">
+                <ion-item *ngFor="let servicess of userServices; let i = index">
+                        <h2>{{ servicess.name }}</h2>
+                        <ion-icon ios="ios-close-circle-outline" md="ios-close-circle-outline" item-right (click)="removeUserServices(i)"></ion-icon>
+                </ion-item>
+            </ion-list>
+
+            <ion-row>
+                <button ion-button full (click)="Step6(); cahngeCountry(0,'country')" [disabled]="isEnabled" >{{'next' | translate}}
+                        <ion-spinner *ngIf="loader" name="circles"></ion-spinner>
+                </button>
+                <!-- <button ion-button full (click)="Step6(); cahngeCountry(0,'country')" >{{'next' | translate}}
+                        <ion-spinner *ngIf="loader" name="circles"></ion-spinner>
+                </button> -->
+                <ion-col>
+                    <button class="back-btn" ion-button (click)="Step4('provider')"><ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon></button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <!-- step 5 Complete provide location and work places -->
+        <ion-grid *ngIf="step == 6">
+            <ion-list>
+                <ion-list-header>
+                    {{'select-your-country'|translate}}
+                </ion-list-header>
+                <div class="Location-div">
+                    <ion-item class="select-city">
+                        <!--<ion-label> Contry</ion-label>-->
+                        <ion-select #C [(ngModel)]="country"  (ionChange)="cahngeCountry(C.value,'Governorate')" cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
+                            <ion-option value="" selected>{{'select-your-country'|translate}}</ion-option>
+                            <ion-option *ngFor="let country of countries"  value="{{country.id}}">{{country.name}}</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </div>
+
+                    <ion-list-header>
+                        {{'Location on map'|translate}}
+                    </ion-list-header>
+                    <div class="Location-div">
+                        <ion-item class="location-map" (click)="locationmodal()">
+                            <ion-input type="text" [placeholder]="locationOnMap"></ion-input>
+                            <ion-icon name="pin" item-right></ion-icon>
+                        </ion-item>
+                    </div>
+
+                    <ion-list-header>
+                        {{'residence'|translate}}
+                    </ion-list-header>
+                    <div class="Location-div">
+                        <ion-item class="city">
+                            <!-- Governorate -->
+                            <ion-select #G [(ngModel)]="governorate" (ionChange)="cahngeCountry(G.value,'city')" cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
+                                <ng-container *ngIf="!country">
+                                    <ion-option value="" selected>{{'select-your-country-first'|translate}}</ion-option>
+                                </ng-container>
+                                <ng-container *ngIf="country">
+                                    <ion-option *ngFor="let governorate of governorates; let i = index" [selected]="i == 0"  value="{{governorate.id}}">{{governorate.name}}</ion-option>
+                                </ng-container>
+                            </ion-select>
+                            <!-- City -->
+                            <ion-select #CI [(ngModel)]="city"  (ionChange)="cahngeCountry(CI.value,'district')" cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
+                                <ng-container *ngIf="!governorate">
+                                    <ion-option value="" selected>{{'select-your-gov-first'|translate}}</ion-option>
+                                </ng-container>
+                                <ng-container *ngIf="governorate">
+                                    <ion-option *ngFor="let city of cities; let i = index" [selected]="i == 0"  value="{{city.id}}">{{city.name}}</ion-option>
+                                </ng-container>
+                            </ion-select>
+                            <!-- Districts -->
+                            <ion-select [(ngModel)]="district"  cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
+                                <ng-container *ngIf="!city">
+                                    <ion-option value="" selected>{{'select-your-city-first'|translate}}</ion-option>
+                                </ng-container>
+                                <ng-container *ngIf="city">
+                                    <ion-option *ngFor="let dis of districts; let i = index" [selected]="i == 0"  value="{{dis.id}}">{{dis.name}}</ion-option>
+                                </ng-container>
+                            </ion-select>
+
+                        </ion-item>
+                    </div>
+
+                    <ion-list-header>
+                        {{'Work Locations'|translate}}
+                    </ion-list-header>
+                    <div class="workplaces-list">
+                        <ion-item class="city" *ngFor="let location of workplace; let x = index" [attr.data-index]="x">
+
+                            <!-- Governorate -->
+                            <ion-select #S (ionChange)="getSectors(S.value, x)" [(ngModel)]="location.Governorate" cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
+                                <!-- <ion-option value="" selected>Governorate</ion-option> -->
+                                <ion-option *ngFor="let governorate of governorates" value="{{governorate.id}}" >{{governorate.name}}</ion-option>
+                            </ion-select>
+
+                            <!-- Sectors -->
+                            <ion-select   [(ngModel)]="location.districts" cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
+                                <!-- <ion-option value="" selected>sectors</ion-option> -->
+                                <ion-option *ngFor="let sector of sectors[x]"  value="{{sector.id}}">{{sector.name}}</ion-option>
+                            </ion-select>
+
+                            <ion-icon ios="ios-close-circle-outline" md="ios-close-circle-outline" item-right (click)="removeworkplace(x)"></ion-icon>
+                            
+                        </ion-item>
+                    </div>
+                    <div class="add-btn">
+                        <button outline ion-button  (click)="moreworkplace(workplace)">{{'add-workplace' | translate}}</button>
+                    </div>
+
+            </ion-list>
+
+            <ion-row>
+                <button ion-button full (click)="Step7()">{{'Signup' | translate}}
+                        <ion-spinner *ngIf="loader" name="circles"></ion-spinner>
+                </button>
+                <ion-col>
+                    <button class="back-btn" ion-button (click)="Step5()"><ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon></button>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+    </div>
+
+
+</ion-content>

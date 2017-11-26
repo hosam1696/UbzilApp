@@ -1,0 +1,28 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{'Refuse'}} </ion-title>
+        <ion-buttons start right>
+            <button ion-button (click)="dismiss()">
+                    <ion-icon name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content dir="ltr">
+    <div class="inner-content">
+        <ion-list>
+            <ion-item>
+                <ion-label stacked>{{'reason refuse'}}</ion-label>
+                <ion-textarea></ion-textarea>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-title (click)="Send()">{{'send'}}</ion-title>
+    </ion-toolbar>
+</ion-footer>

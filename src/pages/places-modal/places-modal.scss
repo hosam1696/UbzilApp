@@ -1,0 +1,30 @@
+page-places-modal {
+
+
+    ion-content {
+        &.content {
+            background-color: #f1f1f1
+        }
+        .loader-holder{
+            position: relative;
+            width: 100%;
+            height: 6px;
+            background-color: #fff;
+        }
+
+        ion-list {
+            //padding-top: 16px;
+            ion-item {
+                &:first-child {
+                    border-top: none !important;
+                }
+                
+                &:last-child,.item-inner {
+
+                    border-bottom: 1px solid #f1f1f1 !important
+                }
+            }
+        }
+
+    }
+}

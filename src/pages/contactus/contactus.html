@@ -1,0 +1,37 @@
+<ion-header>
+
+    <ion-toolbar>
+        <div class="black-shadow">
+        </div>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                    <ion-icon name="close"></ion-icon>
+                <!--                <ion-icon name="md-close" showWhen="android,windows"></ion-icon>-->
+            </button>
+        </ion-buttons>
+        <div class="my-text">
+            <h2>{{'contact us'| translate}}</h2>
+            <h4>{{'help you'| translate}}</h4>
+        </div>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content dir="ltr">
+    <div class="inner-content">
+        <ion-list>
+            <ion-item>
+                <ion-label stacked>{{'Message Title'|translate}}</ion-label>
+                <ion-input type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>{{'Message Content'|translate}}</ion-label>
+                <ion-textarea></ion-textarea>
+            </ion-item>
+        </ion-list>
+        <ion-row>
+            <button ion-button full (click)="Send()">{{'send'|translate}}</button>
+            
+        </ion-row>      
+    </div>
+</ion-content>

@@ -1,0 +1,100 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{'Add Request'|translate}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content dir="ltr">
+  <!-- <div class="loader-holder">
+      <uz-loader *ngIf="loader"></uz-loader>
+  </div> -->
+  <div class="inner-content">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>{{'project title'|translate}}</ion-label>
+        <ion-input type="text" placeholder="{{'project title'|translate}}" [(ngModel)]= "order.order_title"></ion-input>
+      </ion-item>
+      <ion-item (click)="openModal()">
+        <ion-label>{{'Request location'|translate}}</ion-label>
+
+        <ion-label>{{MreqAddress}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'Request Add location'|translate}}</ion-label>
+        <ion-label (click)="locationmodal()" color="lighDark">
+          <ion-icon item-start ios="ios-pin" md="ios-pin" color="primary"></ion-icon>{{locationOnMap}}</ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngFor="let i of forms">
+      <!-- input type-->
+      <ion-item *ngIf="i.type == 'input'">
+        <ion-label stacked>{{i.label}}</ion-label>
+        <ion-input [(ngModel)]= "order.form[i.id]" [type]="i.type|translate" [placeholder]="i.place_holder"></ion-input>
+      </ion-item>
+
+      <!-- select type -->
+      <ion-item *ngIf="i.type == 'select'">
+        <ion-label>
+          {{i.label}}
+        </ion-label>
+        <ion-select [placeholder]="i.accurate_message" [okText]="pageParams.lang_code=='ar'?'تم':'ok'" [cancelText]="pageParams.lang_code=='ar'?'الغاء':'cancel'" [(ngModel)]= "order.form[i.id]">
+          <ion-option *ngFor="let sub of i.sub" [value]="sub.id">{{sub.label}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- checkbox type -->
+      <section *ngIf="i.type == 'checkbox'">
+        <ion-list  class="checkbox-list">
+          <ion-list-header>
+            {{i.label}}
+          </ion-list-header>
+          <ion-item *ngFor="let checkOption of i.sub" >
+            <ion-label>{{checkOption.label}}</ion-label>
+            <ion-checkbox checked="false" (ionChange)="changCheckBox(i.id,checkOption.id, $event.checked)"></ion-checkbox>
+          </ion-item>
+        </ion-list>   
+      </section> 
+
+      <!-- radion type -->
+      <section *ngIf="i.type == 'radio'">
+        <ion-list radio-group class="radio-list" [(ngModel)]= "order.form[i.id]">
+          <ion-list-header>
+            {{i.label}}
+          </ion-list-header>
+  
+          <ion-item *ngFor="let radioOption of i.sub">
+            <ion-label>{{radioOption.label}}</ion-label>
+            <ion-radio checked="false" [value]="radioOption.id"></ion-radio>
+          </ion-item>
+        </ion-list>
+      </section>
+
+      <!-- textarea type -->
+      <section *ngIf="i.type == 'textarea'" class="sec-textarea">
+        <div class="texarea-item">
+          <p class="as-label">
+            {{i.label}}
+          </p>
+          <textarea [placeholder]="i.place_holder" [(ngModel)]= "order.form[i.id]"></textarea>
+        </div>
+      </section>
+
+      <!-- file type -->
+      <section *ngIf="i.type == 'file'" class="sec-textarea">
+        <div class="texarea-item">
+          <p class="as-label">
+            {{i.label}}
+          </p>
+          <textarea [placeholder]="i.place_holder" [(ngModel)]= "order.form[i.id]"></textarea>
+        </div>
+      </section>
+          
+    </ion-list>
+
+    <button margin-top ion-button full (click)="sendRequest()">{{'Add Request'|translate}}</button>
+
+  </div>
+</ion-content>

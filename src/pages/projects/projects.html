@@ -1,0 +1,325 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{'My Projects' | translate}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <section class="segment-holder" [ngClass]="{'padding-vertical':isIos}">
+    <ion-segment  [(ngModel)]="projectID" [style.flexDirection]="!isRTL?'row':'row-reverse'">
+
+
+
+      <ion-segment-button value="pendProjects">
+        {{'Projects in progress' | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="impProjects">
+        {{'Implemented Projects' | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="recivedProjects">
+        {{'Received Projects' | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="myProjects">
+        {{'My Projects' | translate}}
+      </ion-segment-button>
+    </ion-segment>
+  </section>
+
+
+
+  <!-- 
+
+ ****
+    My Projects List
+*****
+
+-->
+
+
+  <ion-list *ngIf="projectID === 'myProjects'">
+
+    <ion-item-sliding dir="ltr">
+      <ion-item [dir]="isRTL?'rtl':'ltr'">
+        <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
+          <img src="assets/img/png/doctor.png">
+        </ion-thumbnail>
+        <h2>{{'Vezeta_doctors'|translate}}<span item-end class="time">منذ ساعة</span></h2>
+        <h4>{{'Request title'|translate}}</h4>
+        <p class="applicants">
+          <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
+
+
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+        <button ion-button color="danger" (click)="navigateTo('AddReview', true)">{{"reject"| translate}}</button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+
+    <ion-item>
+      <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
+        <img src="assets/img/png/iron.png">
+      </ion-thumbnail>
+      <h2>{{'Home_services'|translate}}<span item-end class="time">منذ ساعة</span></h2>
+      <h4>{{'Request title'|translate}}</h4>
+      <p class="applicants">
+        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
+      <div class="bottom-btn" [class.toright]="!isRTL">
+        <button ion-button outline  color="danger" (click)="navigateTo('AddReview', true)">{{"reject"| translate}}</button>
+        <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+      </div>
+
+    </ion-item>
+    
+  </ion-list>
+
+  <!-- 
+
+ ****
+    REcived Projects List
+  *****
+
+-->
+
+  <ion-list *ngIf="projectID==='recivedProjects'">
+    <ion-item>
+      <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
+        <img src="assets/img/12.jpg">
+      </ion-thumbnail>
+      <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
+      <h4>{{'Request title'|translate}}</h4>
+      <p class="applicants">
+        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
+      <div class="bottom-btn" [class.toright]="!isRTL">
+        <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+      </div>
+
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
+        <img src="assets/img/13.jpg">
+      </ion-thumbnail>
+      <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
+      <h4>{{'Request title'|translate}}</h4>
+      <p class="applicants">
+        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
+      <div class="bottom-btn">
+        <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+      </div>
+
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
+        <img src="assets/img/14.jpg">
+      </ion-thumbnail>
+      <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
+      <h4>{{'Request title'|translate}}</h4>
+      <p class="applicants">
+        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
+      <div class="bottom-btn">
+        <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+      </div>
+
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
+        <img src="assets/img/15.jpg">
+      </ion-thumbnail>
+      <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
+      <h4>{{'Request title'|translate}}</h4>
+      <p class="applicants">
+        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
+      <div class="bottom-btn">
+        <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+      </div>
+
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
+        <img src="assets/img/16.jpg">
+      </ion-thumbnail>
+      <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
+      <h4>{{'Request title'|translate}}</h4>
+      <p>
+        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
+      <div class="bottom-btn">
+        <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+      </div>
+
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
+        <img src="assets/img/17.jpg">
+      </ion-thumbnail>
+      <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
+      <h4>{{'Request title'|translate}}</h4>
+      <p class="applicants">
+        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
+      <div class="bottom-btn">
+        <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+      </div>
+
+    </ion-item>
+  </ion-list>
+
+  <!-- 
+
+ ****
+    Executed  Projects List
+  *****
+
+-->
+  <ion-list *ngIf="projectID === 'impProjects'">
+    <ion-item-sliding dir="ltr">
+      <ion-item [dir]="isRTL?'rtl':'ltr'">
+        <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
+          <img src="assets/img/12.jpg">
+        </ion-thumbnail>
+        <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
+        <h4>{{'Request title'|translate}}</h4>
+        <p class="applicants">
+          <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
+
+
+      </ion-item>
+      <ion-item-options [side]="isRTL?'right':'left'">
+        <button ion-button (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+
+    <ion-item-sliding dir="ltr">
+      <ion-item [dir]="isRTL?'rtl':'ltr'">
+        <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
+          <img src="assets/img/12.jpg">
+        </ion-thumbnail>
+        <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
+        <h4>{{'Request title'|translate}}</h4>
+        <p class="applicants">
+          <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
+
+
+      </ion-item>
+      <ion-item-options [side]="isRTL?'right':'left'">
+        <button ion-button (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+    <ion-item>
+      <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
+        <img src="assets/img/12.jpg">
+      </ion-thumbnail>
+      <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
+      <h4>Executed {{'Request title'|translate}}</h4>
+      <p class="applicants">
+        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
+      <div class="bottom-btn" [class.toright]="!isRTL">
+        <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+      </div>
+
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
+        <img src="assets/img/13.jpg">
+      </ion-thumbnail>
+      <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
+      <h4>{{'Request title'|translate}}</h4>
+      <p class="applicants">
+        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
+      <div class="bottom-btn">
+        <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+      </div>
+
+    </ion-item>
+
+  </ion-list>
+
+
+  <!-- 
+
+ ****
+  Pending  Projects List
+  *****
+
+-->
+  <ion-list *ngIf="projectID === 'pendProjects'">
+    <ion-item-sliding dir="ltr" >
+      <ion-item [dir]="isRTL?'rtl':'ltr'">
+        <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
+          <img src="assets/img/13.jpg">
+        </ion-thumbnail>
+        <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
+        <h4>pending {{'Request title'|translate}}</h4>
+        <p class="applicants">
+          <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
+
+
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+
+    <ion-item-sliding dir="ltr">
+      <ion-item [dir]="isRTL?'rtl':'ltr'">
+        <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
+          <img src="assets/img/15.jpg">
+        </ion-thumbnail>
+        <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
+        <h4>pending {{'Request title'|translate}}</h4>
+        <p class="applicants">
+          <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
+
+
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <ion-item-sliding dir="ltr">
+      <ion-item [dir]="isRTL?'rtl':'ltr'">
+        <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
+          <img src="assets/img/16.jpg">
+        </ion-thumbnail>
+        <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
+        <h4>pending {{'Request title'|translate}}</h4>
+        <p class="applicants">
+          <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
+
+
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <ion-item-sliding dir="ltr">
+      <ion-item [dir]="isRTL?'rtl':'ltr'">
+        <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
+          <img src="assets/img/17.jpg">
+        </ion-thumbnail>
+        <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
+        <h4>pending {{'Request title'|translate}}</h4>
+        <p class="applicants">
+          <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
+
+
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+   
+  </ion-list>
+
+</ion-content>

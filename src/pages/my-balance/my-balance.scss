@@ -1,0 +1,174 @@
+page-my-balance {
+    ion-content{
+        background-color:#fff!important;
+        .main-content{
+            .my-balance{
+                background: #f1f1f1;
+                padding-top: 10px;
+                padding-bottom: 10px;
+
+                .your-balance{
+                    margin: 10px;
+                    h2{
+                        font-size: 16px;
+                        color: #666;
+                        font-weight: 600;
+                        text-align: right;
+                        margin: 0px;
+                    }
+                    .last-charge{
+                        font-size: 12px;
+                        color: #666;
+                        margin: 0px;
+                        text-align: right;
+                    }
+
+                }
+                .view-history{
+                    padding: 0px 10px;
+                    text-align:left;
+                    button{
+                        height: 30px;
+                        padding: 0px 5px;
+                        min-height: 30px;
+                        font-size: 12px;
+                        color: #2095f6;
+                        border-color: #2095f6!important;
+
+                    }
+                    button:active{
+                        background:#2095f6!important;
+                        color:#fff!important;
+                    }
+                }
+                h2{
+                    direction: rtl;
+                    font-size: 80px;
+                    color: #666;
+                    text-align:center;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                    span{
+                        font-size: 20px;
+                        margin-right: -10px;
+                    }
+                }
+            }
+
+            .recharge-div{
+                background-color: #fff;
+                padding: 10px;
+
+                .methods{
+                    margin: 10px;
+                    h2{
+                        font-size: 14px;
+                        color: #666;
+                        text-align: center;
+                        font-weight: 600;
+                        margin: 0px 0px 15px;
+                    }
+                    ion-row{
+                        ion-col{
+                            text-align:center;
+                            img{
+                                width: 50px;
+                                height: 50px;
+                                border-radius: 50%;
+                            }
+                        }
+                    }
+                }
+
+                ion-list{
+                    direction: rtl;
+                    margin: 0px;
+                    text-align: right;
+                    ion-item{
+                        border-bottom: 0px!important;
+                        border-top: 1px solid #f1f1f1!important;
+                        padding:0px;
+                        .item-inner{
+                            border-bottom: 0px!important;
+                        }
+                        ion-label{
+                            padding:0px;    
+                            ion-thumbnail{
+                                float: right;
+                                margin: 0px 0px 0px 10px;
+                                border-radius: 50%;
+                                img{
+                                    border-radius: 50%;
+                                }
+                            }
+                            h2{
+                                font-size: 14px;
+                                font-weight: 600;
+                                color: #666;
+                                margin-top: 5px;
+                            }
+                            p{
+                                font-size: 12px;
+                                font-weight: 300;
+                                color: #666;
+                                margin: 5px 0;
+                                white-space: normal;
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+
+    }
+}
+
+html[dir="ltr"] {
+    page-my-balance {
+        ion-content{
+            .main-content{
+                .my-balance{
+                    .your-balance{
+                        h2{
+                            text-align: left;
+                        }
+                        .last-charge{
+                            text-align: left;
+                        }
+
+                    }
+                    .view-history{
+                        text-align:right;
+                    }
+                    h2{
+                        direction: ltr;
+                        span{
+                            margin-left: -10px;
+                        }
+                    }
+                }
+
+                .recharge-div{
+                    ion-list{
+                        direction: ltr;
+                        text-align: left;
+                        ion-item{
+                            ion-label{
+                                ion-thumbnail{
+                                    float: left;
+                                    margin: 0px 10px 0px 0px;
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+
+
+        }
+    }
+}
+

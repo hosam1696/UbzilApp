@@ -1,0 +1,52 @@
+
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'Work Time'| translate}}</ion-title>
+        <ion-buttons start right>
+            <button ion-button (click)="dismiss()">
+                    <ion-icon name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-list *ngFor="let day of days" >
+            <ion-item >
+                <ion-label>{{day.name|translate}}</ion-label>
+                <ion-toggle [checked]="day.checked" [ngModel]="day.checked" (ngModelChange)="detectCheck($event, day)"></ion-toggle>
+            </ion-item>
+            <div class="time-table"  *ngIf="day.checked">
+                <ion-grid>
+                    <ion-row class="duration" *ngFor="let duration of day.timeTable; let i=index" >
+                             <ion-col col-5>
+                            <ion-item>
+                                <ion-label>{{'From'|translate}} :</ion-label>
+                                <ion-datetime displayFormat="hh:mm A" pickerFormat="hh:mm A" [(ngModel)]="duration.from"></ion-datetime>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col col-5>
+                            <ion-item>
+                                <ion-label>{{'To'|translate}} :</ion-label>
+                                <ion-datetime displayFormat="hh:mm A" pickerFormat="hh:mm A" [(ngModel)]="duration.to"></ion-datetime>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col col-2>
+                            <button ion-button class="remove-btn"(click)="remove(i,day.timeTable)"><ion-icon ios="ios-close" md="md-close"></ion-icon></button>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row class="add-more"><button ion-button outline (click)="addmore(day)">{{'Add more'|translate}}</button> </ion-row>
+                </ion-grid>
+            </div>
+        </ion-list>
+    </ion-list>
+
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-title (click)="SaveChanges()">{{'Save changes'|translate}}</ion-title>
+    </ion-toolbar>
+</ion-footer>
+

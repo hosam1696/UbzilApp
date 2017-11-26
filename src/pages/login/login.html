@@ -1,0 +1,46 @@
+
+
+<ion-content>
+    <div class="loader-holder">
+        <uz-loader *ngIf="loader"></uz-loader>
+    </div>
+    <div class="top-content">
+        <ion-img src="assets/img/logofin.png"></ion-img>
+        
+    </div>
+
+    <div class="bottom-content" >
+        <ion-list>
+            <ion-item>
+                <ion-label><ion-icon ios="ios-person-outline" md="ios-person-outline" item-start></ion-icon></ion-label>
+            
+                <ion-input  [(ngModel)]="username" type="text" placeholder="{{'Username' | translate}}" item-end></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label><ion-icon ios="ios-lock-outline" md="ios-lock-outline" item-start></ion-icon></ion-label>
+                <ion-input  [(ngModel)]="password" type="password" placeholder="{{'Password' | translate}}" item-end></ion-input>
+            </ion-item>
+        </ion-list>
+        <ion-grid>
+            <ion-row>
+                <button ion-button full (click)="userLogin(username, password)">{{'Login' | translate}}
+                   
+                </button>
+
+            </ion-row>
+
+        <ion-row class="user-links">
+            
+                <a (click)="goSignup()" class="new-account" >{{'New Account?' | translate}}</a>
+
+                <a (click)="goForgetPass()" class="forget-pass">{{'Forget Your Password!' | translate}}</a>
+
+        </ion-row>
+    </ion-grid>
+</div>
+
+
+</ion-content>
+
+

@@ -1,0 +1,72 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'Add Review'|translate}}</ion-title>
+        <ion-buttons start right>
+            <button ion-button (click)="dismiss()">
+                    <ion-icon name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content dir="ltr">
+    <div class="inner-content">
+    <ion-card>
+        <ion-card-header>
+            {{'Kindly, give me a review'|translate}}
+        </ion-card-header>
+        <ion-card-content>
+            The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+        </ion-card-content>
+    </ion-card>
+
+
+    <ion-list>
+        <ion-item>
+            <h2 stacked>{{'Commitment to dates and agreements'|translate}}</h2>
+            <rating [(ngModel)]="rate"
+                readOnly="false"
+                max="5"
+                emptyStarIconName="star-outline"
+                halfStarIconName="star-half"
+                starIconName="star"
+                nullable="false"
+                (ngModelChange)="onModelChange($event)">
+            </rating>
+        </ion-item>
+        <ion-item>
+            <h2 stacked>{{'Efficiency and professionalism'|translate}}</h2>
+            <rating [(ngModel)]="rate"
+                readOnly="false"
+                max="5"
+                emptyStarIconName="star-outline"
+                halfStarIconName="star-half"
+                starIconName="star"
+                nullable="false"
+                (ngModelChange)="onModelChange($event)">
+            </rating>
+        </ion-item>
+        <ion-item>
+            <h2 stacked>{{'Behavior and Ethics'|translate}}</h2>
+            <rating [(ngModel)]="rate"
+                readOnly="false"
+                max="5"
+                emptyStarIconName="star-outline"
+                halfStarIconName="star-half"
+                starIconName="star"
+                nullable="false"
+                (ngModelChange)="onModelChange($event)">
+            </rating>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>{{'Message Content'|translate}}</ion-label>
+            <ion-textarea placeholder="{{'Message Content'|translate}}"></ion-textarea>
+        </ion-item>
+    </ion-list>
+
+         <ion-row>
+            <button ion-button full (click)="AddReview()">{{'Add Review'|translate}}</button>
+        </ion-row>
+</div>
+</ion-content>

@@ -1,0 +1,242 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            {{'Profile'| translate}}
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="inner-content">
+        <div class="top-header">
+            <div class="cover-image">
+                <img src="assets/img/bg1.jpg" alt=""/>
+
+                <div class="cover-cahnge" (click)="imageActionSheet()">
+                    <ion-icon md='ios-camera-outline' ios='ios-camera-outline'></ion-icon>
+                </div>
+            </div>
+            <div class="hover-div"></div>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-12 class="user-img-div">
+                        <ion-row>
+                            <ion-col class="user-img" col-4>
+
+                                <img src="assets/img/12.jpg" alt=""/>
+                                
+                                <div class="change-img" (click)="imageActionSheet()">
+                                    <ion-icon md='ios-camera-outline' ios='ios-camera-outline'></ion-icon>
+                                </div>
+                            </ion-col>    
+                            
+                            <ion-col col-6>
+                                
+                                
+                                
+                                <h2 class="user-name">{{'Hussein Mahmoud'| translate}} <span><ion-icon md="ios-checkmark-circle-outline" ios="ios-checkmark-circle-outline"></ion-icon></span></h2>
+                                <h2 class="user-position">UI & UX developer</h2>
+                            </ion-col>
+                            
+                            <ion-col col-2 class="setting-btn">
+                                <button  ion-button clear color="dark"   (click)="navigateTo('EditProfile', true)">
+                                    <ion-icon ios="ios-settings-outline" md="ios-settings-outline"></ion-icon>
+                                </button>
+                            </ion-col>
+                            </ion-row> 
+                       
+
+                    </ion-col>
+                    <ion-col col-12>
+                        <div class="bottom-btn">
+                            <ion-row>
+                                <ion-col col-3 class="call-us">
+                                    <ion-icon name="call" (click)="openPopover($event)"></ion-icon>
+                                </ion-col>
+                                <ion-col col-6>
+                                    <div class="rate-div">
+                                        <div class="main">
+
+                                            <div class="applicatnt-rate-div">
+                                                <h2 class="applicatnt-rate-num">150</h2>
+                                            </div>
+
+                                            <h4 class="text-center eval-text">{{'Reputation score' |translate}}</h4>
+
+                                            <div class="stats-container">
+                                                <div class="rating-b" >
+                                                    <div class="rating-b-1">
+                                                        <img src="assets/img/rating-b-1.png" alt=""/>
+                                                    </div>
+                                                    <div class="rating-b-2" style="width:60%">
+                                                        <img src="assets/img/rating-b-2.png" alt=""/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </ion-col>
+
+                                <ion-col col-3 class="contact-us">
+                                    <ion-icon name="chatbubbles" (click)="navigateTo('Messages')"></ion-icon>
+                                </ion-col>
+                            </ion-row>
+                        </div>
+
+                    </ion-col>
+            </ion-row>
+
+        </ion-grid>
+    </div>
+
+    <div class="map">
+        <button ion-button full (click)="navigateTo('GetLocation', true)">{{'Google Address'| translate}}</button>
+    </div>
+
+    <div class="discription">
+        <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        </p>
+    </div>
+
+    <ion-list class="prices">
+        <ion-list-header>
+            {{'price list'| translate}}
+            <div class="add-reviews" item-end (click)="navigateTo('PriceList', true)"><h2><ion-icon name="add"></ion-icon>{{'Add'| translate}}</h2></div>
+        </ion-list-header>
+        <ion-item *ngFor="let item of priceList">
+            <h2>{{item.name}}</h2>
+            <p>{{item.price}} {{'EGP'|translate}}</p>
+        </ion-item>
+    </ion-list>
+
+
+
+    <ion-list class="work-time">
+        <ion-list-header>
+            {{'Work Time'| translate}}
+            <div class="add-reviews" item-end (click)="navigateTo('WorkTime', true)"><h2><ion-icon name="construct"></ion-icon>{{'Edit'| translate}}</h2></div>
+        </ion-list-header>
+        <ion-item>
+            <h2>{{'Saturday'| translate}}</h2>
+            <p>{{'From'|translate}} 8 am {{'To'|translate}} 5 pm</p>
+            <p>{{'From'|translate}} 8 am {{'To'|translate}} 5 pm</p>
+            <button ion-button item-end outline (click)="navigateTo('Reservation', true)">
+                    {{'Book'|translate}}
+        </button>
+    </ion-item>
+
+    <ion-item>
+        <h2>{{'Sunday'| translate}}</h2>
+        <p>{{'From'|translate}} 8 am {{'To'|translate}} 5 pm</p>
+        <button ion-button item-end outline (click)="navigateTo('Reservation', true)">
+                {{'Book'|translate}}
+    </button>
+</ion-item >
+
+<ion-item>
+    <h2>{{'Monday'| translate}}</h2>
+    <p>{{'From'|translate}} 8 am {{'To'|translate}} 5 pm</p>
+    <button ion-button item-end outline (click)="navigateTo('Reservation', true)">
+            {{'Book'|translate}}
+</button>
+</ion-item>
+
+<ion-item>
+    <h2>{{'Tuesday'| translate}}</h2>
+    <p>{{'From'|translate}} 8 am {{'To'|translate}} 5 pm</p>
+    <button ion-button item-end outline (click)="navigateTo('Reservation', true)">
+            {{'Book'|translate}}
+</button>
+</ion-item>
+<ion-item>
+    <h2>{{'Wednesday'| translate}}</h2>
+    <p>{{'From'|translate}} 8 am {{'To'|translate}} 5 pm</p>
+    <button ion-button item-end outline (click)="navigateTo('Reservation', true)">
+            {{'Book'|translate}}
+</button>
+</ion-item>
+</ion-list>
+
+
+<ion-list>
+    <ion-list-header>
+        {{'Reviews'| translate}}
+        <div class="add-reviews" item-end (click)="navigateTo('AddReview')"><h2><ion-icon name="add"></ion-icon>{{'Add'| translate}}</h2></div>
+    </ion-list-header>
+    <ion-item>
+        <ion-avatar item-start (click)="navigateTo('ProfilePage', true)">
+            <img src="assets/img/14.jpg" alt=""/>
+        </ion-avatar>
+        <h2>حسين محمود  <span>منذ دقيقة</span></h2>
+        <div class="user-rate">
+            <div class="stats-container">
+                <div class="rating-b" >
+                    <div class="rating-b-1">
+                        <img src="assets/img/rating-b-1.png" alt=""/>
+                    </div>
+                    <div class="rating-b-2" style="width:60%">
+                        <img src="assets/img/rating-b-2.png" alt=""/>
+                    </div>
+                    
+                </div>
+                
+
+                <div class="review-num">
+                    <span> 3.0</span>
+                    <h4>25 {{'Review'| translate}}</h4></div>
+            </div>
+        </div>
+        <p>I've had a pretty messed up day. If we just...</p>
+    </ion-item>
+    <ion-item>
+        <ion-avatar item-start>
+            <img src="assets/img/15.jpg" alt=""/>
+        </ion-avatar>
+        <h2>Ali Hamdy  <span>{{'hour'|translate}} {{'Ago'| translate}}</span></h2>
+        <div class="user-rate">
+            <div class="stats-container">
+                <div class="rating-b" >
+                    <div class="rating-b-1">
+                        <img src="assets/img/rating-b-1.png" alt=""/>
+                    </div>
+                    <div class="rating-b-2" style="width:80%">
+                        <img src="assets/img/rating-b-2.png" alt=""/>
+                    </div>
+                </div>
+                <span> 4.0</span>
+
+                <div class="review-num"><h4>25 {{'Review'| translate}}</h4></div>
+            </div>
+        </div>
+        <p>I've had a pretty messed up day. If we just can enjoy this together</p>
+    </ion-item>
+    <ion-item>
+        <ion-avatar item-start>
+            <img src="assets/img/16.jpg" alt=""/>
+        </ion-avatar>
+        <h2>Hatem Mahmoud  <span>{{'hour'|translate}} {{'Ago'| translate}}</span></h2>
+        <div class="user-rate">
+            <div class="stats-container">
+                <div class="rating-b" >
+                    <div class="rating-b-1">
+                        <img src="assets/img/rating-b-1.png" alt=""/>
+                    </div>
+                    <div class="rating-b-2" style="width:50%">
+                        <img src="assets/img/rating-b-2.png" alt=""/>
+                    </div>
+                </div>
+                <span> 2.5</span>
+
+                <div class="review-num"><h4>25 {{'Review'| translate}} </h4></div>
+            </div>
+        </div>
+        <p>I've had a pretty messed up day. If we just...</p>
+    </ion-item>
+</ion-list>
+
+</div>
+</ion-content>
+

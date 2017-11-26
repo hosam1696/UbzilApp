@@ -1,0 +1,43 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{'Apply Jop'|translate}} </ion-title>
+        <ion-buttons start right>
+            <button ion-button (click)="dismiss()">
+                    <ion-icon name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content dir="ltr">
+    <div class="inner-content">
+        <ion-list>
+            <ion-item>
+                <ion-label stacked>{{'Price'|translate}}</ion-label>
+                <ion-input  placeholder="{{'Your estmated Price'|translate}}" class="price-input" type="number" value=""></ion-input>
+                <ion-select [(ngModel)]="toppings" multiple="false" cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
+                    <ion-option value="meter">{{'meter'|translate}}</ion-option>
+                    <ion-option value="day" selected="true">{{'Day'|translate}}</ion-option>
+                    <ion-option value="hour" >{{'hour'|translate}}</ion-option>
+                    <ion-option value="Month" >{{'Month'|translate}}</ion-option>
+                    <ion-option value="Fixed" >{{'Fixed'|translate}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>{{'Jop Duration'|translate}}</ion-label>
+                <ion-input  placeholder="{{'Your estmated time'|translate}}" type="text" value=""></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>{{'Message Content'|translate}}</ion-label>
+                <ion-textarea></ion-textarea>
+            </ion-item>
+        </ion-list>     
+    </div>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-title (click)="Send()">{{'send'|translate}}</ion-title>
+    </ion-toolbar>
+</ion-footer>

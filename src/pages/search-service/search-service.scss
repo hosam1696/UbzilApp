@@ -1,0 +1,25 @@
+page-search-service{
+    direction: rtl!important;
+    ion-content{
+
+    }
+    ion-footer{
+        .toolbar-background{
+            background: #20a7f6!important;
+
+        }
+        ion-title{
+            .toolbar-title{
+                color: #fff!important;
+                font-size: 14px;
+                font-weight: 300;
+
+            }
+        }
+    }
+}
+html[dir="ltr"] {
+page-search-service{
+    direction: ltr!important;
+}
+}
