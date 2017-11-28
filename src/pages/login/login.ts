@@ -64,11 +64,11 @@ export class Login {
           },
           err => {
             this.ubzilLoader = false;
-            /* for Dev Only
+            //for Dev Only
             this.appUtils.storage.set('localUserInfo', {id:15, username:'user name'})
             .then(() => {
               this.events.publish('changeRoot', 'Tabs');
-            })*/
+            })
             if (err.error instanceof Error) {
                 console.warn('client side error', err)
             } else {

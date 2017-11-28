@@ -20,7 +20,7 @@ export class HomePage {
   type: any;
   ubzilLoader: boolean = true;
   localUser: ILocalUser;
-
+  inErr: boolean = false;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -44,15 +44,15 @@ export class HomePage {
   async ionViewDidLoad() {
     this.localUser = await this.appUtils.getUserInfo();
     this.services.getHomeServices({
-      user_id: this.localUser.id,
-      verifycode: this.localUser.verifycode||'$2y$12$FCtEqMB9xLO4FZxj0KUeyuzOwMB/ojRxD9olFk2ReBq5oBtpGO70K',
+      user_id: 2,
+      verifycode: '$2y$12$FCtEqMB9xLO4FZxj0KUeyuzOwMB/ojRxD9olFk2ReBq5oBtpGO70K',
       lang_code: this.appUtils.CurrentLang
     }).subscribe((homeRes: IHomeServiceResponse) => {
       console.log('main services response',homeRes);
 
       if (homeRes.status === 'success') {
         //{ this.bookDate, this.nearByServices, this.requestServices } = homeRes.data;
-
+        this.inErr = false;
         this.bookDate = homeRes.data.bookDate;
         this.requestServices = homeRes.data.serviceRequest;
         this.nearByServices = homeRes.data.nearByServices;
@@ -71,6 +71,7 @@ export class HomePage {
           console.warn('client side error', err);
         } else {
           console.warn('server side error', err);
+          this.inErr = true;
         }
       }, () => {
         this.ubzilLoader = false;
