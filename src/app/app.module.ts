@@ -35,9 +35,7 @@ let platform = new Platform();
 @NgModule({
   declarations: [
     MyApp,
-    ListPage,
-    
-    SearchService,
+    ListPage
 
   ],
   imports: [
@@ -61,9 +59,7 @@ let platform = new Platform();
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    ListPage,
-    
-    SearchService,
+    ListPage
 
   ],
   providers: [
