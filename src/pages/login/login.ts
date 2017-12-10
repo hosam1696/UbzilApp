@@ -15,6 +15,7 @@ export class Login {
   username: string;
   password: string;
   loader: boolean = false;
+  currentLang:string;
 
   constructor(
       public navCtrl: NavController,
@@ -30,6 +31,7 @@ export class Login {
     //console.log('load');
     // Run After Page Already Loaded
     ///this.headerimg = '../../assets/img/ba_logo.png';
+    this.currentLang = this.appUtils.CurrentLang;
 
   }
 
@@ -54,7 +56,7 @@ export class Login {
       this.loader = true;
       console.log('you have entered ', username, password);
       this.userProvider
-        .LoginUser({ username, password })
+        .LoginUser({ username, password ,'lang_code' :this.currentLang})
         .subscribe(
           userData => {
             console.log(userData);

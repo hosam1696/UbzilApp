@@ -4,7 +4,7 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {TranslateService} from 'ng2-translate';
 import { Storage } from '@ionic/storage';
-
+import moment from 'moment';
 @Component({
     templateUrl: 'app.html'
 })
@@ -46,6 +46,7 @@ export class MyApp {
 
             this.translate.setDefaultLang('ar');
             this.translate.use('ar');
+            moment.locale('ar');
             this.platform.setDir('rtl', true);
             this.config.set('backButtonIcon', 'ios-arrow-forward') 
         });
@@ -58,6 +59,7 @@ export class MyApp {
                 this.config.set('backButtonIcon', 'ios-arrow-forward');
 
                 console.log('config change detector', this.config.get('backButtonIcon'))
+                moment.locale('ar');
 
             } else {
                 this.textDir = 'ltr';
@@ -65,6 +67,7 @@ export class MyApp {
                 this.platform.setDir('ltr', true);
                 this.config.set('backButtonIcon', 'ios-arrow-back');
                 console.log('config change detector', this.config.get('backButtonIcon'))
+                moment.locale('en');
             }
             this.translate.use(lang);
         });

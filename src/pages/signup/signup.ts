@@ -143,9 +143,9 @@ export class Signup {
     }
     
     locationmodal() {
-        let pageData:any = null;
+        let pageData:any = {comeFrom: 'Signup'};
         if (this.latitude  && this. longitude ) {
-            pageData = { latitude: this.latitude, longitude: this.longitude };
+            pageData = { ...pageData, ...{latitude: this.latitude, longitude: this.longitude} };
         }
         let modal = this.modalCtrl.create(GetLocation, {pageData});
         modal.onDidDismiss((data) => {
@@ -401,6 +401,11 @@ export class Signup {
         } 
     }
     
+    backStep5(){
+        this.step = 5;
+        console.log('step 5 cliked')
+    }
+    
     // TODO: remove user service after select it in step 5
     removeUserServices(i) {
         this.userServices.splice(i, 1);
@@ -562,7 +567,7 @@ export class Signup {
             this.userProvider
             .addNewUser(signupData)
             .subscribe(({ data, errors })=> {
-                if (!errors) {
+                if (data) {
                     //TODO: save the user data to local storage //and navigate to the tapPage
                     this.appUtils.storage.set('localUserInfo', data)
                     //TODO:  navigate to the tapPage

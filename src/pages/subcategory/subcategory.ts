@@ -10,7 +10,7 @@ import { UserList } from '../user-list/user-list';
 import { AddRequest } from '../add-request/add-request';
 import { SearchService } from '../search-service/search-service';
 // for select map values (lat , lon)
-//import {GetLocation} from "../get-location/get-location";
+import {GetLocation} from "../get-location/get-location";
 
 @IonicPage()
 @Component({
@@ -114,8 +114,8 @@ export class SubCategory {
                 this.navCtrl.push('AddRequest', { pageData: { ...serviceDetails, lang_code:this.appUtils.CurrentLang } })
                 
             } else {
-                this.navCtrl.push('UserList', { pageData: serviceDetails})
-                //this.locationmodal();
+                //this.navCtrl.push('UserList', { pageData: serviceDetails})
+                this.locationmodal(serviceDetails.id);
             }
 
         } else {
@@ -125,49 +125,20 @@ export class SubCategory {
         
     }
     
-    /* locationmodal() {
-        let pageData:any = null;
-        if (this.latitude  && this.longitude ) {
-            pageData = { latitude: this.latitude, longitude: this.longitude };
-        }
+    locationmodal(service_id) {
+        let pageData:any = {comeFrom: 'SubCategory'};
         let modal = this.modalCtrl.create(GetLocation, {pageData});
         modal.onDidDismiss((data) => {
-          console.log('map data from modal', data);
+          console.log('map data from modal in SubCategory', data);
           if (data && data.latitude && data.longitude) {
-            //console.log(data);
-            this.latitude = data.latitude;
-            this.longitude = data.longitude;
+            this.navCtrl.push('UserList', { pageData: {id:service_id, latitude:data.latitude, longitude:data.longitude}});
           }
     
         });
         modal.present();
-    } */
-    // ahmed ouda 
-    // imagePath(img) {
-    //    return 'http://ubzil.com/templates/default/uploads/service/icons/'+img
-    // }
-
+    }
+    
     imagePath(img) {
         return this.appUtils.UPLOAD_FOLDER+'service/icons/'+img
     }
-
-    // initializeItems() {
-    //     this.items = [
-    //         { "id": 0, "name": "iron", "img": "assets/img/png/iron.png" },
-    //         { "id": 1, "name": "cleaner", "img": "assets/img/png/washing-machine.png" },
-    //         { "id": 2, "name": "washing", "img": "assets/img/png/liquid-soap.png" },
-    //         { "id": 3, "name": "home", "img": "assets/img/png/cleaner.png" },
-    //         { "id": 4, "name": "fridge", "img": "assets/img/png/portable-fridge.png" },
-    //         { "id": 5, "name": "clothes", "img": "assets/img/png/washing-machine.png" },
-    //         { "id": 6, "name": "iron", "img": "assets/img/png/cleaner.png" },
-    //         { "id": 7, "name": "تنظيف", "img": "assets/img/png/washing-machine.png" },
-    //         { "id": 3, "name": "غسيل", "img": "assets/img/png/cleaner.png" },
-    //         { "id": 4, "name": "تلاجات", "img": "assets/img/png/portable-fridge.png" },
-    //         { "id": 5, "name": "غسيل ملابس", "img": "assets/img/png/washing-machine.png" },
-    //         { "id": 6, "name": "سجاد", "img": "assets/img/png/cleaner.png" },
-    //         { "id": 5, "name": "اثاث", "img": "assets/img/png/washing-machine.png" }
-    //     ];
-    // }
-
-
 }

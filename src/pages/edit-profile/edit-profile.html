@@ -3,7 +3,7 @@
     <ion-navbar>
         <ion-title>{{'Edit profile' | translate}}</ion-title>
         <ion-buttons start right>
-            <button ion-button (click)="dismiss()">
+            <button ion-button (click)="dismiss(userEditData.id)">
                     <ion-icon name="close"></ion-icon>
                 <!--                <ion-icon name="md-close" showWhen="android,windows"></ion-icon>-->
             </button>
@@ -15,120 +15,126 @@
 
     <div class="main-content">
 
-        <div class="inner-content">
-
+        <div *ngIf="userEditData" class="inner-content">
+            <!-- personal data -->
             <ion-list class="user-data">
                 <ion-list-header>
                     {{'Personal Data' | translate}}
                 </ion-list-header>
                 <ion-item>
+                    <ion-label>{{'Phone number' | translate}}</ion-label>
+                    <ion-input type="text" [(ngModel)]="userEditData.mobile" ></ion-input>
+                    <ion-icon name="checkmark" item-right></ion-icon>
+                </ion-item>
+                <ion-item>
+                    <ion-label>{{'full-name' | translate}}</ion-label>
+                    <ion-input type="text" [(ngModel)]="userEditData.fullname" ></ion-input>
+                    <ion-icon name="checkmark" item-right></ion-icon>
+                </ion-item>
+                <ion-item>
                     <ion-label>{{'Username' | translate}}</ion-label>
-                    <ion-input type="text" value="حسين محمود"></ion-input>
+                    <ion-input type="text" [(ngModel)]="userEditData.username" ></ion-input>
+                    <ion-icon name="checkmark" item-right></ion-icon>
+                </ion-item>
+                <ion-item>
+                    <ion-label>{{'email' | translate}}</ion-label>
+                    <ion-input type="text" [(ngModel)]="userEditData.email" ></ion-input>
+                    <ion-icon name="checkmark" item-right></ion-icon>
+                </ion-item>
+                <ion-item class="user-data-textarea" *ngIf="userEditData.account_type == 'provider'">
+                    <ion-label>{{'personal_notes' | translate}}</ion-label>
+                    <ion-textarea [(ngModel)]="userEditData.notes" ></ion-textarea>
                     <ion-icon name="checkmark" item-right></ion-icon>
                 </ion-item>
                 <ion-item>
                     <ion-label>{{'Password' | translate}}</ion-label>
-                    <ion-input type="password" value="01201750134"></ion-input>
+                    <ion-input type="password" [(ngModel)]="userEditData.password"></ion-input>
                     <ion-icon name="checkmark" item-right ></ion-icon>
                 </ion-item>
                 <ion-item>
                     <ion-label>{{'confirm Password'| translate}}</ion-label>
-                    <ion-input type="password" value="01201750134"></ion-input>
+                    <ion-input type="password" [(ngModel)]="userEditData.repassword"></ion-input>
                     <ion-icon name="checkmark" item-right></ion-icon>
                 </ion-item>
+                <ion-list-header class="user-data-passhint">{{'leave_password_empty'| translate}}</ion-list-header>
                 <ion-item>
-                    <ion-label>{{'contry' | translate}}</ion-label>
-                    <ion-select [(ngModel)]="contry"  cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
-                        <ion-option value="eg" selected>مصر</ion-option>
-                        <ion-option value="ya">اليمن</ion-option>
-                        <ion-option value="em"> الامارات</ion-option>
-                        <ion-option value="bh">البحرين</ion-option>
-                        <ion-option value="qa">قطر</ion-option>
-                        <ion-option value="sa">السعودية</ion-option>
+                    <ion-label>{{'old_password' | translate}}</ion-label>
+                    <ion-input type="password" [(ngModel)]="userEditData.old_password"></ion-input>
+                    <ion-icon name="checkmark" item-right ></ion-icon>
+                </ion-item>
+                <ion-item *ngIf="userEditData.account_type == 'provider'">
+                    <ion-label>{{'country' | translate}}</ion-label>
+                    <ion-select #C [(ngModel)]="userEditData.country_id" (ionChange)="cahngeCountry(C.value,'Governorate')" cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
+                        <ion-option *ngFor="let country of countries"  value="{{country.id}}">{{country.name}}</ion-option>
                     </ion-select>
                 </ion-item>
 
             </ion-list>
-
-            <ion-list class="location-data">
+            <!-- map and address -->
+            <ion-list class="location-data" *ngIf="userEditData.account_type == 'provider'">
                 <ion-list-header>
                     {{'residence'| translate}}
                 </ion-list-header>
 
                 <ion-item class="location-map" (click)="locationmodal()">
                     <ion-label>{{'Location on map'| translate}}</ion-label>
-                    <ion-input type="text"></ion-input>
+                    <ion-input type="text" value ="{{userEditData.MreqAddress}}"></ion-input>
                     <ion-icon name="pin" item-right></ion-icon>
                 </ion-item>
 
                 <ion-item class="city">
-                    <ion-select [(ngModel)]="contry"  cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
-                        <ion-option value="nahda">القاهرة</ion-option>
-                        <ion-option value="qadisya">الجيزة</ion-option>
-                        <ion-option value="ashbilya" selected> الدقهلية</ion-option>
-                        <ion-option value="mroug">المنوفية</ion-option>
-                        <ion-option value="rabwah">الغربية</ion-option>
-                        <ion-option value="rawaby">البحيرة</ion-option>
+                    <!-- governorates -->
+                    <ion-select #G [(ngModel)]="userEditData.governorate_id" (ionChange)="cahngeCountry(G.value,'city')" cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
+                        <ion-option *ngFor="let governorate of governorates" value="{{governorate.id}}">{{governorate.name}}</ion-option>
                     </ion-select>
-
-
-                    <ion-select [(ngModel)]="city"  cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
-                        <ion-option value="reyad" selected>القاهرة</ion-option>
-                        <ion-option value="gadah">الجيزة</ion-option>
-                        <ion-option value="damam">المنصورة</ion-option>
-                        <ion-option value="ehsaa">طنطا</ion-option>
-                        <ion-option value="kharg">اسندرية</ion-option>
-                        <ion-option value="mekah">اكتوبر</ion-option>
-                        <ion-option value="madinah">العاشر</ion-option>
+                    <!-- cities -->
+                    <ion-select #CI [(ngModel)]="userEditData.city_id" (ionChange)="cahngeCountry(CI.value,'district')"  cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
+                        <ion-option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</ion-option>
                     </ion-select>
-
-
-                    <ion-select [(ngModel)]="districts"  cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
-                        <ion-option value="nahda" selected>اجا</ion-option>
-                        <ion-option value="qadisya">المنصورة شرق</ion-option>
-                        <ion-option value="ashbilya">المنصورة غرب</ion-option>
-                        <ion-option value="mroug">ميت غمر</ion-option>
-                        <ion-option value="rabwah">ميت سلسيل</ion-option>
-                        <ion-option value="rawaby">السنبلاوين</ion-option>
+                    <!-- districts -->
+                    <ion-select [(ngModel)]="userEditData.parent_id"  cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
+                        <ion-option *ngFor="let dis of districts" value="{{dis.id}}">{{dis.name}}</ion-option>
                     </ion-select>
                 </ion-item>
             </ion-list>
-
-            <ion-list class="location-data">
+            <!-- userWorkplaces -->
+            <ion-list class="location-data" *ngIf="userEditData.account_type == 'provider' && userEditData.userWorkplaces">
                 <ion-list-header>
                     {{'Work Locations'| translate}}
                 </ion-list-header>
-
-
-                <ion-item class="city" *ngFor="let location of workplace; let x = index" [attr.data-index]="x">
-                    <ion-select  cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
-                        <ion-option value="{{city.Governorate}}" *ngFor="let city of Citys">{{city.Governorate}}</ion-option>
+                <ion-item class="city" *ngFor="let location of userEditData.userWorkplaces; let x = index" [attr.data-index]="x">
+                    <!-- Governorate -->
+                    <ion-select #S (ionChange)="getSectors(S.value, x)" [(ngModel)]="location.Governorate" cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
+                        <ion-option *ngFor="let governorate of governorates" value="{{governorate.id}}" >{{governorate.name}}</ion-option>
                     </ion-select>
-                    <ion-select  cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
-                        <ion-option *ngFor="let district of Districts" value="{{district.district}}" >{{district.district}}</ion-option>
+                    <!-- Sectors -->
+                    <ion-select [(ngModel)]="location.districts" cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
+                        <ion-option *ngFor="let sector of sectors[x]"  value="{{sector.id}}">{{sector.name}}</ion-option>
                     </ion-select>
+
                   <ion-icon ios="ios-close-circle-outline" md="ios-close-circle-outline" item-right (click)="removeworkplace(x)"></ion-icon>
+                  
                 </ion-item>
                 <div class="add-btn">
-                    <button outline ion-button  (click)="moreworkplace(workplace)">{{'Add'|translate}}</button>
+                    <button outline ion-button  (click)="moreworkplace(userEditData.userWorkplaces)">{{'Add'|translate}}</button>
                 </div>
             </ion-list>
             
-            <ion-list class="user-data">
+            <!-- userPhones -->
+            <ion-list class="user-data" *ngIf="userEditData.account_type == 'provider'">
                 <ion-list-header>
                     {{'Phone numbers' | translate}}
                 </ion-list-header>
-                <ion-item *ngFor="let phone of phonenum; let i = index" [attr.data-index]="i">
-                    <ion-label>{{'Phone number' | translate}}</ion-label>
-                    <ion-input type="tel" value="{{phone.number}}" [(ngModel)]="phone.number"></ion-input>
-                    <ion-icon ios="ios-close-circle-outline" md="ios-close-circle-outline" item-right (click)="remove(i)"></ion-icon>
+
+                <ion-item *ngFor="let phone of userEditData.userPhones; let i = index" [attr.data-index]="i">
+                    <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                    <ion-input type="tel" value="{{phone.num_value}}" [(ngModel)]="phone.num_value" placeholder="{{'Phone number' | translate}}"></ion-input>
+                    <ion-icon ios="ios-close-circle-outline" md="ios-close-circle-outline" item-right (click)="removePhones(i)"></ion-icon>
                 </ion-item>
                 <div class="add-btn">
-                    <button outline ion-button (click)="addmore(phonenum)">{{'Add'|translate}}</button>
+                    <button outline ion-button (click)="addmorePhones(userEditData.userPhones)">{{'Add more' | translate}}</button>
                 </div>
             </ion-list>
-
-
 
         </div>
 

@@ -7,6 +7,11 @@
 <ion-header>
   <ion-navbar>
     <ion-title>{{'place'|translate}}</ion-title>
+    <ion-buttons start *ngIf="closemodels">
+        <button clear ion-button (click)="closeModal()">
+          <ion-icon name="close"></ion-icon>
+        </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -18,7 +23,7 @@
   <ion-list>
     <ion-item  
      *ngFor="let place of Places"
-     (click)="getGovOrSector(place.id, place.name)"
+     (click)="navigateTo(place.id, place.name)"
      >
       {{place.name}}
     </ion-item>

@@ -21,6 +21,7 @@ export class PlacesModalPage {
   targetPlace: any = { country_id: 327, country: 'مصر' };
   parentCount = 0;
   pageParams: any;
+  closemodels: boolean=true;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -43,8 +44,28 @@ export class PlacesModalPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PlacesModalPage');
-    
-    this.getGovOrSector(327) // 327 for EGYPT
+    if(this.pageParams){
+      this.parentCount = this.pageParams.parentCount;
+      this.getGovOrSector(this.pageParams.parent,this.pageParams.selectedPlaceName);
+    }else{
+      this.getGovOrSector(327); // 327 for EGYPT
+    }
+  }
+
+  navigateTo(parent: number, selectedPlaceName?: string): void {
+    let data = {...this.pageParams,
+        'parent': parent,
+        'selectedPlaceName': selectedPlaceName,
+        'parentCount':this.parentCount           
+    }
+    if (this.parentCount === 2) {
+      console.log('places222',this.targetPlace);
+      this.targetPlace.sector = selectedPlaceName;
+      this.targetPlace.sector_id = parent;
+      this.closeModal();
+    }else{
+      this.navCtrl.push('PlacesModalPage', {pageData : data})      
+    }
   }
 
   getGovOrSector(parent: number, selectedPlaceName?: string) {
@@ -70,20 +91,23 @@ export class PlacesModalPage {
         
         console.log('parentCount', this.parentCount);
         if (this.parentCount > 0) {
+          this.closemodels = false;
           if (this.parentCount === 1) {
-
+            console.log('places111',this.targetPlace);
             this.targetPlace.governorate = selectedPlaceName;
             this.targetPlace.governorate_id = parent;
-          }
-          if (this.parentCount === 2) {
-
-            this.targetPlace.sector = selectedPlaceName;
-            this.targetPlace.sector_id = parent;
-            this.navCtrl.push('AddRequest', { pageData: { ...this.pageParams,  lang_code:this.appUtils.CurrentLang, id:this.pageParams.order.service_id, placeData:this.targetPlace,sector_id:parent } })
-            //this.navCtrl.push('AddRequest', {pageData: { sector:selectedPlaceName,sector_id:parent }});
           }
         }
         this.parentCount++;
       })
+  }
+
+  closeModal() {
+    console.log('place in function closeModal',this.targetPlace);
+    let firstViewCtrl = this.navCtrl.first();
+    // use this beacus i use pages in model
+    this.navCtrl.popToRoot({animate: false}).then(() => firstViewCtrl.dismiss(this.targetPlace));
+    // default
+    //this.viewCtrl.dismiss(this.targetPlace);
   }
 }

@@ -1,7 +1,7 @@
 
 <ion-header>
     <ion-navbar>
-        <ion-title>History</ion-title>
+        <ion-title>{{'balance_record' | translate}}</ion-title>
         <ion-buttons start>
             <button ion-button (click)="dismiss()">
                     <ion-icon name="close"></ion-icon>
@@ -15,33 +15,26 @@
 
 
     <div class="main-content">
-
-        <div class="inner-content">
+        <ion-refresher (ionRefresh)="refreshBalanceHistory($event)">
+            <ion-refresher-content pullingIcon="arrow-dropdown" [pullingText]="pullingText" refreshingSpinner="circles" [refreshingText]="refreshingText">
+            </ion-refresher-content>
+        </ion-refresher>
+        <div class="inner-content" *ngIf="!showLoader">
             <ion-list>
-                <ion-item>
-                    <h2>12/10/2016</h2>
-                    <p>Your have recharge your account with 20 bound</p>
+                <ion-item *ngFor = " let balan of userBalances">
+                    <h2>{{balan.date_added | amDateFormat: 'YYYY-MM-DD hh:mmA'}}</h2>
+                    <p>{{balan.balanceMsg}} {{balan.balance}} {{'EGP'|translate}} {{balan.balanceMsgComplete}} {{balan.order_title}} {{balan.payway}} </p>
                 </ion-item>
-
-                <ion-item>
-                    <h2>11/12/2016</h2>
-                    <p>You have spend 10 bound</p>
-                </ion-item > 
-
-                <ion-item>
-                    <h2>5/6/2017</h2>
-                    <p>You must recharge your account</p>
-                </ion-item>
-
-                <ion-item>
-                    <h2>7/9/2017</h2>
-                    <p>Your have recharge your account with 50 bound</p>
-                </ion-item> 
-                <ion-item>
-                    <h2>8/9/2019</h2>
-                    <p>Your have recharge your account with 20 bound</p>
-                </ion-item> 
             </ion-list>
+            <p class="small" text-center *ngIf="!moreData">
+                
+                {{'no_contents' | translate}}
+            </p>
+            <ion-infinite-scroll *ngIf="moreData" (ionInfinite)="fetchMoreData($event)">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" [loadingText]="loadingText">
+                ></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+
         </div>
 
     </div>

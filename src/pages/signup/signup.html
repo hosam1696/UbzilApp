@@ -308,7 +308,6 @@
 
                             <!-- Governorate -->
                             <ion-select #S (ionChange)="getSectors(S.value, x)" [(ngModel)]="location.Governorate" cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
-                                <!-- <ion-option value="" selected>Governorate</ion-option> -->
                                 <ion-option *ngFor="let governorate of governorates" value="{{governorate.id}}" >{{governorate.name}}</ion-option>
                             </ion-select>
 
@@ -333,7 +332,7 @@
                         <ion-spinner *ngIf="loader" name="circles"></ion-spinner>
                 </button>
                 <ion-col>
-                    <button class="back-btn" ion-button (click)="Step5()"><ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon></button>
+                    <button class="back-btn" ion-button (click)="backStep5()"><ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon></button>
                 </ion-col>
             </ion-row>
 

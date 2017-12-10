@@ -5,6 +5,7 @@ import { Component, ViewChild, ElementRef } from "@angular/core";
 import { NavParams, ViewController, LoadingController, Events } from 'ionic-angular';
 import { Geolocation} from '@ionic-native/geolocation';
 import {NativeGeocoder, NativeGeocoderForwardResult, NativeGeocoderReverseResult} from "@ionic-native/native-geocoder";
+import {TranslateService} from 'ng2-translate';
 //import {IlocalUser} from "../../app/appglobal/app.interfaces";
 import {AppUtilFunctions} from '../../app/appglobal/app.utilfuns';
 
@@ -28,7 +29,8 @@ export class GetLocation {
     map: any;
     markers = [];
     loader: any = true;
-    comeFrom:any;    
+    comeFrom:any;
+    saveLocTitle:string;    
 
     constructor(
         params:NavParams,
@@ -38,13 +40,24 @@ export class GetLocation {
         public userProvider: UserProvider,
         public geocoderNative: NativeGeocoder,
         public loadingCtrl: LoadingController,
-        public http: Http
+        public http: Http,
+        public translateService: TranslateService,
     ) {
         console.log('********************** map *********************');        
         this.initMap = params.get('pageData');
         if(this.initMap.comeFrom){
           this.comeFrom = this.initMap.comeFrom;
           console.log(this.comeFrom);
+          if(this.comeFrom == 'SubCategory'){
+            this.translateService.get('show-results')
+            .subscribe(value => {this.saveLocTitle = value});
+          }else{
+            //comefrom = AddRequest, Signup, EditProfile
+            this.translateService.get('map-save-my-location')
+            .subscribe(value => {this.saveLocTitle = value});
+
+            
+          }
         }
         
         console.log('init NavParams Map',this.initMap);
@@ -169,8 +182,6 @@ export class GetLocation {
 
     myCurrentLoc() {
         let geoloacte = this.geolocation.getCurrentPosition();
-    
-    
           geoloacte.then((res)=>{
             let [lat, lng] = [res.coords.latitude, res.coords.longitude];
             console.log('your location is ', lat,lng);
@@ -294,23 +305,6 @@ export class GetLocation {
             err=> {
             console.warn(err);
             })
-    
-        /*
-        this.geocoderNative.reverseGeocode(latitude, longitude).then((result: NativeGeocoderReverseResult) => {
-          let geocodeAddress = result.street + " " + result.houseNumber + ", " + result.postalCode + " " + result.city + " " + result.district + " in " + result.countryName + " - " + result.countryCode;
-          console.log("The address is: \n\n" + geocodeAddress);
-          this.modalData.address = geocodeAddress;
-          console.log(geocodeAddress);
-    
-        }).then(err=>{
-          console.log(err);
-        });
-    
-        this.geocoderNative.forwardGeocode('october').then((result:NativeGeocoderForwardResult)=>{
-          console.log(result.latitude, result.longitude);
-        }).catch(err=>{
-          console.warn(err)
-        })*/
     }
     
     setNewLoc(target, latitude, longitude):void {

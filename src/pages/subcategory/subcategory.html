@@ -12,7 +12,7 @@
 <ion-content>
   <uz-loader *ngIf="ubzilLoader"></uz-loader>
 
-  <p *ngIf="noSearch">لا يوجد نتائج بحث متطابقة</p>
+  <p *ngIf="noSearch">{{'no-result'|translate}}</p>
   <ion-list>
     <ion-item *ngFor="let service of subServices" (click)="navigateTo(service)">
       <ion-thumbnail item-start>

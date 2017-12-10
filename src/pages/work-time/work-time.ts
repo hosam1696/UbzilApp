@@ -2,6 +2,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, ModalController, ViewController, NavParams, Events, ActionSheetController, ToastController} from 'ionic-angular';
 import {TranslateService} from 'ng2-translate';
+import { Console } from '@angular/core/src/console';
 
 // Req Pages
 
@@ -19,6 +20,7 @@ export class WorkTime {
     
     closetext:any;
     toasttext:any;
+    workTimeStatus:number = 1;
     
     constructor(
         public navCtrl: NavController,
@@ -62,10 +64,16 @@ export class WorkTime {
             })
 
     }
+
     dismiss() {
         this.viewCtrl.dismiss();
     }
-
+    
+    radioChecked(){
+        console.log('workTimeStatus is ', this.workTimeStatus);
+        
+        
+    }
     dayCheck(day) {
         console.log("this day is " + day.name);
     }
@@ -73,14 +81,15 @@ export class WorkTime {
 
     detectCheck(val, day) {
         day.checked = val;
-        console.log(val, day);
+        console.log('detectCheck',val, day);
     }
 
     addmore(day) {
-        console.log("add more button" + day.timeTable);
+        console.log("add more button" , day.timeTable);
         var p = {"from": this.x, "to": this.y};
         day.timeTable.push(p);
     }
+    
     remove(i, timeTable) {
         let dayIndex = this.days.findIndex(day => day.timeTable == timeTable);
         console.log(i, timeTable);

@@ -82,7 +82,7 @@ export class SignCategory {
                 // TODO: get lenght of array with strin key type use (Object.keys(yourArray).length )
                 let parentName = data[0]['parent_name'];
                 if(this.userServices[parentName]) {
-                    //console.log('7anksha');
+                    //console.log('here');
                     let servicesToChecked = this.userServices[parentName];
                     for (let i = 0;i < this.userServices[parentName].length;i++) {
                         console.info(servicesToChecked[i]);
@@ -94,20 +94,7 @@ export class SignCategory {
                     }
                 }
                 console.log('data from sub category after add isChecked',data)
-                /*
-                if(Object.keys(this.userServices).length > 0){ 
-                    for (let i = 0; i < data.length; i++) {
-                        if(this.userServices[data[i]['parent_name']]){
-                            if(this.userServices[data[i]['parent_name']].indexOf({'id' : data[i]['id'],'name':data[i]['service_name']}) !== -1){
-                                //console.log('222222333333',data[i]['id']);
-                                data[i]['isCheked'] = 'yesChecked';
-                           }
-                        }
-                    }
-                    console.log('data from sub category after add isChecked',data)
-                }*/
                 this.subServices = data;                
-                //console.log('data from sub category reverse',this.subServices)
             } else {
                 this.appUtils.AppToast(error);
             }

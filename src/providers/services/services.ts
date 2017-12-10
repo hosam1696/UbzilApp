@@ -40,7 +40,7 @@ export class ServicesProvider extends AppAPi{
   getServiceProviders(serviceData) {
     
     let body = JSON.stringify(serviceData);
-    console.log('bOOOOOOOOOdy', body)
+    //console.log('bOOOOOOOOOdy', body)
     return this.http.post(super.API_URL() + 'services.php?action=getServiceProviders', body).map(res=>res.json());
 
   }
@@ -54,6 +54,18 @@ export class ServicesProvider extends AppAPi{
   addServiceOrders(orderData) {
     let body = JSON.stringify(orderData);
     return this.http.post(super.API_URL()+'service_orders.php?action=addServiceOrders', body).map(res=>res.json())
+  }
+
+  getAnalysis(data) {
+    let body = JSON.stringify(data);
+    return this.http.post(super.API_URL() + 'services.php?action=getAnalysis', body).map(res=>res.json());
+
+  }
+
+  addAnalysisPrice(data) {
+    let body = JSON.stringify(data);
+    return this.http.post(super.API_URL() + 'services.php?action=addAnalysisPrice', body).map(res=>res.json());
+
   }
 
 

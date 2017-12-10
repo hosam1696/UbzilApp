@@ -32,6 +32,10 @@ import {NotificationsProvider} from '../providers/notifications/notifications';
 import { API } from '../providers/api';
 import { Components } from '../providers/components';
 import {GetLocation} from "../pages/get-location/get-location";
+import { MomentModule } from 'angular2-moment';
+//import moment from 'moment';
+//import 'moment/locale/de';
+//moment.locale('ar');
 export function createTranslateLoader(http: Http) {
 	return new TranslateStaticLoader(http, './assets/i18n', '.json');
 }
@@ -47,6 +51,7 @@ let platform = new Platform();
     BrowserModule,
     HttpModule,
     Ionic2RatingModule,
+    MomentModule,
     IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp, {
       backButtonText: '',

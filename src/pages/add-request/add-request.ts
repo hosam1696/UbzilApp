@@ -35,7 +35,7 @@ export class AddRequest {
     console.log('******************** AddRequest Load ***************')
     this.pageParams = this.navParams.get('pageData');
     console.log('params data from sub category page OR PlaceModel', this.pageParams)
-    if(this.pageParams.order){
+    /* if(this.pageParams.order){
       this.order = this.pageParams.order;
       if(this.pageParams.placeData.sector_id){
         this.MreqAddress = this.pageParams.placeData.governorate + (this.pageParams.placeData.sector ? ' - ' + this.pageParams.placeData.sector : '');
@@ -58,7 +58,20 @@ export class AddRequest {
       }
       this.translateService.get('plz-enter-request-place')
       .subscribe(value => {this.MreqAddress = value});
+    } */
+
+    this.order = {
+      service_id:this.pageParams.id,
+      order_title: '',
+      longitude: '', //longitude: this.localUser.longitude,
+      latitude: '',  //latitude: this.localUser.latitude,
+      sector_id: '',
+      user_id: '',//this.localUser.id,
+      verifycode: '',
+      form:[]
     }
+    this.translateService.get('plz-enter-request-place')
+    .subscribe(value => {this.MreqAddress = value});
     
   }
 
@@ -95,7 +108,7 @@ export class AddRequest {
   }
 
   locationmodal() {
-    let pageData:any = {comeFrom: 'addrequest'};
+    let pageData:any = {comeFrom: 'AddRequest'};
     if (this.order.latitude  && this.order.longitude ) {
         pageData = {...pageData,...{latitude: this.order.latitude, longitude: this.order.longitude }};
     }
@@ -116,19 +129,26 @@ export class AddRequest {
   }
 
   openModal() {
-    this.navCtrl.push('PlacesModalPage', {pageData: { order:this.order }});
-    /* let modal = this.modalCtrl.create('PlacesModalPage');
+    //this.navCtrl.push('PlacesModalPage', {pageData: { order:this.order }});
+    let modal = this.modalCtrl.create('PlacesModalPage');
 
     modal.onDidDismiss(data => {
       console.log('data from modal', data);
-      this.DataFromModal = data;
-      // to set sector_id in order object with value 
-      this.order.sector_id = data.sector_id;
+      //this.DataFromModal = data;
+      if(data.sector_id){
+        this.MreqAddress = data.governorate + (data.sector ? ' - ' + data.sector : '');
+        this.order.sector_id = data.sector_id;
+
+      }else{
+        this.translateService.get('plz-enter-request-place')
+        .subscribe(value => {this.MreqAddress = value})
+      }
       // text appear in title address
-      (data.sector_id) ? this.MreqAddress = data.governorate + (data.sector ? ' - ' + data.sector : '') : this.MreqAddress = 'يرجي اختيار العنوان';
+      /* (data.sector_id) ? this.MreqAddress = data.governorate + (data.sector ? ' - ' + data.sector : '') : this.MreqAddress = 'يرجي اختيار العنوان'; */
+      
     });
 
-    modal.present() */
+    modal.present()
   }
 
   changCheckBox(value, inputId, isChecked :boolean) {

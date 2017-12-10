@@ -19,11 +19,10 @@ export class PopoverContentPage {
     ) {
 
         this.phonenum = this.navParams.get('TellList');
+        console.log('in popover phones', this.phonenum);
         for (let i of this.phonenum) {
-            console.log("number is " + i);
+            console.log("number is " + i['num_value']);
         }
-
-        console.log(this.phonenum);
     }
 
     close() {

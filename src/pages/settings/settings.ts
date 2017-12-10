@@ -14,6 +14,7 @@ export class Settings {
   titletext: any;
   canceltext: any;
   isRTL: boolean;
+  userLocal:any;
   constructor(public navCtrl: NavController,
               public events: Events,
               public appUtils: AppUtilFunctions,
@@ -37,7 +38,11 @@ export class Settings {
     console.info('The current Lang we are using is', this.appUtils.CurrentLang);
 
     //this.appUtils.AppToast('Your current Lang is ' + this.appUtils.CurrentLang, {duration:500});
-
+    this.appUtils.storage.get('localUserInfo')
+    .then(data=>{
+        this.userLocal = data;
+        console.log('localUserInfo in Settings',this.userLocal);
+    });
 
     try {
       this.appUtils.getLangValue('language')
@@ -104,19 +109,23 @@ export class Settings {
 
       })
     } else {
-      this.navCtrl.push(page)
+      if (page === 'ProfilePage') {
+        this.navCtrl.push(page,{pageData:{id:this.userLocal.id}})
+      }else{
+        this.navCtrl.push(page)
+      }
     }
   }
 
   Logout() {
     console.warn('you are attempting to log out');
     this.appUtils.storage.remove('localUserInfo')
-    // .then(() => {
-    //   this.navCtrl.setRoot('Login');
-    // })
     .then(() => {
       this.events.publish('changeRoot', 'Login')
     })
+    /* .then(() => {
+      this.navCtrl.setRoot('Login');
+    }) */
   }
 
 

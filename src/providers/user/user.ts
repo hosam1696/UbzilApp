@@ -6,14 +6,15 @@ import 'rxjs/RX'; // for google map
 
 interface IUserData {
   username: string,
-  password: string
+  password: string,
+  lang_code:string
 }
 
 @Injectable()
 export class UserProvider extends AppAPi{
 
   constructor(public http: Http) {
-   super()
+    super()
   }
   
   getUserIP() {
@@ -42,6 +43,12 @@ export class UserProvider extends AppAPi{
     return this.http.post(super.API_URL() + 'users.php?action=addNewUser', body).map(res => res.json());  
   }
 
+  editUser(data) {
+    let body = JSON.stringify(data);
+    console.log('body sent', body);
+    return this.http.post(super.API_URL() + 'users.php?action=editUser', body).map(res => res.json());  
+  }
+
   LoginUser(userData: IUserData) {
     let body = JSON.stringify(userData);
     return this.http.post(super.API_URL()+'users.php?action=loginUser', body).map(res=>res.json())
@@ -49,10 +56,7 @@ export class UserProvider extends AppAPi{
 
 
   getPlaces(parentData) {
-    let body = JSON.stringify(parentData);
-  
-  /*  { "user_id":"3", "parent":"327", "verifycode":"$2y$12$XQBdOjshGvoSRcT6uTlJaOkOiV.htMTyyT09IXxdjHrSQeoc/vgkO", "lang_code":"ar" }*/
-  
+    let body = JSON.stringify(parentData);  
     return this.http.post(super.API_URL() + 'places.php?action=getPlaces', body).map(res => res.json());  
   }
 
@@ -65,6 +69,39 @@ export class UserProvider extends AppAPi{
     let body = JSON.stringify(data);  
     return this.http.post(super.API_URL() + 'places.php?action=getAllcities', body).map(res => res.json());  
   }
+  
+  // profile page
+  getUserInfo(data) {
+    let body = JSON.stringify(data);  
+    return this.http.post(super.API_URL() + 'users.php?action=getUserInfo', body).map(res => res.json());  
+  }
 
+  // editprofile page
+  getUserToEdit(data) {
+    let body = JSON.stringify(data);  
+    return this.http.post(super.API_URL() + 'users.php?action=getUserToEdit', body).map(res => res.json());  
+  }
+
+  addRating(data) {
+    let body = JSON.stringify(data);
+    return this.http.post(super.API_URL() + 'users.php?action=addOneRating', body).map(res => res.json());  
+  }
+
+  // get Rating page
+  getRating(data) {
+    let body = JSON.stringify(data);
+    return this.http.post(super.API_URL() + 'users.php?action=getOneRating', body).map(res => res.json());  
+  }
+
+  // get User Balances page
+  getUserBalances(data) {
+    let body = JSON.stringify(data);
+    return this.http.post(super.API_URL() + 'users.php?action=getUserBalances', body).map(res => res.json());  
+  }
+
+  getBalanceOperations(data) {
+    let body = JSON.stringify(data);
+    return this.http.post(super.API_URL() + 'users.php?action=getBalanceOperations', body).map(res => res.json());  
+  }
 
 }

@@ -7,11 +7,15 @@
 
 <ion-content>
     <uz-loader *ngIf="loader"></uz-loader>
+    <ion-refresher (ionRefresh)="refreshProviders($event)">
+            <ion-refresher-content pullingIcon="arrow-dropdown" [pullingText]="pullingText" refreshingSpinner="circles" [refreshingText]="refreshingText">
+            </ion-refresher-content>
+    </ion-refresher>
     <div class="main-content">
         <ion-list>
             <ion-item *ngFor="let provider of providers">
-                <ion-thumbnail item-start (click)="goProfilePage()">
-                               <img [src]="provider.avatar?provider.avatar:'assets/img/12.jpg'">
+                <ion-thumbnail item-start (click)="goProfilePage(provider.id)">
+                               <img [src]="provider.avatar?imagePath(provider.avatar):'assets/img/'+provider.gender+'.png'">
                 </ion-thumbnail>
                 <h2>
                     {{provider.fullname}} 
@@ -27,17 +31,17 @@
                             <div class="rating-b-1">
                                 <img src="assets/img/rating-b-1.png" alt=""/>
                             </div>
-                            <div class="rating-b-2" style="width:100%">
+                            <div class="rating-b-2" [style.width.%]= "(provider.rating_value * 100)/5">
                                 <img src="assets/img/rating-b-2.png" alt=""/>
                             </div>
                         </div>
-                        <span> 5.0</span>
-                        <div class="review-num"><h4>25 {{'Review'|translate}}</h4></div>
+                        <span>{{ provider.rating_value ? (provider.rating_value | number:'.1-1') : '0.0' }}</span>
+                        <div class="review-num"><h4>{{provider.rater_count}} {{'Review'|translate}}</h4></div>
                     </div>
                 </div>
                 <div class='button-div'>
                     <ion-icon name="chatbubbles" (click)="MessagesDetail(provider.id)"></ion-icon> 
-                    <ion-icon name="call" (click)="openPopover($event, provider.mobile)"></ion-icon>     
+                    <ion-icon name="call" (click)="openPopover($event, provider.userPhones)"></ion-icon>     
                 </div>
 
             </ion-item>
@@ -168,6 +172,18 @@
                 </div>
             </ion-item> -->
         </ion-list>
+        <p class="small" text-center *ngIf="!moreData">
+            
+            {{'no_contents' | translate}}
+        </p>
+        <ion-infinite-scroll *ngIf="moreData" (ionInfinite)="fetchMoreData($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" [loadingText]="loadingText">
+            ></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+        <div *ngIf="noData" class="noData">
+            <ion-icon name="alert"></ion-icon>
+            <div> {{'no-service-providers' | translate}}</div>                
+        </div>
 
 
     </div>

@@ -23,9 +23,8 @@
     
     <div #map id="map" style="height:100%;"></div>
 
-    <button *ngIf="comeFrom == ''" [hidden]="mapLoaded == false" id="save-loc" ion-button (click)="closeModal()">{{'map-save-my-location'|translate}}</button>
+    <button [hidden]="mapLoaded == false" id="save-loc" ion-button (click)="closeModal()">{{saveLocTitle}}</button>
 
-    <button *ngIf="comeFrom" [hidden]="mapLoaded == false" id="save-loc" ion-button (click)="closeModal()" >{{'show-results'|translate}}</button>
 </ion-content>
   
 
