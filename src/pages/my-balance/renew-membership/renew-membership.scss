@@ -1,0 +1,104 @@
+page-renew-membership {
+    direction:rtl;
+    ion-content{
+        background-color:#f1f1f1!important;
+
+        .inner-content{
+            ion-list{
+                margin:1px 0px!important;
+                ion-list-header{
+                    .item-inner{
+                        //background-color: #34636d30;
+                        font-size: 16px;
+                        font-weight: bold;
+                    }
+                }
+                ion-item{
+                    border:0px !important;
+                    border-bottom: 1px solid #ddd!important;
+                    padding:8px 10px 8px 10px!important;
+                    font-size:14px!important;
+                    color:#2d3e52!important;
+                    height: auto;
+                    /*max-height: 120px!important;*/
+                    /*min-height: 60px!important;*/
+                    .item-inner{
+                        padding-right: 0px!important;  
+                        border:0px !important;
+
+
+                        ion-label{
+                            /*margin-right: 60px !important;*/
+                            margin: 0px;
+                            height: 100%;
+
+                            h2{
+                                margin-top: 5px;
+                                /*margin-bottom: 5px;*/
+                                font-size: 14px;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                //white-space: nowrap;
+                                /*font-family: sans-serif;*/
+                            }
+                            p{
+                                margin-top: 0px;
+                                font-size: 14px;
+                                height: auto;
+                                /*font-family: sans-serif;*/
+                                line-height: 16px;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: normal;
+                            }
+
+                        }
+
+                    }
+                }
+
+
+            }
+
+            .discount_30{
+                color: red;
+                padding: 10px;
+            }
+        }
+        .inner-content ion-list ion-item:nth-child(even){
+            //background-color: transparent!important;
+        }
+
+    }
+    ion-footer{
+        ion-toolbar{
+            background-color: grey;
+            ion-title{
+                ion-spinner svg{
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}
+
+html[dir="ltr"] {
+    page-renew-membership {
+        direction:ltr;
+        ion-content{
+            .inner-content{
+                ion-list{
+                    ion-item{
+                        .item-inner{
+                            padding-left: 0px!important;  
+                        }
+                    }
+
+
+                }
+            }
+
+        }
+    }
+
+}

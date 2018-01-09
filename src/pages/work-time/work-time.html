@@ -12,7 +12,7 @@
 
 <ion-content>
     <ion-list>
-        <ion-list radio-group [(ngModel)]="workTimeStatus">
+        <ion-list *ngIf="showAllworkTimeType" radio-group [(ngModel)]="workTimeType">
             <ion-item>
                 <ion-label>{{'always_open'|translate}}</ion-label>
                 <ion-radio value="1" checked (click)="radioChecked()"></ion-radio>
@@ -30,51 +30,36 @@
                 <ion-radio value="4" (click)="radioChecked()"></ion-radio>
             </ion-item>
         </ion-list>
-        <!-- <ion-item>
-            <ion-radio   checked="false" ></ion-radio>
-            <h2>{{open_on_selected_hour|translate}}</h2>
-        </ion-item>
-        <ion-item>
-            <ion-checkbox  checked="false" ></ion-checkbox>
-            <h2>{{always_open|translate}}</h2>
-        </ion-item>
-        <ion-item>
-                <ion-label><h2>{{no_hours_available|translate}}</h2></ion-label>
-                
-            <ion-checkbox checked="false" ></ion-checkbox>
-        </ion-item>
-        <ion-item>
-            <ion-checkbox (ionChange)="changCheckBox()" checked="false" ></ion-checkbox>
-            <h2>{{permanently_closed|translate}}</h2>
-        </ion-item> -->
-        <ion-list *ngFor="let day of days" >
-            <ion-item >
-                <ion-label>{{day.name|translate}}</ion-label>
-                <ion-toggle [checked]="day.checked" [ngModel]="day.checked" (ngModelChange)="detectCheck($event, day)"></ion-toggle>
-            </ion-item>
-            <div class="time-table"  *ngIf="day.checked">
-                <ion-grid>
-                    <ion-row class="duration" *ngFor="let duration of day.timeTable; let i=index" >
-                             <ion-col col-5>
-                            <ion-item>
-                                <ion-label>{{'From'|translate}} :</ion-label>
-                                <ion-datetime displayFormat="hh:mm A" pickerFormat="hh:mm A" [(ngModel)]="duration.from"></ion-datetime>
-                            </ion-item>
-                        </ion-col>
-                        <ion-col col-5>
-                            <ion-item>
-                                <ion-label>{{'To'|translate}} :</ion-label>
-                                <ion-datetime displayFormat="hh:mm A" pickerFormat="hh:mm A" [(ngModel)]="duration.to"></ion-datetime>
-                            </ion-item>
-                        </ion-col>
-                        <ion-col col-2>
-                            <button ion-button class="remove-btn"(click)="remove(i,day.timeTable)"><ion-icon ios="ios-close" md="md-close"></ion-icon></button>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row class="add-more"><button ion-button outline (click)="addmore(day)">{{'Add more'|translate}}</button> </ion-row>
-                </ion-grid>
-            </div>
-        </ion-list>
+        <div *ngIf="workTimeType == 4">
+            <ion-list *ngFor="let day of days" >
+                <ion-item >
+                    <ion-label>{{day.work_day|translate}}</ion-label>
+                    <ion-toggle [checked]="day.checked" [ngModel]="day.checked" (ngModelChange)="detectCheck($event, day)"></ion-toggle>
+                </ion-item>
+                <div class="time-table"  *ngIf="day.checked">
+                    <ion-grid>
+                        <ion-row class="duration" *ngFor="let duration of day.timeTable; let i=index" >
+                                <ion-col col-5>
+                                <ion-item>
+                                    <ion-label>{{'From'|translate}} :</ion-label>
+                                    <ion-datetime displayFormat="hh:mm A" pickerFormat="hh:mm A" [(ngModel)]="duration.from" cancelText="{{'Cancel'|translate}}" doneText="{{'Ok'|translate}}"></ion-datetime>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-5>
+                                <ion-item>
+                                    <ion-label>{{'To'|translate}} :</ion-label>
+                                    <ion-datetime displayFormat="hh:mm A" pickerFormat="hh:mm A" [(ngModel)]="duration.to" cancelText="{{'Cancel'|translate}}" doneText="{{'Ok'|translate}}"></ion-datetime>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-2>
+                                <button ion-button class="remove-btn"(click)="remove(i,day.timeTable)"><ion-icon ios="ios-close" md="md-close"></ion-icon></button>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="add-more"><button ion-button outline (click)="addmore(day)">{{'Add more'|translate}}</button> </ion-row>
+                    </ion-grid>
+                </div>
+            </ion-list>
+        </div>
     </ion-list>
 
 </ion-content>

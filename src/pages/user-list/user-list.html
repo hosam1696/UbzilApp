@@ -31,7 +31,7 @@
                             <div class="rating-b-1">
                                 <img src="assets/img/rating-b-1.png" alt=""/>
                             </div>
-                            <div class="rating-b-2" [style.width.%]= "(provider.rating_value * 100)/5">
+                            <div class="rating-b-2" [style.width.%]= "provider.rating_value ? ((provider.rating_value * 100)/5) : 0">
                                 <img src="assets/img/rating-b-2.png" alt=""/>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class='button-div'>
-                    <ion-icon name="chatbubbles" (click)="MessagesDetail(provider.id)"></ion-icon> 
+                    <ion-icon name="chatbubbles" (click)="MessagesDetail({'fullname':provider.fullname, 'user2':provider.id,'order_id':'0'})"></ion-icon> 
                     <ion-icon name="call" (click)="openPopover($event, provider.userPhones)"></ion-icon>     
                 </div>
 

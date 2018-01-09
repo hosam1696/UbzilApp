@@ -15,6 +15,9 @@ page-messages {
                         margin: 8px !important;
                         //background-image: radial-gradient(#FFFFFF, #B3B0B0) ;
                         //border-radius: 5px;
+                        img{
+                            border: 1px solid #dedddd;
+                        }
                     }
                     .item-inner{
                         padding-right: 0px!important;  
@@ -22,6 +25,7 @@ page-messages {
                         
 
                         ion-label{
+                            margin-top: 0px;
                            
                             h2{
                                 margin-top: 0px;
@@ -29,6 +33,12 @@ page-messages {
                                 overflow: hidden;
                                 text-overflow: ellipsis;
                                 white-space: nowrap;
+                                font-weight: bold;
+                                @extend %flex-between;
+                                span {
+                                    font-size: 10px;
+                                    color: #999;
+                                }
                             }
                             p{
                                 margin-top: 0px;
@@ -79,6 +89,17 @@ page-messages {
                 }
 
 
+            }
+            .noData{
+                text-align: center;
+                width: 75%;
+                margin: 20% 12%;
+                font-size: 16px;
+                padding: 10px;
+                color: rgb(0, 0, 0);
+                ion-icon{
+                    font-size: 70px;
+                }
             }
         }
         .inner-content ion-list ion-item:nth-child(even){

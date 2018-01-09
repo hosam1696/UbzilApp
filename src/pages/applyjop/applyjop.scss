@@ -8,6 +8,16 @@ page-applyjop {
                 padding:0px;
                 margin: 0 0 20px 0px!important;
                 border: 0px;
+                .offer_note{
+                    background-color: #fff;
+                    margin-top: 10px;
+                    text-align: right;
+                    padding: 10px;
+                    color: gray;
+                    span{
+                        color: red;                        
+                    }
+                }
                 ion-item{
                     margin-top:0px!important;
                     padding: 0px!important;
@@ -135,6 +145,9 @@ html[dir="ltr"]{
         ion-content{
             .inner-content{
                 ion-list{
+                    .offer_note{
+                        text-align: left;
+                    }
                     ion-item{
                         direction: rtl!important;
                         .item-inner{

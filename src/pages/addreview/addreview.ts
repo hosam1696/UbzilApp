@@ -24,6 +24,7 @@ export class AddReview {
     pageParams:any;
     rate:any;
     rateMsg:any;
+    editRate:boolean = false;
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -74,6 +75,7 @@ export class AddReview {
         .subscribe((data)=> {
             if (data) {
                 console.log(data);
+                this.editRate = true;
                 this.rate    = data.rating_value;
                 this.rateMsg = data.rating_message;
             }

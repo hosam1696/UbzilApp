@@ -15,7 +15,7 @@ export class BalanceHistory {
     showLoader: boolean = true;
     pageParams: any;
     userBalances: any;
-    initLimit: number = 15;
+    initLimit: number = 10;
     initStart: number = 0;
     moreData: boolean = true;
     pullingText:string;
@@ -55,50 +55,59 @@ export class BalanceHistory {
 
 
     }
-    
-froLoop(){
-    for (let index = 0; index < this.userBalances.length; index++) {
-                if (this.userBalances[index]['type'] == '1') {
+        
+    calledForFunc(){
+        for (let index = 0; index < this.userBalances.length; index++) {
+            if (this.userBalances[index]['type'] == '1') {
 
-                    this.translateService.get('add_balance_msg_1')
-                    .subscribe(value => {this.userBalances[index]['balanceMsg'] = value});
+                this.translateService.get('add_balance_msg_1')
+                .subscribe(value => {this.userBalances[index]['balanceMsg'] = value});
 
-                    this.translateService.get('add_balance_msg_1_complete')
-                    .subscribe(value => {this.userBalances[index]['balanceMsgComplete'] = value});
+                this.translateService.get('add_balance_msg_1_complete')
+                .subscribe(value => {this.userBalances[index]['balanceMsgComplete'] = value});
 
 
-                }else if (this.userBalances[index]['type'] == '2') {
+            }else if (this.userBalances[index]['type'] == '2') {
 
-                    this.translateService.get('minus_balance_msg_2')
-                    .subscribe(value => {this.userBalances[index]['balanceMsg'] = value});
+                this.translateService.get('minus_balance_msg_2')
+                .subscribe(value => {this.userBalances[index]['balanceMsg'] = value});
 
-                    this.translateService.get('minus_balance_msg_2_complete')
-                    .subscribe(value => {this.userBalances[index]['balanceMsgComplete'] = value});
+                this.translateService.get('minus_balance_msg_2_complete')
+                .subscribe(value => {this.userBalances[index]['balanceMsgComplete'] = value});
 
-                    this.userBalances[index]['balance'] = -this.userBalances[index]['balance'];
+                this.userBalances[index]['balance'] = -this.userBalances[index]['balance'];
 
-                }else if(this.userBalances[index]['type'] == '3'){
+            }else if(this.userBalances[index]['type'] == '3'){
 
-                    this.translateService.get('add_balance_msg_3')
-                    .subscribe(value => {this.userBalances[index]['balanceMsg'] = value});
+                this.translateService.get('add_balance_msg_3')
+                .subscribe(value => {this.userBalances[index]['balanceMsg'] = value});
 
-                    this.translateService.get('add_balance_msg_3_complete')
-                    .subscribe(value => {this.userBalances[index]['balanceMsgComplete'] = value});
+                this.translateService.get('add_balance_msg_3_complete')
+                .subscribe(value => {this.userBalances[index]['balanceMsgComplete'] = value});
 
-                }else{
+            }else if(this.userBalances[index]['type'] == '5'){
+                
+                this.translateService.get('add_balance_msg_5')
+                .subscribe(value => {this.userBalances[index]['balanceMsg'] = value});
 
-                    this.translateService.get('add_memberShip_balance_msg_4')
-                    .subscribe(value => {this.userBalances[index]['balanceMsg'] = value});
-                }
+                this.translateService.get('add_balance_msg_5_complete')
+                .subscribe(value => {this.userBalances[index]['balanceMsgComplete'] = value});
+                
+            }else{
+
+                this.translateService.get('add_memberShip_balance_msg_4')
+                .subscribe(value => {this.userBalances[index]['balanceMsg'] = value});
+                this.userBalances[index]['balance'] = -this.userBalances[index]['balance'];
             }
-}
+        }
+    }
 
     fetchBalanceOperations(id, limit?: number, start?: number){
      this.userProvider.getBalanceOperations({"user_id": id, "limit" : limit, "start" :start}).subscribe((data) => {
         if (data) {
             console.log('balances history From server', data);
             this.userBalances = data;
-            this.froLoop();
+            this.calledForFunc();
         }
         
      }, err => {
@@ -119,17 +128,19 @@ froLoop(){
         if (this.moreData) {
           this.userProvider.getBalanceOperations({"user_id": this.pageParams.id, "limit" : this.initLimit, "start" :this.initStart += this.initLimit})
             .subscribe((data) => {
+            console.log('fetch more balances history From server', data);
               if (data) {
                 console.log(data.length,'this.initStart' , this.initStart);
                 console.log('data.length' , data.length);
                 this.userBalances = [...this.userBalances, ...data]; //es6 destruction : concat data to the providers array 
-                 this.froLoop(); 
+                 this.calledForFunc(); 
                 if (data.length >= this.initLimit){
                   this.moreData = true;
                 }else{
                   this.moreData = false;
                 }
-                
+              }else{
+                this.moreData = false;
               }
             },
             (err) => {
@@ -137,7 +148,6 @@ froLoop(){
               console.warn('error', err) // catch net error acceccsing database
             },
             () => {
-              
               event.complete();
             }
     

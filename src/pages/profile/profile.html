@@ -54,10 +54,10 @@
                         </ion-row> 
                     </ion-col>
                     <ion-col col-12>
-                        <div class="bottom-btn">
+                        <div class="bottom-btn" *ngIf="userLocal.id != pageParams.id">
                             <ion-row>
                                 <ion-col col-3 class="call-us">
-                                    <ion-icon name="call" (click)="openPopover($event, userData.userPhones)"></ion-icon>
+                                    <ion-icon *ngIf="userData.showProfilePhoneMsg" name="call" (click)="openPopover($event, userData.userPhones)"></ion-icon>
                                 </ion-col>
                                 <ion-col col-6>
                                     <div *ngIf="userData.account_type == 'provider'" class="rate-div">
@@ -102,7 +102,7 @@
                                 </ion-col>
 
                                 <ion-col col-3 class="contact-us">
-                                    <ion-icon name="chatbubbles" (click)="navigateTo('Messages')"></ion-icon>
+                                    <ion-icon *ngIf="userData.showProfilePhoneMsg" name="chatbubbles" (click)="MessagesDetail({'fullname':userData.fullname, 'user2':userData.id,'order_id':'0'})"></ion-icon>
                                 </ion-col>
                             </ion-row>
                         </div>
@@ -122,6 +122,84 @@
             <p *ngIf="!userData.notes && userLocal.id == pageParams.id">{{'no_notes_plz_add'| translate}}</p>
             <p *ngIf="!userData.notes && userLocal.id != pageParams.id">{{'no_notes'| translate}}</p>
         </div>
+        <!-- question rating  -->
+        <ion-list *ngIf="userData.account_type == 'provider' && userData.service_type == '1'">
+                <ion-list-header>
+                    {{'Reviews'| translate}}
+                </ion-list-header>
+                <ion-item >
+                    <h2>{{'Commitment to dates and agreements'|translate}}</h2>
+                    <div class="user-rate">
+                        <div class="stats-container">
+                            <ion-row>
+                                <ion-col col-4>
+                                    <div class="rating-b" >
+                                        <div class="rating-b-1">
+                                            <img src="assets/img/rating-b-1.png" alt=""/>
+                                        </div>
+                                        <div class="rating-b-2" [style.width.%]= "(userData.q1_rating_value * 100)/5">
+                                            <img src="assets/img/rating-b-2.png" alt=""/>
+                                        </div>
+                                        
+                                    </div>
+                                </ion-col>
+                                <ion-col col-4>
+                                    <div class="rating-val">{{ userData.q1_rating_value ? (userData.q1_rating_value | number:'.1-1') : '0.0' }} / {{userData.rater_count}}</div>
+                                </ion-col>
+                                <ion-col col-4></ion-col>
+                            </ion-row>
+                        </div>
+                    </div>
+                </ion-item>
+                <ion-item >
+                    <h2>{{'Efficiency and professionalism'|translate}}</h2>
+                    <div class="user-rate">
+                        <div class="stats-container">
+                            <ion-row>
+                                <ion-col col-4>
+                                    <div class="rating-b" >
+                                        <div class="rating-b-1">
+                                            <img src="assets/img/rating-b-1.png" alt=""/>
+                                        </div>
+                                        <div class="rating-b-2" [style.width.%]= "(userData.q2_rating_value * 100)/5">
+                                            <img src="assets/img/rating-b-2.png" alt=""/>
+                                        </div>
+                                        
+                                    </div>
+                                </ion-col>
+                                <ion-col col-4>
+                                    <div class="rating-val">{{ userData.q2_rating_value ? (userData.q2_rating_value | number:'.1-1') : '0.0' }} / {{userData.rater_count}}</div>
+                                </ion-col>
+                                <ion-col col-4></ion-col>
+                            </ion-row>
+                        </div>
+                    </div>
+                </ion-item>
+                <ion-item >
+                    <h2>{{'Behavior and Ethics'|translate}}</h2>
+                    <div class="user-rate">
+                        <div class="stats-container">
+                            <ion-row>
+                                <ion-col col-4>
+                                    <div class="rating-b" >
+                                        <div class="rating-b-1">
+                                            <img src="assets/img/rating-b-1.png" alt=""/>
+                                        </div>
+                                        <div class="rating-b-2" [style.width.%]= "(userData.q3_rating_value * 100)/5">
+                                            <img src="assets/img/rating-b-2.png" alt=""/>
+                                        </div>
+                                        
+                                    </div>
+                                </ion-col>
+                                <ion-col col-4>
+                                    <div class="rating-val">{{ userData.q3_rating_value ? (userData.q3_rating_value | number:'.1-1') : '0.0' }} / {{userData.rater_count}}</div>
+                                </ion-col>
+                                <ion-col col-4></ion-col>
+                            </ion-row>
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
         <!-- 135 id from service table in database specified to معامل  labs  -->
         <ion-list *ngIf="userData.account_type == 'provider' && userData.service_id == '135'" class="prices">
             <ion-list-header>
@@ -138,60 +216,45 @@
         </ion-list>
 
 
-        <!-- 134 id from service table in database specified to عيادات  Clinics  -->
-        <ion-list *ngIf="userData.account_type == 'provider'"  class="work-time">
+        <!-- shown to providers whos supply service type(2,3)  -->
+        <ion-list *ngIf="userData.account_type == 'provider' && userData.service_type != '1'"  class="work-time">
             <ion-list-header>
                 {{'Work Time'| translate}}
-                <div class="add-reviews" *ngIf="userLocal.id == pageParams.id" item-end (click)="navigateTo('WorkTime', true)"><h2><ion-icon name="construct"></ion-icon>{{'Edit'| translate}}</h2></div>
+                <div class="add-reviews" *ngIf="userLocal.id == pageParams.id" item-end (click)="navigateTo('WorkTime', true)"><h2><ion-icon name="construct"></ion-icon>{{userData.userWorkTimes ? ('Edit'| translate) : ('Add'| translate)}}</h2></div>
+                
             </ion-list-header>
-            <ion-item>
-                <h2>{{'Saturday'| translate}}</h2>
-                <p>{{'From'|translate}} 8 am {{'To'|translate}} 5 pm</p>
-                <p>{{'From'|translate}} 8 am {{'To'|translate}} 5 pm</p>
-                <button ion-button item-end outline (click)="navigateTo('Reservation', true)">
-                        {{'Book'|translate}}
-            </button>
+            <ion-item *ngIf="!userData.userWorkTimes">
+                <h2>{{'no_work_time_added'| translate}}</h2>
             </ion-item>
-
-            <ion-item>
-                <h2>{{'Sunday'| translate}}</h2>
-                <p>{{'From'|translate}} 8 am {{'To'|translate}} 5 pm</p>
-                <button ion-button item-end outline (click)="navigateTo('Reservation', true)">
-                        {{'Book'|translate}}
-                </button>
-            </ion-item >
-
-            <ion-item>
-                <h2>{{'Monday'| translate}}</h2>
-                <p>{{'From'|translate}} 8 am {{'To'|translate}} 5 pm</p>
-                <button ion-button item-end outline (click)="navigateTo('Reservation', true)">
-                        {{'Book'|translate}}
-            </button>
-            </ion-item>
-
-            <ion-item>
-                <h2>{{'Tuesday'| translate}}</h2>
-                <p>{{'From'|translate}} 8 am {{'To'|translate}} 5 pm</p>
-                <button ion-button item-end outline (click)="navigateTo('Reservation', true)">
-                        {{'Book'|translate}}
-            </button>
-            </ion-item>
-            <ion-item>
-                <h2>{{'Wednesday'| translate}}</h2>
-                <p>{{'From'|translate}} 8 am {{'To'|translate}} 5 pm</p>
-                <button ion-button item-end outline (click)="navigateTo('Reservation', true)">
-                        {{'Book'|translate}}
-            </button>
-            </ion-item>
+            <ng-container *ngIf="userData.userWorkTimes">
+                <ion-item *ngIf="userData.userWorkTimes.user_work_type == 1">
+                    <h2>{{'always_open'| translate}}</h2>
+                </ion-item>
+                <ion-item *ngIf="userData.userWorkTimes.user_work_type == 2">
+                    <h2>{{'permanently_closed'| translate}}</h2>
+                </ion-item>
+                <ion-item *ngIf="userData.userWorkTimes.user_work_type == 3">
+                    <h2>{{'no_hours_available'| translate}}</h2>
+                </ion-item>
+                <ng-container *ngIf="userData.userWorkTimes.user_work_type == 4">
+                    <ion-item *ngFor="let day of userData.userWorkTimes.work_days; let inx = index">
+                        <h2>{{day.work_day| translate}}</h2>
+                        <p *ngFor="let tiime of userData.userWorkTimes.work_days[inx].timeTable">{{'From'|translate}} {{tiime.from}} {{'To'|translate}} {{tiime.to}}</p>
+                        <button ion-button item-end outline *ngIf="userLocal.id != pageParams.id" (click)="navigateTo('Reservation', true,{'day':day.work_day,'provider_id':pageParams.id})">
+                                {{'Book'|translate}}
+                        </button>
+                    </ion-item>
+                </ng-container>
+            </ng-container>
         </ion-list>
 
-
+        <!-- rater who rate profile user -->
         <ion-list *ngIf="userData.account_type == 'provider'">
             <ion-list-header>
                 {{'Reviews'| translate}}
                 <div *ngIf="userLocal.id != pageParams.id && userData.service_type != '1'" class="add-reviews" item-end (click)="navigateTo('AddReview', true,{'user_id':userLocal.id,'provider_id':userData.id})"><h2><ion-icon name="add"></ion-icon>{{userData.yesYouRate ? ('Edit'| translate) : ('Add'| translate)}}</h2></div>
             </ion-list-header>
-            <ion-item *ngFor = "let rater of userData.raterData">
+            <ion-item *ngFor = "let rater of userRaters">
                 <ion-avatar item-start (click)="goProfilePage(rater.user_id)">
                     <img [src]="rater.avatar?imagePath(rater.avatar,'avatars'):'assets/img/'+rater.gender+'.png'">
                 </ion-avatar>

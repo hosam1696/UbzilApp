@@ -46,23 +46,46 @@ export class MyBalance {
     }
     // TODO: Get User Balances
     getUserBalances(id,service_type){
-    this.userProvider.getUserBalances({"user_id": id,"service_type":service_type}).subscribe((data) => {
-        if (data) {
-            console.log('user balances From server', data);
-            this.userBalances = data;
-        }
-        
-    }, err => {
-        //this.loader = false;
-        if (err.error instanceof Error) {
-            console.warn('client side errror', err)
-        } else {
-            console.warn('server side error', err)
-        }
-    }, () => {
-        this.showLoader = false;
-    })
+        this.userProvider.getUserBalances({"user_id": id,"service_type":service_type}).subscribe((data) => {
+            if (data) {
+                console.log('user balances From server', data);
+                this.userBalances = data;
+                if(data['trial_msg']){
+                    this.translateService.get(data['trial_msg'])
+                    .subscribe(value => {this.userBalances.trial_msg = value});
+                }
+                
+            }
+            
+        }, err => {
+            if (err.error instanceof Error) {
+                console.warn('client side errror', err)
+            } else {
+                console.warn('server side error', err)
+            }
+        }, () => {
+            this.showLoader = false;
+        })
     }
+
+    renewMembershipmodal() {
+        let BalanceHistoryModal = this.modalctrl.create('RenewMembership',{pageData:{"id":this.userLocal.id,"balanceSum":this.userBalances.balanceSum ? this.userBalances.balanceSum: 0,"lastEndDate":this.userBalances.lastEndDate}});
+        BalanceHistoryModal.present();
+        BalanceHistoryModal.onDidDismiss(data => {
+            console.log('onDidDismiss backed data',data);            
+            if (data) {
+                this.userBalances.lastDate = data['lastDate'];
+                this.userBalances.balanceSum = data['balanceSum'];
+                this.translateService.get(data['trial_msg'])
+                .subscribe(value => {this.userBalances.trial_msg = value});
+                this.userBalances.lastEndDate = data['lastEndDate'];
+            }
+            
+            // Saving this info to local storage after updating user profile info
+        })
+
+    }
+
     BalanceHistorymodal() {
         let BalanceHistoryModal = this.modalctrl.create('BalanceHistory',{pageData:{"id":this.userLocal.id}});
         BalanceHistoryModal.present();

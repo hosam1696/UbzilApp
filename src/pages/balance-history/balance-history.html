@@ -12,13 +12,12 @@
 </ion-header>
 
 <ion-content>
-
+    <ion-refresher (ionRefresh)="refreshBalanceHistory($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" [pullingText]="pullingText" refreshingSpinner="circles" [refreshingText]="refreshingText">
+        </ion-refresher-content>
+    </ion-refresher>
 
     <div class="main-content">
-        <ion-refresher (ionRefresh)="refreshBalanceHistory($event)">
-            <ion-refresher-content pullingIcon="arrow-dropdown" [pullingText]="pullingText" refreshingSpinner="circles" [refreshingText]="refreshingText">
-            </ion-refresher-content>
-        </ion-refresher>
         <div class="inner-content" *ngIf="!showLoader">
             <ion-list>
                 <ion-item *ngFor = " let balan of userBalances">

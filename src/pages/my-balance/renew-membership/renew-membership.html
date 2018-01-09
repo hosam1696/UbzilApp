@@ -1,0 +1,63 @@
+
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'renew_membership' | translate}}</ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                    <ion-icon name="close"></ion-icon>
+                <!--                <ion-icon name="md-close" showWhen="android,windows"></ion-icon>-->
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+
+    <div class="main-content">
+        <div class="inner-content" *ngIf="!showLoader">
+            <ion-list>
+                <ion-list-header> {{'my_services'|translate}} </ion-list-header>
+                <ion-item *ngFor = "let service of userServices.services">
+                    <h2>{{service.service_name}}</h2>
+                    <p> {{'subscription_value'|translate}}  {{service.cost}} {{'EGP'|translate}} </p>
+                    <!-- <ion-badge item-end>{{service.cost}} {{'EGP'|translate}} </ion-badge> -->
+                </ion-item>
+            </ion-list>
+            <div *ngIf="userServices.servicesCount" class="discount_30">{{'discount_30' | translate}}</div>
+
+            <ion-list>
+                <ion-list-header> {{'subscription_period'|translate}} </ion-list-header>
+                <ion-item>
+                    <ion-label>{{'select_period'|translate}}</ion-label>
+                    <ion-select (ionChange)="calculatSubscription()" [(ngModel)]="subscriptionPeriod" cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
+                        <ion-option value="1">1 {{'Year' | translate}} ( {{userServices.total_cost * 1 }} {{'EGP'|translate}} ) </ion-option>
+                        <ion-option value="2">2 {{'Year' | translate}} ( {{userServices.total_cost * 2 }} {{'EGP'|translate}})</ion-option>
+                        <ion-option value="3">3 {{'Years' | translate}} ( {{userServices.total_cost * 3 }} {{'EGP'|translate}})</ion-option>
+                        <ion-option value="4">4 {{'Years' | translate}} ( {{userServices.total_cost * 4 }} {{'EGP'|translate}})</ion-option>
+                        <ion-option value="5">5 {{'Years' | translate}} ( {{userServices.total_cost * 5 }} {{'EGP'|translate}})</ion-option>
+                    </ion-select>
+                </ion-item>
+            </ion-list>
+
+            <ion-list>
+                <ion-item *ngIf="totalSelectCost" >
+                    <p> {{'subscription_total_selcted_value'|translate}}</p>
+                    <ion-badge item-end> {{totalSelectCost}} {{'EGP'|translate}} </ion-badge>
+                </ion-item>
+                <ion-item *ngIf="userServices.servicesCount && totalCostAfdisc" >
+                    <p> {{'subscription_total_selcted_value_af_disc'|translate}}</p>
+                    <ion-badge item-end> {{totalCostAfdisc}} {{'EGP'|translate}} </ion-badge>
+                </ion-item>
+            </ion-list>
+        </div>
+
+    </div>
+
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-title (click)="addSubscription()">{{'add_subscription'|translate}} <ion-spinner *ngIf="actionLoader" name="bubbles"></ion-spinner> </ion-title>
+        
+    </ion-toolbar>
+</ion-footer>

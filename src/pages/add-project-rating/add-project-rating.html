@@ -1,0 +1,96 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'Add Review'| translate}}</ion-title>
+        <ion-buttons start right>
+            <button ion-button (click)="dismiss(pageParams.provider_id)">
+                    <ion-icon name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content dir="ltr">
+    <div class="inner-content" *ngIf="!showLoader">
+        <div class="provider-data-note">{{'provider_choosed_note'| translate}}</div>
+        <ion-item class="provider-data-note">
+            <ion-thumbnail item-start>
+                <!-- <img src="assets/img/14.jpg" alt="" (click)="navigateTo('ProfilePage')" /> -->
+                <img [src]="(providerData.avatar)?imagePath('avatars/'+providerData.avatar):'assets/img/'+providerData.gender+'.png'" alt=""/>
+            </ion-thumbnail>
+            <h2>{{providerData.fullname}}</h2>
+            <div class="user-rate">
+                <div class="stats-container">
+                <div class="rating-b">
+                    <div class="rating-b-1">
+                    <img src="assets/img/rating-b-1.png" alt="" />
+                    </div>
+                    <div class="rating-b-2" [style.width.%]= "(providerData.rating_value * 100)/5">
+                    <img src="assets/img/rating-b-2.png" alt="" />
+                    </div>
+                </div>
+                <span>{{ providerData.rating_value ? (providerData.rating_value | number:'.1-1') : '0.0' }}</span>
+                <div class="review-num">
+                    <h4>{{providerData.rater_count}} {{'Review'| translate}}</h4>
+                </div>
+                </div>
+            </div>
+        </ion-item>
+        <ion-card>
+            <ion-card-header>
+                {{'Kindly give me a review'|translate}}
+            </ion-card-header>
+            <!-- <ion-card-content>
+                The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+            </ion-card-content> -->
+        </ion-card>
+        <ion-list>
+            <ion-item>
+                <h2 stacked>{{'Commitment to dates and agreements'|translate}}</h2>
+                <rating [(ngModel)]="rate1" 
+                    readOnly="false" 
+                    max="5" 
+                    emptyStarIconName="star-outline"
+                    halfStarIconName="star-half" 
+                    starIconName="star" 
+                    nullable="false"
+                    (ngModelChange)="onModelChange($event)"> 
+                </rating>
+                <h4>{{rate1}}</h4>
+            </ion-item>
+            <ion-item>
+                <h2 stacked>{{'Efficiency and professionalism'|translate}}</h2>
+                <rating [(ngModel)]="rate2" 
+                    readOnly="false" 
+                    max="5" 
+                    emptyStarIconName="star-outline"
+                    halfStarIconName="star-half" 
+                    starIconName="star" 
+                    nullable="false"
+                    (ngModelChange)="onModelChange($event)"> 
+                </rating>
+                <h4>{{rate2}}</h4>
+            </ion-item>
+            <ion-item>
+                <h2 stacked>{{'Behavior and Ethics'|translate}}</h2>
+                <rating [(ngModel)]="rate3" 
+                    readOnly="false" 
+                    max="5" 
+                    emptyStarIconName="star-outline"
+                    halfStarIconName="star-half" 
+                    starIconName="star" 
+                    nullable="false"
+                    (ngModelChange)="onModelChange($event)"> 
+                </rating>
+                <h4>{{rate3}}</h4>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>{{'Message Content'|translate}}</ion-label>
+                <ion-textarea [(ngModel)]="rateMsg" placeholder="{{'Message Content'|translate}}"></ion-textarea>
+            </ion-item>
+        </ion-list>
+        <ion-row>
+            <button ion-button full (click)="AddProjectRating()">{{'Add Review'| translate}}</button>
+        </ion-row>
+    </div>
+</ion-content>

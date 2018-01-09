@@ -122,10 +122,14 @@ export class EditProfile {
                   this.translateService.get('no_google_map')
                   .subscribe(value => {this.userEditData.MreqAddress = value});
                 }
-                this.getPlaces(0,'country');
-                this.getPlaces(this.userEditData.country_id,'Governorate');
-                this.getPlaces(this.userEditData.governorate_id,'city');
-                this.getPlaces(this.userEditData.city_id,'district');
+
+                if(this.userEditData.country_id != 0){
+                    this.getPlaces(0,'country');
+                    this.getPlaces(this.userEditData.country_id,'Governorate');
+                    this.getPlaces(this.userEditData.governorate_id,'city');
+                    this.getPlaces(this.userEditData.city_id,'district');
+                }
+                
                 if (this.userEditData['userWorkplaces']) {
                     //console.log(this.userEditData['userWorkplaces'][0]['districts'])
                     this.sectors    = (this.sectors instanceof Array) ? this.sectors : [];                    
@@ -374,7 +378,7 @@ export class EditProfile {
         if(!this.userEditData.old_password){
             this.translateService.get('old_password_required')
             .subscribe( value => {this.appUtils.AppToast(value)})
-        }else if(isNaN(this.userEditData.mobile) && !this.userEditData.mobile ){
+        }else if(isNaN(this.userEditData.mobile) || !this.userEditData.mobile ){
             this.translateService.get('plz-true-number')
             .subscribe( value => {this.appUtils.AppToast(value)})
         }else if(!this.userEditData.fullname){
@@ -392,7 +396,7 @@ export class EditProfile {
         }else if(!this.userEditData.parent_id){
             this.translateService.get('plz-select-full-residence')
             .subscribe( value => {this.appUtils.AppToast(value)})
-        }else if(this.userEditData.userWorkplaces[0]['districts'] == 0){
+        }else if(this.userEditData.userWorkplaces && this.userEditData.userWorkplaces[0]['districts'] == 0){
             this.translateService.get('plz-enter-workspace')
             .subscribe( value => {this.appUtils.AppToast(value)})
         }else{

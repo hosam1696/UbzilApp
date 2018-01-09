@@ -2,6 +2,9 @@ import { TranslateModule } from 'ng2-translate/ng2-translate';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ReservationsList } from './reservations-list';
+import { MomentModule } from 'angular2-moment';
+import { ComponentsModule } from './../../components/components.module';
+
 
 @NgModule({
   declarations: [
@@ -9,7 +12,9 @@ import { ReservationsList } from './reservations-list';
   ],
   imports: [
     IonicPageModule.forChild(ReservationsList),
-    TranslateModule
+    TranslateModule,
+    MomentModule,
+    ComponentsModule
   ],
   exports: [
     ReservationsList

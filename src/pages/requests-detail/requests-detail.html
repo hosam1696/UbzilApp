@@ -6,22 +6,24 @@
 </ion-header>
 
 <ion-content>
-  <div class="main-content">
+  <div class="main-content" *ngIf="!showLoader">
 
     <ion-list>
       <ion-item class="user-request">
-        <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
-          <img src="assets/img/12.jpg">
+        <ion-thumbnail item-start (click)="navigateTo('ProfilePage',false,{'id':orderDetails.user_id})">
+          <img [src]="(orderDetails.avatar)?imagePath('avatars/'+orderDetails.avatar):'assets/img/'+orderDetails.gender+'.png'" alt="" />
         </ion-thumbnail>
-        <h2>{{'Hussein Mahmoud'| translate}}<span item-end class="time">منذ اسبوع</span></h2>
-        <h4>{{'Request title'| translate}}</h4>
+        <h4>{{orderDetails.order_title}}</h4>
+        <h2>{{orderDetails.user_id != userLocal.id ? orderDetails.fullname : ''}}<span item-end class="time">{{orderDetails.date_added | amTimeAgo}}</span></h2>
+        
 
         <div class="app-category">
           <p class="applicants">
-            <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>20 {{'Applicants'|translate}}</p>
+            <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>{{orderDetails.applicants_count}} {{'Applicants'|translate}}</p>
           <div class="category">
-            <img src="assets/img/png/accesory.png" alt="" />
-            <p>{{'Personal'| translate}}</p>
+            <!-- <img src="assets/img/png/accesory.png" alt="" /> -->
+            <img [src]="(orderDetails.ser_icon)?imagePath('service/icons/'+orderDetails.ser_icon):'assets/img/no-image.png'" alt="" />
+            <p>{{orderDetails.service_name}}</p>
           </div>
         </div>
 
@@ -30,85 +32,82 @@
 
 
     <div class="map">
-      <button ion-button full (click)="navigateTo('GetLocation', true)">{{'Location on map'| translate}}</button>
+      <button ion-button full (click)="openBrowserMap()">{{orderDetails.MreqAddress}}</button>
     </div>
 
 
     <ion-list class="more-data">
       <ion-item>
         <span>{{'Request status'| translate}}</span>
-        <h2>{{'Executed'| translate}}</h2>
+        <h2 *ngIf="orderDetails.status == '0'" >{{'no_action_project'| translate}}</h2>
+        <h2 *ngIf="orderDetails.status == '1'" >{{'in_progross_project'| translate}}</h2>
+        <h2 *ngIf="orderDetails.status == '2'" >{{'Executed'| translate}}</h2>
       </ion-item>
       <ion-item>
         <span>{{'Location'| translate}}</span>
-        <h2>Tonamel/Aga/Dakahlia</h2>
+        <h2>{{orderDetails.order_place}}</h2>
       </ion-item>
-      <ion-item>
-        <span>{{'House area'| translate}}</span>
-        <h2>100 m^2</h2>
-      </ion-item>
-      <ion-item>
-        <span>{{'More details'| translate}}</span>
-        <h2> Please satisfy how much time and cost of this appartment, Please satisfy how much time and cost of this appartment.
-        </h2>
+      <ion-item *ngFor="let formsShape of orderDetails.orderFormsShape">
+        <span>{{formsShape.label}}</span>
+        <h2>{{formsShape.form_shape_value}}</h2>
       </ion-item>
     </ion-list>
 
-    <ion-grid>
+    <ion-grid *ngIf="orderDetails.user_id != userLocal.id && orderDetails.status == '0' ">
       <ion-row>
-        <ion-col col-6>
-          <button ion-button full (click)="navigateTo('ApplyJop')">{{'Apply Jop'| translate}}</button>
-        </ion-col>
-        <ion-col col-6>
-          <button ion-button full>{{'Refuse Jop'| translate}}</button>
+        <ion-col col-12>
+          <button ion-button full (click)="navToAddOffer('ApplyJop',{'orderId':orderDetails.order_id,'serviceCost':orderDetails.service_cost,'serviceBackedCost':orderDetails.ser_backed_cost})">{{'add_offer'| translate}}</button>
         </ion-col>
       </ion-row>
     </ion-grid>
 
-    <ion-list class="applicatnts">
+    <ion-list class="applicatnts" *ngIf="showapplicants">
       <ion-list-header>
         {{'Applicants'|translate}}
       </ion-list-header>
-      <ion-item class="choosen-applicant">
-        <ion-avatar item-start>
-          <img src="assets/img/14.jpg" alt="" (click)="navigateTo('ProfilePage')" />
-          <div class="choose-me">
+      <ion-item *ngFor="let applicant of orderDetails.order_applicants">
+        <ion-avatar item-start [class]="orderDetails.provider_id == applicant.provider_id ? 'choosen-avatar':''">
+          <!-- <img src="assets/img/14.jpg" alt="" (click)="navigateTo('ProfilePage')" /> -->
+          <img [src]="(applicant.avatar)?imagePath('avatars/'+applicant.avatar):'assets/img/'+applicant.gender+'.png'" alt="" (click)="navigateTo('ProfilePage',false,{'id':applicant.provider_id})"/>
+          
+          <div *ngIf="orderDetails.user_id == userLocal.id" (click)="orderDetails.provider_id == '0' ? confirmAlert(orderDetails.order_id, applicant.fullname, applicant.provider_id) : null;" [class]="orderDetails.provider_id == applicant.provider_id ? 'choosen-applicant choose-me':'choose-me'">
             <!-- //TODO: add toast here (click)="presentToast()" -->
-            <h4>choosed</h4>
+            <h4 *ngIf="orderDetails.provider_id == '0'">{{'choose_me' |translate}} </h4>
+            <h4 *ngIf="orderDetails.provider_id != '0'">{{orderDetails.provider_id == applicant.provider_id ? choosed:''}} </h4>
           </div>
-          <div class="chat-btn" (click)="navigateTo('MessageDetails')">
+          <div *ngIf="orderDetails.user_id == userLocal.id" class="chat-btn" (click)="navigateTo('MessageDetails')">
             <ion-icon name="chatbubbles"></ion-icon>
           </div>
         </ion-avatar>
-        <h2>{{'Hussein Mahmoud'| translate}} <span>moment ago</span></h2>
-        <h4>Time to complete <span>30 days</span></h4>
+        <h2>{{applicant.fullname}} <span>{{applicant.date_added | amTimeAgo}}</span></h2>
+        <h4>{{'time_to_complete' | translate}} <span>{{applicant.offer_duration}} {{'Day' | translate}}</span></h4>
         <div class="user-rate">
           <div class="stats-container">
             <div class="rating-b">
               <div class="rating-b-1">
                 <img src="assets/img/rating-b-1.png" alt="" />
               </div>
-              <div class="rating-b-2" style="width:60%">
+              <div class="rating-b-2" [style.width.%]= "(applicant.rating_value * 100)/5">
                 <img src="assets/img/rating-b-2.png" alt="" />
               </div>
             </div>
-            <span>3.0</span>
+            <span>{{ applicant.rating_value ? (applicant.rating_value | number:'.1-1') : '0.0' }}</span>
             <div class="review-num">
-              <h4>20 {{'Review'| translate}}</h4>
+              <h4>{{applicant.rater_count}} {{'Review'| translate}}</h4>
             </div>
           </div>
         </div>
         <div class="price">
-          <h2>{{'Price'|translate}}<span> 20$ </span>/ساعة</h2>
+          <h2>{{'Price'|translate}}<span> {{applicant.offer_price}} {{'EGP' | translate}} </span>/ {{applicant.type_offer_duration | translate}}</h2>
         </div>
-        <p [dir]="isRTL?'rtl':'ltr'">I've had a pretty messed up day. If we just...</p>
+        <p [dir]="isRTL?'rtl':'ltr'">{{applicant.offer_details}}</p>
 
       </ion-item>
-      <ion-item class="">
+      <!-- <ion-item class="">
         <ion-avatar item-start>
           <img src="assets/img/14.jpg" alt="" (click)="navigateTo('ProfilePage')" />
           <div class="choose-me">
-            <!-- //TODO: add toast here (click)="presentToast()" -->
+            //TODO: add toast here (click)="presentToast()"
 
             <h4>choose me</h4>
           </div>
@@ -139,11 +138,11 @@
         </div>
         <p>I've had a pretty messed up day. If we just...</p>
 
-      </ion-item>
-      <ion-item class="">
+      </ion-item> -->
+      <!-- <ion-item class="">
         <ion-avatar item-start>
           <img src="assets/img/14.jpg" alt="" (click)="navigateTo('ProfilePage')" />
-          <!-- //TODO: add toast here (click)="presentToast()" -->
+          //TODO: add toast here (click)="presentToast()"
           <div class="choose-me">
             <h4>choose me</h4>
           </div>
@@ -174,7 +173,7 @@
         </div>
         <p>I've had a pretty messed up day. If we just...</p>
 
-      </ion-item>
+      </ion-item> -->
 
     </ion-list>
 

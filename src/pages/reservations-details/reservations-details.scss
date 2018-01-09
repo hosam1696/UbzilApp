@@ -1,0 +1,66 @@
+page-reservation-details {
+  .item-ios,
+  .item-md {
+    padding-left: 8px !important;
+  }
+  ion-content {
+    background-color: #f1f1f1!important;
+    .more-data {
+      background: #fff;
+      padding: 0px;
+      margin: 0px auto;
+      ion-item {
+        margin: 0px!important;
+        padding: 0 10px!important;
+        //border-top: 1px solid #f1f1f1!important;
+        ion-label {
+          padding-top: 0 !important;
+        }
+        .item-inner {
+          border-bottom: none
+        }
+        ion-label {
+          margin: 0px!important;
+          padding: 15px 0;
+          span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #444;
+            padding: 0px;
+            margin: 0px!important;
+          }
+          h2 {
+            font-size: 14px!important;
+            font-weight: 300!important;
+            color: #666!important;
+            white-space: normal;
+            padding: 0px 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+html[dir="ltr"] {
+  page-reservation-details {
+    ion-content {
+      .main-content {
+        ion-list {
+          ion-item {
+            .item-inner {
+              ion-label {
+                ion-thumbnail {
+                  float: left!important;
+                  margin-right: 10px!important;
+                  margin-left: auto!important;
+                }
+              }
+            }
+          }
+        }
+
+      }
+    }
+  }
+}

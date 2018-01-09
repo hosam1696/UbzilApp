@@ -18,6 +18,9 @@ page-requests-detail {
           .item-inner {
             padding-right: 0 !important
           }
+          ion-label {
+            white-space: initial;
+          }
           ion-thumbnail {
             margin: 8px !important;
             min-width: 60px!important;
@@ -55,9 +58,9 @@ page-requests-detail {
             font-weight: 600;
             margin-bottom: 0px;
             color: #666;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            text-transform: uppercase;
+            //overflow: hidden;
+            //text-overflow: ellipsis;
+            //text-transform: uppercase;
             line-height: 22px;
           }
           .app-category {
@@ -158,17 +161,15 @@ page-requests-detail {
           margin-bottom: 5px; //padding: 10px;
           align-items: flex-start;
 
-          &.choosen-applicant {
-            ion-avatar {
-              border: 1px solid #ff7867 !important;
-
-              .choose-me {
-                background-color: rgba(255, 63, 39, 0.7)!important;
-                h4 {
-                  color: #fff;
-                }
-              }
+          .choosen-applicant {
+            border: 1px solid #ff7867 !important;
+            background-color: rgba(255, 63, 39, 0.7)!important;
+            h4 {
+              color: #fff;
             }
+          }
+          .choosen-avatar{
+            border: 1px solid #ff7867 !important;
           }
           .item-inner {
             border-bottom: 0 !important

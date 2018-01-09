@@ -94,7 +94,8 @@
           
     </ion-list>
 
-    <button margin-top ion-button full (click)="sendRequest()">{{'Add Request'|translate}}</button>
+    <button margin-top ion-button full (click)="sendRequest()">{{'Add Request'|translate}} <ion-spinner *ngIf="addLoader" name="bubbles"></ion-spinner>
+    </button>
 
   </div>
 </ion-content>

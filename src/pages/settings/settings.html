@@ -7,7 +7,7 @@
 
 <ion-content class="card-background-page" parallax-header>
     <!--<p hideWhen="android">hide when it's android</p>-->
-    <div class="main-content">
+    <div class="main-content" *ngIf = "!showLoader">
 
         <div class="inner-content">
             <ion-list>
@@ -42,7 +42,7 @@
                     </div>
                 </ion-item>
               
-                <ion-item (click)="navigateTo('MyBalance')" >
+                <ion-item *ngIf = "userLocal.account_type == 'provider'" (click)="navigateTo('MyBalance')" >
                     <ion-icon ios="ios-card-outline" md="ios-card-outline" item-start></ion-icon>
                     <div class="inner-item">
                         {{'My Balance' | translate}}

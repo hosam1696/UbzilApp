@@ -1,6 +1,8 @@
 import { AppUtilFunctions } from './../../app/appglobal/app.utilfuns';
 // Main Components
 import {Component} from '@angular/core';
+//import { DatePipe } from '@angular/common';
+
 import {
   ActionSheetController,
   Events,
@@ -46,6 +48,7 @@ export class ProfilePage {
   pageParams: any;
   showLoader: boolean = true;
   userData:any;
+  userRaters:any;
   userLocal:any;
   MreqAddress: string = '';
   constructor(
@@ -84,6 +87,7 @@ export class ProfilePage {
       this.userLocal = data;
       console.log('localUserInfo in ProfilePage',this.userLocal);
         this.getUserInfo(this.pageParams.id);
+        this.getUserInfoRating(this.pageParams.id);
     })
   }
   
@@ -112,6 +116,24 @@ export class ProfilePage {
         this.showLoader = false;
         this.priceList  = this.userData.priceList;
         console.log('price list from user id', this.priceList  )
+    })
+  }
+
+  // TODO: Get User Data IF who login Open other user profile
+  getUserInfoRating(id){
+    this.userProvider.getUserInfoRating({"id": id}).subscribe((data) => {
+      console.log('rater From server', data);
+        if (data) {
+            this.userRaters = data; 
+        }
+        
+    }, err => {
+        if (err.error instanceof Error) {
+            console.warn('client side errror', err)
+        } else {
+            console.warn('server side error', err)
+        }
+    }, () => {
     })
   }
   
@@ -154,8 +176,6 @@ export class ProfilePage {
       this.translateService.get('no_google_map')
       .subscribe( value => {this.appUtils.AppToast(value)})
     }
-
-    
   }
 
 
@@ -228,6 +248,7 @@ export class ProfilePage {
   goProfilePage(id){
     this.navCtrl.push('ProfilePage',{pageData:{id:id}});
   }
+  
   protected navigateTo(page: string, isModal: boolean = false, pageData?: any): void {
     if (isModal) {
       console.log('navigateTo data', pageData);      
@@ -239,6 +260,7 @@ export class ProfilePage {
           // Do some interesting stuff here
           console.log('backed',dismissData);
           this.getUserInfo(dismissData);
+          this.getUserInfoRating(dismissData);
         } else if (page === 'PriceList') {
           // Do some interesting stuff here
 
@@ -247,11 +269,16 @@ export class ProfilePage {
         } else if ( page === 'AddReview') {
           console.log('backed',dismissData);
           this.getUserInfo(dismissData);
+          this.getUserInfoRating(dismissData);
 
         } else if (page === 'GetLocation') {
 
         } else if (page === 'WorkTime') {
-
+          console.log('dismissData',dismissData);
+          if(dismissData){
+            this.userData.userWorkTimes = dismissData;
+          }
+          
         }
 
       })
@@ -259,5 +286,15 @@ export class ProfilePage {
       this.navCtrl.push(page,{pageData:{user_id:this.userLocal.id,provider_id:this.pageParams.id}})
     }
   }
+  
+  MessagesDetail(pageData) {
+    let MessagesDetailModal = this.modalCtrl.create('MessagesDetail',{pageData});
+    MessagesDetailModal.present();
+    MessagesDetailModal.onDidDismiss(data => {
+        // Saving this info to local storage after updating user profile info
+    })
+  
+  }
 
+  
 }

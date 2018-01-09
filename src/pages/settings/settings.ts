@@ -15,6 +15,7 @@ export class Settings {
   canceltext: any;
   isRTL: boolean;
   userLocal:any;
+  showLoader: boolean = true;
   constructor(public navCtrl: NavController,
               public events: Events,
               public appUtils: AppUtilFunctions,
@@ -41,6 +42,7 @@ export class Settings {
     this.appUtils.storage.get('localUserInfo')
     .then(data=>{
         this.userLocal = data;
+        this.showLoader = false;
         console.log('localUserInfo in Settings',this.userLocal);
     });
 
@@ -121,7 +123,8 @@ export class Settings {
     console.warn('you are attempting to log out');
     this.appUtils.storage.remove('localUserInfo')
     .then(() => {
-      this.events.publish('changeRoot', 'Login')
+      console.warn('removed');
+      this.navCtrl.setRoot('Login')
     })
     /* .then(() => {
       this.navCtrl.setRoot('Login');

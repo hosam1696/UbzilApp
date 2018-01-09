@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{'Details' | translate}}</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding-top>
+  <div class="main-content" *ngIf="!showLoader">
+
+    <ion-list class="more-data">
+      <ion-item>
+        <span>{{'full-name'| translate}}</span>
+        <h2>{{bookingDetails.fullname}}</h2>
+      </ion-item>
+      <ion-item>
+        <span>{{'Phone number'| translate}}</span>
+        <h2>{{bookingDetails.mobile}}</h2>
+      </ion-item>
+      <ion-item>
+        <span>{{'booking_status'| translate}}</span>
+        <h2 *ngIf="bookingDetails.booking_status == '0'" >{{'no_action_booking'| translate}}</h2>
+        <h2 *ngIf="bookingDetails.booking_status == '1'" >{{'canceled_booking'| translate}}</h2>
+      </ion-item>
+      <ion-item>
+        <span>{{'booking_date'| translate}}</span>
+        <h2>{{bookingDetails.booking_day | translate}} {{bookingDetails.booking_date}}</h2>
+      </ion-item>
+      <!-- <ion-item>
+        <span>{{'Location'| translate}}</span>
+        <h2>{{bookingDetails.booking_date}}</h2>
+      </ion-item> -->
+      <ion-item>
+        <span>{{'Message Content'| translate}}</span>
+        <h2>{{bookingDetails.booking_message}}</h2>
+      </ion-item>
+      <!-- <ion-item *ngFor="let formsShape of orderDetails.orderFormsShape">
+        <span>{{formsShape.label}}</span>
+        <h2>{{formsShape.form_shape_value}}</h2>
+      </ion-item> -->
+    </ion-list>
+  </div>
+</ion-content>

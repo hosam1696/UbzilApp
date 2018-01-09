@@ -22,6 +22,15 @@ page-my-balance {
                         margin: 0px;
                         text-align: right;
                     }
+                    .last-end-date{
+                        font-size: 14px;
+                        color: #666;
+                        margin: 0px;
+                        text-align: center;
+                        span {
+                            color: red
+                        }
+                    }
 
                 }
                 .view-history{

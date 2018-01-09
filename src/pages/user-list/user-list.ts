@@ -17,7 +17,7 @@ export class UserList {
     loader: boolean = true;
     userLocal:any;
     noData:boolean = false;
-    initLimit: number = 20;
+    initLimit: number = 15;
     initStart: number = 0;
     moreData: boolean = true;
     pullingText:string;
@@ -57,7 +57,7 @@ export class UserList {
         this.appUtils.storage.get('localUserInfo')
         .then(data=>{
             this.userLocal = data;
-            this.fetchServiceProviders();
+            this.fetchServiceProviders( this.initLimit, this.initStart);
         }); 
         
     }
@@ -95,11 +95,14 @@ export class UserList {
                 console.log('this.initStart' , this.initStart);
                 console.log('data.length' , data.length);
                 this.providers = [...this.providers, ...data]; //es6 destruction : concat data to the providers array  
-                if (data.length == this.initLimit){
+                console.log('service providers', this.providers);
+                if (data.length >= this.initLimit){
                   this.moreData = true;
                 }else{
                   this.moreData = false;
                 }
+              }else{
+                this.moreData = false;
               }
             },
             (err) => {
@@ -122,7 +125,7 @@ export class UserList {
     // TODO: refresh providers list when go to top
     refreshProviders(event) {
         this.initStart = 0;
-        this.getServiceProviders()
+        this.getServiceProviders(this.initLimit, this.initStart)
           .subscribe(( data) => {
             if (data) {
               this.providers = data;
@@ -184,8 +187,8 @@ export class UserList {
         })
     }
 
-    MessagesDetail() {
-        let MessagesDetailModal = this.modalCtrl.create('MessagesDetail');
+    MessagesDetail(pageData) {
+        let MessagesDetailModal = this.modalCtrl.create('MessagesDetail',{pageData});
         MessagesDetailModal.present();
         MessagesDetailModal.onDidDismiss(data => {
             // Saving this info to local storage after updating user profile info

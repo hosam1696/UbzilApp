@@ -21,16 +21,16 @@
     <div class="inner-content">
         <ion-list>
             <ion-item>
-                <ion-label stacked>{{'Message Title'|translate}}</ion-label>
-                <ion-input type="text"></ion-input>
+                <ion-label stacked >{{'Message Title'|translate}}</ion-label>
+                <ion-input  [(ngModel)]="msgSubject" type="text"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label stacked>{{'Message Content'|translate}}</ion-label>
-                <ion-textarea></ion-textarea>
+                <ion-textarea [(ngModel)]="msgBody" ></ion-textarea>
             </ion-item>
         </ion-list>
         <ion-row>
-            <button ion-button full (click)="Send()">{{'send'|translate}}</button>
+            <button ion-button full (click)="Send()">{{'send'|translate}} <ion-spinner *ngIf="addLoader" name="bubbles"></ion-spinner></button>
             
         </ion-row>      
     </div>

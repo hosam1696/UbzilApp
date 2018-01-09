@@ -1,7 +1,7 @@
 
 <ion-header>
     <ion-navbar>
-        <ion-title>user name</ion-title>
+        <ion-title>{{pageParams.fullname}}</ion-title>
         <ion-buttons start right>
             <button ion-button (click)="dismiss()">
                     <ion-icon name="close"></ion-icon>
@@ -9,11 +9,11 @@
         </ion-buttons>
 
     </ion-navbar>
-    <ion-toolbar>
+    <ion-toolbar *ngIf="pageParams.order_id != '0'">
         <div class="request-title">
-            <h2>My Requset Title can be here in more than one line</h2>
+            <h2>{{pageParams.order_title}}</h2>
         </div>
-        <button ion-button class="request-ditail-btn" >{{'Details'|translate}}</button>
+        <button ion-button class="request-ditail-btn" (click)="navigateTo('RequestsDetail',false,{order_id:pageParams.order_id})">{{'Details'|translate}}</button>
     </ion-toolbar>
 </ion-header>
 
@@ -24,19 +24,24 @@
 
         <div class="inner-content caht">
 
-            <ion-item class="left-chat">
+            <ion-item *ngFor="let msg of msgList" [class.right-chat]="msg.from == userLocal.id" [class.left-chat]="msg.from != userLocal.id">
                 <div class="chat-content">
-                    <h2>Wellcom to chat page</h2>
+                    <h2 *ngIf="msg.type == 'text'">{{msg.message}}</h2>
+                    <img *ngIf="msg.type == 'img'" src="assets/img/12.jpg" alt=""/>
+                    <ion-icon  ios="ios-done-all" md="md-done-all" *ngIf="msg.from == userLocal.id" [color] = "msg.seen_it == 1 ? 'secondary' :'lightDark'"></ion-icon>
+                    <!-- <ion-icon ios="ios-checkmark" md="md-checkmark" *ngIf="msg.from == userLocal.id"></ion-icon> -->
+
                 </div>
-                <p>A minute ago</p>
+                <p>{{msg.date_added | amTimeAgo}}</p>
             </ion-item>
 
-            <ion-item class="right-chat">
+            <!-- <ion-item class="right-chat">
                 <div class="chat-content">
                 <h2>Thank you very much</h2>
                 </div>
                 <p>A minute ago</p>
             </ion-item>
+
             <ion-item class="left-chat">
                 <div class="chat-content">
                     <h2>hi there how are ? what are you doing now </h2>
@@ -63,7 +68,7 @@
                     <img src="assets/img/logofin.png" alt=""/>
                 </div>
                 <p>A minute ago</p>
-            </ion-item>
+            </ion-item> -->
             
 
         </div>
@@ -77,13 +82,15 @@
         <ion-grid>
             <ion-row>
                 <ion-col col-1 class="btns">
-                    <ion-icon ios="md-send" md="md-send"></ion-icon> 
+                    <ion-icon ios="md-send" md="md-send" (click)="pushNewMsg()"></ion-icon> 
                 </ion-col>
                 <ion-col col-1 class="btns">
                     <ion-icon class="attach-file" name="attach" (click)="loadImage()"></ion-icon>
                 </ion-col>
                 <ion-col col-10>
-                <ion-input type="text"></ion-input>
+                <ion-input type="text"  [(ngModel)]="editorMsg" (keyup.enter)="pushNewMsg();false"></ion-input>
+                <!-- <ion-textarea [(ngModel)]="editorMsg" (ionFocus)="onFocus()" (keyup.enter)="pushNewMsg();false"></ion-textarea> -->
+                <!-- <ion-textarea #msgInput (input)="watchHeight($event)" class="add-input"></ion-textarea> -->
                 </ion-col>
             </ion-row>
         </ion-grid>

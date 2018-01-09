@@ -109,30 +109,39 @@
             <ion-grid *ngIf="MembershipType == 'finder'">
                 <ion-list>
                     <ion-item>
-                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-label><ion-icon name="contact" ios="ios-contact-outline" md="md-contact" item-start></ion-icon></ion-label>
                         <ion-input [(ngModel)]="fullname" type="text"  placeholder="{{'full-name' | translate}}"></ion-input>
                     </ion-item>
                     <ion-item>
-                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-label><ion-icon name="create" ios="ios-create-outline" md="md-create" item-start></ion-icon></ion-label>
                         <ion-input [(ngModel)]="username" type="text"  placeholder="{{'Username' | translate}}"></ion-input>
                     </ion-item>
                     <ion-item>
-                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-label><ion-icon name="mail" ios="ios-mail-outline" md="md-mail" item-start></ion-icon></ion-label>
                         <ion-input [(ngModel)]="email" type="mail" placeholder="{{'email' | translate}}"></ion-input>
                     </ion-item>
 
                     <ion-item>
-                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-label><ion-icon name="lock" ios="ios-lock-outline" md="md-lock" item-start></ion-icon></ion-label>
                         <ion-input [(ngModel)]="password" type="password" placeholder="{{'Password' | translate}}" ></ion-input>
                     </ion-item>
 
                     <ion-item>
-                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-label><ion-icon name="lock" ios="ios-lock-outline" md="md-lock" item-start></ion-icon></ion-label>
                         <ion-input [(ngModel)]="repassword" type="password" placeholder="{{'confirm Password' | translate}}"></ion-input>
                     </ion-item>
 
                 </ion-list>
-                <ion-list radio-group [(ngModel)]="gender" class="radio-gender">
+                <ion-list>
+                    <ion-item class="">
+                        <ion-label>{{'gender'| translate}}</ion-label>
+                        <ion-select [(ngModel)]="gender"  cancelText="{{'Cancel'|translate}}" okText="{{'Ok'|translate}}">
+                            <ion-option value="male">{{'male' | translate}}</ion-option>
+                            <ion-option value="female">{{'female' | translate}}</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-list>
+                <!-- <ion-list radio-group [(ngModel)]="gender" class="radio-gender">
                     <ion-list-header>
                             {{'gender' | translate}}
                     </ion-list-header>
@@ -144,7 +153,7 @@
                         <ion-label>{{'female' | translate}}</ion-label>
                         <ion-radio value="female"></ion-radio>
                     </ion-item>
-                </ion-list>
+                </ion-list> -->
 
                 <ion-row>
 
@@ -156,9 +165,9 @@
                     <ion-col>
                         <button class="back-btn" ion-button (click)="Step3()"><ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon></button>
                     </ion-col>
-                    <ion-col>
+                    <!-- <ion-col>
                         <h4 class="have-account"> {{'Have Account?' | translate}} <a (click)="goSignin()" class="new-account" >{{'Login' | translate}}</a></h4>
-                    </ion-col>
+                    </ion-col> -->
                 </ion-row>
 
             </ion-grid>
@@ -166,25 +175,25 @@
             <ion-grid *ngIf="MembershipType == 'provider'">
                 <ion-list>
                     <ion-item>
-                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-label><ion-icon name="contact" ios="ios-contact-outline" md="md-contact" item-start></ion-icon></ion-label>
                         <ion-input [(ngModel)]="fullname" type="text"  placeholder="{{'full-name' | translate}}"></ion-input>
                     </ion-item>
                     <ion-item>
-                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-label><ion-icon name="create" ios="ios-create-outline" md="md-create" item-start></ion-icon></ion-label>
                         <ion-input [(ngModel)]="username" type="text"  placeholder="{{'Username' | translate}}"></ion-input>
                     </ion-item>
                     <ion-item>
-                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-label><ion-icon name="mail" ios="ios-mail-outline" md="md-mail" item-start></ion-icon></ion-label>
                         <ion-input [(ngModel)]="email" type="mail" placeholder="{{'email' | translate}}"></ion-input>
                     </ion-item>
 
                     <ion-item>
-                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-label><ion-icon name ="lock" ios="ios-lock-outline" md="md-lock" item-start></ion-icon></ion-label>
                         <ion-input [(ngModel)]="password" type="password" placeholder="{{'Password' | translate}}" ></ion-input>
                     </ion-item>
 
                     <ion-item>
-                        <ion-label><ion-icon ios="ios-call-outline" md="ios-call-outline" item-start></ion-icon></ion-label>
+                        <ion-label><ion-icon name ="lock" ios="ios-lock-outline" md="md-lock" item-start></ion-icon></ion-label>
                         <ion-input [(ngModel)]="repassword" type="password" placeholder="{{'confirm Password' | translate}}"></ion-input>
                     </ion-item>
 
@@ -238,7 +247,7 @@
             </ion-row>
         </ion-grid>
 
-        <!-- step 5 Complete provide location and work places -->
+        <!-- step 6 Complete provide location and work places -->
         <ion-grid *ngIf="step == 6">
             <ion-list>
                 <ion-list-header>

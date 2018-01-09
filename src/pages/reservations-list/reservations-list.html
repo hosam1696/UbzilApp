@@ -3,120 +3,90 @@
     <ion-navbar>
         <ion-title>{{'Reservations' | translate}}</ion-title>
     </ion-navbar>
+    <!-- <ng-container *ngIf="!showLoader"> -->
+        <!-- <ion-toolbar class="segment-holder" *ngIf="userLocal.account_type == 'provider'"> -->
+        <ion-toolbar class="segment-holder">
+            <ion-segment (ionChange)="onSegmentChange(bookingType)" [(ngModel)]="bookingType">
+                <ion-segment-button value="bookIn">
+                    {{'import_reservations' | translate}}
+                </ion-segment-button>
+                <ion-segment-button value="bookOut">
+                    {{'export_reservations' | translate}}
+                </ion-segment-button>
+            </ion-segment>
+        </ion-toolbar>
+    <!-- </ng-container> -->
+    
 </ion-header>
 
 <ion-content>
-    <div class="main-content">
+    <uz-loader *ngIf="showLoader" [full]="false" [relative]="false"></uz-loader>
+    <ion-refresher (ionRefresh)="refreshBooking($event,bookingType)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" [pullingText]="pullingText" refreshingSpinner="circles" [refreshingText]="refreshingText">
+        </ion-refresher-content>
+    </ion-refresher>
 
-
-        <ion-list *ngIf=" x ">
-            <ion-item>
-                <ion-thumbnail item-start (click)="goProfilePage()">
-                               <img src="assets/img/12.jpg">
+    <div class="main-content" *ngIf="!showLoader">
+        <ion-list *ngIf="bookingType === 'bookIn'">
+            <ion-item *ngFor="let inBooking of inBookingData; let indx = index">
+                <ion-thumbnail item-start (click)="goProfilePage({'id':inBooking.user_id})">
+                    <img [src]="(inBooking.avatar)?imagePath('avatars/'+inBooking.avatar):'assets/img/'+inBooking.gender+'.png'" alt="" />
                 </ion-thumbnail>
-                <h2>حسين محمود</h2>
-                <h4> السبت <span item-end class="time">12/10/2017</span></h4>
+                <h2>{{inBooking.fullname}} <span item-end class="time">{{inBooking.date_added | amTimeAgo}}</span></h2>
+                <h4> {{inBooking.booking_day | translate}} <span item-end class="time">{{inBooking.booking_date}}</span></h4>
                 <div class="bottom-btn">
-                    <button ion-button outline (click)="sendReservationStatus()">{{'Refuse'|translate}}</button>
-                    <button ion-button outline (click)="sendReservationStatus(true)">{{'Accept'|translate}}</button>
+                    <button *ngIf="inBooking.booking_status == '1'" ion-button outline (click)="deleteBooking(inBooking.booking_id, indx)" color="danger" >{{'Delete'|translate}}</button>
+                    <button ion-button outline (click)="navigateTo('ReservationDetails',true,{booking_id:inBooking.booking_id})">{{'Details'|translate}}</button>
                 </div>
-
             </ion-item>
-            <ion-item>
-                <ion-thumbnail item-start (click)="goProfilePage()">
-                               <img src="assets/img/13.jpg">
-                </ion-thumbnail>
-                <h2>حاتم محمود</h2>
-                <h4> الاحد <span item-end class="time">20/10/2017</span></h4>
-                <div class="bottom-btn">
-<button ion-button outline (click)="sendReservationStatus()">{{'Refuse'|translate}}</button>
-<button ion-button outline (click)="sendReservationStatus(true)">{{'Accept'|translate}}</button>
-
-                </div>
-
-            </ion-item>
-            <ion-item>
-                <ion-thumbnail item-start (click)="goProfilePage()">
-                               <img src="assets/img/14.jpg">
-                </ion-thumbnail>
-                <h2>اسامة محمد</h2>
-                <h4> الثلاثاء <span item-end class="time">1/10/2017</span></h4>
-                <div class="bottom-btn">
-<button ion-button outline (click)="sendReservationStatus()">{{'Refuse'|translate}}</button>
-<button ion-button outline (click)="sendReservationStatus(true)">{{'Accept'|translate}}</button>
-
-                </div>
-
-            </ion-item>
-            <ion-item>
-                <ion-thumbnail item-start (click)="goProfilePage()">
-                               <img src="assets/img/15.jpg">
-                </ion-thumbnail>
-                <h2>حسام علي</h2>
-                <h4> الخميس <span item-end class="time">10/12/2017</span></h4>
-                <div class="bottom-btn">
-<button ion-button outline (click)="sendReservationStatus()">{{'Refuse'|translate}}</button>
-<button ion-button outline (click)="sendReservationStatus(true)">{{'Accept'|translate}}</button>
-
-                </div>
-
-            </ion-item>
-            <ion-item>
-                <ion-thumbnail item-start (click)="goProfilePage()">
-                               <img src="assets/img/16.jpg">
-                </ion-thumbnail>
-                <h2>على حمدي</h2>
-                <h4> الاربعاء <span item-end class="time">15/9/2017</span></h4>
-                <div class="bottom-btn">
-<button ion-button outline (click)="sendReservationStatus()">{{'Refuse'|translate}}</button>
-<button ion-button outline (click)="sendReservationStatus(true)">{{'Accept'|translate}}</button>
-
-                </div>
-
-            </ion-item>
-        </ion-list>
-
-        <ion-list *ngIf=" !x ">
-            <ion-item>
-                <ion-thumbnail item-start (click)="goProfilePage()">
-                               <img src="assets/img/12.jpg">
-                </ion-thumbnail>
-                <h2>حسين محمود</h2>
-                <h4> السبت <span item-end class="time">12/10/2017</span></h4>
-            </ion-item>
-            <ion-item>
-                <ion-thumbnail item-start (click)="goProfilePage()">
-                               <img src="assets/img/13.jpg">
-                </ion-thumbnail>
-                <h2>حاتم محمود</h2>
-                <h4> الاحد <span item-end class="time">20/10/2017</span></h4>
-            </ion-item>
-            <ion-item>
-                <ion-thumbnail item-start (click)="goProfilePage()">
-                               <img src="assets/img/14.jpg">
-                </ion-thumbnail>
-                <h2>اسامة محمد</h2>
-                <h4> الثلاثاء <span item-end class="time">1/10/2017</span></h4>
-            </ion-item>
-            <ion-item>
-                <ion-thumbnail item-start (click)="goProfilePage()">
-                               <img src="assets/img/15.jpg">
-                </ion-thumbnail>
-                <h2>حسام علي</h2>
-                <h4> الخميس <span item-end class="time">10/12/2017</span></h4>
-            </ion-item>
-            <ion-item>
-                <ion-thumbnail item-start (click)="goProfilePage()">
-                               <img src="assets/img/16.jpg">
-                </ion-thumbnail>
-                <h2>على حمدي</h2>
-                <h4> الاربعاء <span item-end class="time">15/9/2017</span></h4>
-
-            </ion-item>
+            <!-- fetch more data -->
+            <p class="small" text-center *ngIf="!moreData">
+                {{'no_contents' | translate}}
+            </p>
+            <!-- <ion-infinite-scroll *ngIf="moreData" (ionInfinite)="fetchMoreData($event,bookingType)">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" [loadingText]="loadingText">
+                ></ion-infinite-scroll-content>
+            </ion-infinite-scroll> -->
+            <!-- nodata -->
+            <div *ngIf="noData" class="noData">
+                <ion-icon name="alert"></ion-icon>
+                <div> {{'no_in_booking' | translate}}</div>                
+            </div>
         </ion-list>
 
 
+        <!-- ******************************************************************** -->
+        <!-- outBookingData ******************************************************-->
+        <!-- ******************************************************************** -->
+        <ion-list *ngIf="bookingType === 'bookOut'">
+            <ion-item *ngFor="let outBooking of outBookingData; let indx = index">
+                <ion-thumbnail item-start (click)="goProfilePage({'id':outBooking.user_id})">
+                    <img [src]="(outBooking.avatar)?imagePath('avatars/'+outBooking.avatar):'assets/img/'+outBooking.gender+'.png'" alt="" />
+                </ion-thumbnail>
+                <h2>{{outBooking.fullname}} <span item-end class="time">{{outBooking.date_added | amTimeAgo}}</span></h2>
+                <h4> {{outBooking.booking_day | translate}} <span item-end class="time">{{outBooking.booking_date}}</span></h4>
+                <div class="bottom-btn">
+                    <button ion-button outline (click)="cancelBooking(outBooking.booking_id, indx)" color="danger" >{{'Cancel'|translate}}</button>
+                    <button ion-button outline (click)="navigateTo('ReservationDetails',true,{booking_id:outBooking.booking_id})">{{'Details'|translate}}</button>
+
+                </div>
+            </ion-item>
+            <!-- fetch more data -->
+            <p class="small" text-center *ngIf="!moreData">
+                {{'no_contents' | translate}}
+            </p>
+            
+            <!-- nodata -->
+            <div *ngIf="noData" class="noData">
+                <ion-icon name="alert"></ion-icon>
+                <div> {{'no_out_booking' | translate}}</div>                
+            </div>
+        </ion-list>
     </div>
+    <ion-infinite-scroll *ngIf="moreData" (ionInfinite)="fetchMoreData($event,bookingType)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" [loadingText]="loadingText">
+        ></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>
 
 

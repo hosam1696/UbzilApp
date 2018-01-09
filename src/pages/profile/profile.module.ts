@@ -5,6 +5,7 @@ import { ProfilePage } from './profile';
 import { ComponentsModule } from './../../components/components.module';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { MomentModule } from 'angular2-moment';
+import {Ionic2RatingModule} from "ionic2-rating";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { MomentModule } from 'angular2-moment';
     IonicPageModule.forChild(ProfilePage),
     TranslateModule,
     ComponentsModule,
-    MomentModule
+    MomentModule,
+    Ionic2RatingModule
   ],
   exports: [
     ProfilePage

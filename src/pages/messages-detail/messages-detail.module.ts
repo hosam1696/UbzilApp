@@ -2,6 +2,7 @@ import { TranslateModule } from 'ng2-translate/ng2-translate';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { MessagesDetail } from './messages-detail';
+import { MomentModule } from 'angular2-moment';
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { MessagesDetail } from './messages-detail';
   ],
   imports: [
     IonicPageModule.forChild(MessagesDetail),
-    TranslateModule
+    TranslateModule,
+    MomentModule
   ],
   exports: [
     MessagesDetail

@@ -112,6 +112,9 @@ page-messages-detail {
                         h2{
                             color: #fff;
                         }
+                        ion-icon{
+                            font-size: 30px;
+                        }
                     }
 
                     p{
@@ -154,6 +157,23 @@ page-messages-detail {
                     background-color: #fff!important;
 
                     input{
+                        color: #666;
+                        margin: 0px!important;
+                        padding: 0px 10px!important;
+                        width: 100%!important;
+                        font-size: 14px;
+                        text-align: right;
+                    }
+                }
+
+                ion-textarea{
+                    border-radius: 18px!important;
+                    height: 34px!important;
+                    line-height: 34px!important;
+                    min-height: 34px!important;
+                    background-color: #fff!important;
+
+                    textarea{
                         color: #666;
                         margin: 0px!important;
                         padding: 0px 10px!important;

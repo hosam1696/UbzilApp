@@ -7,7 +7,7 @@ import { UserProvider } from './../../providers/user/user';
 import {Components} from "../../providers/components";
 
 import {SMS} from "../../providers/sms";
-import {API} from "../../providers/api";
+//import {API} from "../../providers/api";
 import {Login} from "../login/login";
 import {GetLocation} from "../get-location/get-location";
 
@@ -77,7 +77,7 @@ export class Signup {
         public sms: SMS,
         public appUtils: AppUtilFunctions,
         private userProvider: UserProvider,
-        public api: API,
+        //public api: API,
         public com: Components,
     ) {
         console.log('******************** signUp Load ***************')
@@ -175,10 +175,12 @@ export class Signup {
 
     // TODO: check if mobile exist and get confirm code to sign up
     signUpNext(){
+        //alert('aaaa1');
         console.log('CountryCode',this.CountryCode)        
         console.log('mobile number',this.mobile)
         if(this.CountryCode != ''){
             if(!isNaN(this.mobile) && this.mobile ){
+                //alert('aaaa2');
                 console.log(this.CountryCode+this.mobile," yes is complete number")
                 this.userProvider
                 .getConfirmCode({mobile : this.mobile})
@@ -189,9 +191,11 @@ export class Signup {
                         console.log('server verifycode ',this.serverVerCode);                    
                         this.translateService.get('confirm-code-sent')
                         .subscribe( value => {this.appUtils.AppToast(value)})
+                        //alert('aaaa3');
 
                         this.step = 2;
                     }else{
+                        //alert('aaaa4');
                         this.translateService.get('mobile-exist')
                         .subscribe( value => {this.appUtils.AppToast(value)})
                         this.step = 1;
@@ -235,7 +239,8 @@ export class Signup {
 
     // TODO: check verifycode to sign up
     signUpConfirm(){
-        if(this.inputVerCode == this.serverVerCode){
+        this.step = 3;
+        /* if(this.inputVerCode == this.serverVerCode){
             console.log('your verifycode is true')
             this.step = 3;
         }else{
@@ -243,7 +248,7 @@ export class Signup {
             this.translateService.get('plz-check-activecode')
             .subscribe( value => {this.appUtils.AppToast(value)})
             this.step = 2;
-        }
+        } */
     }
 
     // TODO: return to select  MembershipType

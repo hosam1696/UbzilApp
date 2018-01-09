@@ -20,7 +20,7 @@ export class AddRequest {
   MreqAddress: string = '';
   localUser: any;
   DataFromModal: any;
-  loader: boolean = false;
+  addLoader: boolean = false;
   appError : boolean = false;
   locationOnMap: string = '';
   constructor(
@@ -181,7 +181,7 @@ export class AddRequest {
     }
     // sector_id validation
     else if (!this.order.sector_id) {
-      this.translateService.get('Request-successfully')
+      this.translateService.get('plz-enter-request-place')
       .subscribe( value => {this.appUtils.AppToast(value)})
       this.appError = true;
     }
@@ -202,7 +202,7 @@ export class AddRequest {
 
     if(!this.appError){
       // send add request here
-      this.loader = true;
+      this.addLoader = true;
       console.log('you have entered ', this.order);
       this.services
         .addServiceOrders(this.order)
@@ -210,16 +210,14 @@ export class AddRequest {
           orderData => {
             console.log(orderData);
             if (orderData.status === 'success') {
+              this.addLoader = false;
               this.translateService.get('Request-successfully')
               .subscribe( value => {this.appUtils.AppToast(value)});
-              // this.appUtils.storage.set('localUserInfo', userData.data)
-              //   .then(() => {
-              //     this.navCtrl.setRoot('Tabs');
-              //   })
+              //this.navCtrl.setRoot('Tabs');
             }
           },
           err => {
-            this.loader = false;
+            this.addLoader = false;
             if (err.error instanceof Error) {
                 console.warn('client side error', err)
             } else {
@@ -227,7 +225,7 @@ export class AddRequest {
               }
           },
           () => {
-            this.loader = false;
+            
           }
         
         );

@@ -1,47 +1,43 @@
+<!-- <ion-header *ngIf="!showLoader"> -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>{{'My Projects' | translate}}</ion-title>
   </ion-navbar>
-
+  <!-- <ng-container *ngIf="!showLoader"> -->
+    <!-- <ion-toolbar *ngIf="userLocal.account_type == 'provider' && userLocal.service_type == 1" class="segment-holder"> -->
+      <ion-toolbar class="segment-holder">
+            
+      <!-- <section class="segment-holder" [ngClass]="{'padding-vertical':isIos}"> -->
+        <ion-segment  (ionChange)="onSegmentChange(projectType)" [(ngModel)]="projectType" [style.flexDirection]="isRTL?'row':'row-reverse'">
+          <ion-segment-button value="impProjects">
+            {{'Implemented Projects' | translate}}
+          </ion-segment-button>
+          <ion-segment-button value="pendProjects">
+            {{'Projects in progress' | translate}}
+          </ion-segment-button>
+          <ion-segment-button value="recivedProjects">
+            {{'Received Projects' | translate}}
+          </ion-segment-button>
+          <ion-segment-button value="myProjects">
+            {{'My Projects' | translate}}
+          </ion-segment-button>
+        </ion-segment>
+      <!-- </section> -->
+    </ion-toolbar>
+<!-- </ng-container> -->
 </ion-header>
 
 
-<ion-content>
-  <section class="segment-holder" [ngClass]="{'padding-vertical':isIos}">
-    <ion-segment  [(ngModel)]="projectID" [style.flexDirection]="!isRTL?'row':'row-reverse'">
+<ion-content padding-top>
+  <uz-loader *ngIf="showLoader" [full]="false" [relative]="false"></uz-loader>
+  <ion-refresher (ionRefresh)="refreshProjects($event,projectType)">
+      <ion-refresher-content pullingIcon="arrow-dropdown" [pullingText]="pullingText" refreshingSpinner="circles" [refreshingText]="refreshingText">
+      </ion-refresher-content>
+  </ion-refresher>
+  <!--   My Projects List -->
+  <ion-list *ngIf="projectType === 'myProjects'">
 
-
-
-      <ion-segment-button value="pendProjects">
-        {{'Projects in progress' | translate}}
-      </ion-segment-button>
-      <ion-segment-button value="impProjects">
-        {{'Implemented Projects' | translate}}
-      </ion-segment-button>
-      <ion-segment-button value="recivedProjects">
-        {{'Received Projects' | translate}}
-      </ion-segment-button>
-      <ion-segment-button value="myProjects">
-        {{'My Projects' | translate}}
-      </ion-segment-button>
-    </ion-segment>
-  </section>
-
-
-
-  <!-- 
-
- ****
-    My Projects List
-*****
-
--->
-
-
-  <ion-list *ngIf="projectID === 'myProjects'">
-
-    <ion-item-sliding dir="ltr">
+    <!-- <ion-item-sliding dir="ltr">
       <ion-item [dir]="isRTL?'rtl':'ltr'">
         <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
           <img src="assets/img/png/doctor.png">
@@ -58,268 +54,125 @@
         <button ion-button color="danger" (click)="navigateTo('AddReview', true)">{{"reject"| translate}}</button>
       </ion-item-options>
 
-    </ion-item-sliding>
-
-
-    <ion-item>
-      <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
-        <img src="assets/img/png/iron.png">
-      </ion-thumbnail>
-      <h2>{{'Home_services'|translate}}<span item-end class="time">منذ ساعة</span></h2>
-      <h4>{{'Request title'|translate}}</h4>
-      <p class="applicants">
-        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
-      <div class="bottom-btn" [class.toright]="!isRTL">
-        <button ion-button outline  color="danger" (click)="navigateTo('AddReview', true)">{{"reject"| translate}}</button>
-        <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
-      </div>
-
-    </ion-item>
+    </ion-item-sliding> -->
     
-  </ion-list>
-
-  <!-- 
-
- ****
-    REcived Projects List
-  *****
-
--->
-
-  <ion-list *ngIf="projectID==='recivedProjects'">
-    <ion-item>
-      <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
-        <img src="assets/img/12.jpg">
+    <ion-item *ngFor="let mypro of myProjects; let idx = index">
+      <ion-thumbnail item-start (click)="navigateTo('RequestsDetail',false,{order_id:mypro.order_id})">
+        <img [src]="(mypro.ser_icon)?imagePath('service/icons/'+mypro.ser_icon):'assets/img/no-image.png'" alt="" />
       </ion-thumbnail>
-      <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
-      <h4>{{'Request title'|translate}}</h4>
+      <h2 (click)="navigateTo('RequestsDetail',false,{order_id:mypro.order_id})" >{{mypro.service_name}}<span item-end class="time">{{mypro.date_added | amTimeAgo}}</span></h2>
+      <h4>{{mypro.order_title}}</h4>
       <p class="applicants">
-        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
+        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>{{mypro.applicants_count}}  {{'Applicants'|translate}}</p>
       <div class="bottom-btn" [class.toright]="!isRTL">
-        <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+        <button *ngIf="mypro.status == '0'" ion-button outline color="danger" (click)="deleteOrder(mypro.order_id, idx)">{{'Cancel'|translate}}</button>
+        <button *ngIf="mypro.status == '1'" ion-button outline  color="secondary" (click)="navigateTo('AddProjectRating', true,{'user_id':userLocal.id,'verifycode': userLocal.verifycode,'provider_id':mypro.provider_id,'order_id':mypro.order_id,'indx':idx})">{{"reject"| translate}}</button>
+        <button *ngIf="mypro.status == '2'" ion-button outline  color="secondary">{{"Executed"| translate}}</button>
+        <button ion-button outline (click)="navigateTo('RequestsDetail',false,{order_id:mypro.order_id})">{{'Details'|translate}}</button>
       </div>
-
     </ion-item>
-    <ion-item>
-      <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
-        <img src="assets/img/13.jpg">
-      </ion-thumbnail>
-      <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
-      <h4>{{'Request title'|translate}}</h4>
-      <p class="applicants">
-        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
-      <div class="bottom-btn">
-        <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
-      </div>
-
-    </ion-item>
-    <ion-item>
-      <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
-        <img src="assets/img/14.jpg">
-      </ion-thumbnail>
-      <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
-      <h4>{{'Request title'|translate}}</h4>
-      <p class="applicants">
-        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
-      <div class="bottom-btn">
-        <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
-      </div>
-
-    </ion-item>
-    <ion-item>
-      <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
-        <img src="assets/img/15.jpg">
-      </ion-thumbnail>
-      <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
-      <h4>{{'Request title'|translate}}</h4>
-      <p class="applicants">
-        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
-      <div class="bottom-btn">
-        <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
-      </div>
-
-    </ion-item>
-    <ion-item>
-      <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
-        <img src="assets/img/16.jpg">
-      </ion-thumbnail>
-      <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
-      <h4>{{'Request title'|translate}}</h4>
-      <p>
-        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
-      <div class="bottom-btn">
-        <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
-      </div>
-
-    </ion-item>
-    <ion-item>
-      <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
-        <img src="assets/img/17.jpg">
-      </ion-thumbnail>
-      <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
-      <h4>{{'Request title'|translate}}</h4>
-      <p class="applicants">
-        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
-      <div class="bottom-btn">
-        <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
-      </div>
-
-    </ion-item>
+    <!-- fetch more data -->
+    <p class="small" text-center *ngIf="!moreData">
+      {{'no_contents' | translate}}
+    </p>
+    <ion-infinite-scroll *ngIf="moreData" (ionInfinite)="fetchMoreData($event,projectType)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" [loadingText]="loadingText">
+        ></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <!-- nodata -->
+    <div *ngIf="noData" class="noData">
+        <ion-icon name="alert"></ion-icon>
+        <div> {{'no_my_projects' | translate}}</div>                
+    </div>
   </ion-list>
 
-  <!-- 
-
- ****
-    Executed  Projects List
-  *****
-
--->
-  <ion-list *ngIf="projectID === 'impProjects'">
-    <ion-item-sliding dir="ltr">
-      <ion-item [dir]="isRTL?'rtl':'ltr'">
-        <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
-          <img src="assets/img/12.jpg">
-        </ion-thumbnail>
-        <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
-        <h4>{{'Request title'|translate}}</h4>
-        <p class="applicants">
-          <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
-
-
-      </ion-item>
-      <ion-item-options [side]="isRTL?'right':'left'">
-        <button ion-button (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
-
-      </ion-item-options>
-
-    </ion-item-sliding>
-
-
-    <ion-item-sliding dir="ltr">
-      <ion-item [dir]="isRTL?'rtl':'ltr'">
-        <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
-          <img src="assets/img/12.jpg">
-        </ion-thumbnail>
-        <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
-        <h4>{{'Request title'|translate}}</h4>
-        <p class="applicants">
-          <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
-
-
-      </ion-item>
-      <ion-item-options [side]="isRTL?'right':'left'">
-        <button ion-button (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
-      </ion-item-options>
-
-    </ion-item-sliding>
-    <ion-item>
-      <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
-        <img src="assets/img/12.jpg">
+  <!-- REcived Projects List -->
+  <ion-list *ngIf="projectType==='recivedProjects'">
+    <ion-item *ngFor="let recPro of recivedProjects">
+      <ion-thumbnail item-start (click)="navigateTo('ProfilePage',false,{'id':recPro.user_id})">
+        <!-- <img src="assets/img/12.jpg"> -->
+        <img [src]="(recPro.avatar)?imagePath('avatars/'+recPro.avatar):'assets/img/'+recPro.gender+'.png'" alt="" />        
       </ion-thumbnail>
-      <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
-      <h4>Executed {{'Request title'|translate}}</h4>
+      <h2>{{recPro.fullname}}<span item-end class="time">{{recPro.date_added | amTimeAgo}}</span></h2>
+      <h4>{{recPro.order_title}}</h4>
       <p class="applicants">
-        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
+        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>{{recPro.applicants_count}} {{'Applicants'|translate}}</p>
       <div class="bottom-btn" [class.toright]="!isRTL">
-        <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+        <button ion-button outline (click)="navigateTo('RequestsDetail',false,{order_id:recPro.order_id})">{{'Details'|translate}}</button>
       </div>
-
     </ion-item>
-    <ion-item>
-      <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
-        <img src="assets/img/13.jpg">
+    <!-- fetch more data -->
+    <p class="small" text-center *ngIf="!moreData">
+      {{'no_contents' | translate}}
+    </p>
+    <ion-infinite-scroll *ngIf="moreData" (ionInfinite)="fetchMoreData($event,projectType)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" [loadingText]="loadingText">
+        ></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <!-- nodata -->
+    <div *ngIf="noData" class="noData">
+        <ion-icon name="alert"></ion-icon>
+        <div> {{'no_received_projects' | translate}}</div>                
+    </div>
+  </ion-list>
+
+  <!--  Pending  Projects List -->
+  <ion-list *ngIf="projectType === 'pendProjects'">
+    <ion-item *ngFor="let pendPro of pendProjects">
+      <ion-thumbnail item-start (click)="navigateTo('ProfilePage',false,{'id':pendPro.user_id})">
+        <!-- <img src="assets/img/12.jpg"> -->
+        <img [src]="(pendPro.avatar)?imagePath('avatars/'+pendPro.avatar):'assets/img/'+pendPro.gender+'.png'" alt="" />
       </ion-thumbnail>
-      <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
-      <h4>{{'Request title'|translate}}</h4>
+      <h2>{{pendPro.fullname}}<span item-end class="time">{{pendPro.date_added | amTimeAgo}}</span></h2>
+      <h4>{{pendPro.order_title}}</h4>
       <p class="applicants">
-        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
-      <div class="bottom-btn">
-        <button ion-button outline (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
+        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>{{pendPro.applicants_count}} {{'Applicants'|translate}}</p>
+      <div class="bottom-btn" [class.toright]="!isRTL">
+        <button ion-button outline (click)="navigateTo('RequestsDetail',false,{order_id:pendPro.order_id})">{{'Details'|translate}}</button>
       </div>
-
     </ion-item>
-
+    <!-- fetch more data -->
+    <p class="small" text-center *ngIf="!moreData">
+      {{'no_contents' | translate}}
+    </p>
+    <ion-infinite-scroll *ngIf="moreData" (ionInfinite)="fetchMoreData($event,projectType)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" [loadingText]="loadingText">
+        ></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <!-- nodata -->
+    <div *ngIf="noData" class="noData">
+        <ion-icon name="alert"></ion-icon>
+        <div> {{'no_pend_projects' | translate}}</div>                
+    </div>
   </ion-list>
 
-
-  <!-- 
-
- ****
-  Pending  Projects List
-  *****
-
--->
-  <ion-list *ngIf="projectID === 'pendProjects'">
-    <ion-item-sliding dir="ltr" >
-      <ion-item [dir]="isRTL?'rtl':'ltr'">
-        <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
-          <img src="assets/img/13.jpg">
-        </ion-thumbnail>
-        <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
-        <h4>pending {{'Request title'|translate}}</h4>
-        <p class="applicants">
-          <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
-
-
-      </ion-item>
-      <ion-item-options side="left">
-        <button ion-button (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
-      </ion-item-options>
-    </ion-item-sliding>
-
-
-    <ion-item-sliding dir="ltr">
-      <ion-item [dir]="isRTL?'rtl':'ltr'">
-        <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
-          <img src="assets/img/15.jpg">
-        </ion-thumbnail>
-        <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
-        <h4>pending {{'Request title'|translate}}</h4>
-        <p class="applicants">
-          <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
-
-
-      </ion-item>
-      <ion-item-options side="left">
-        <button ion-button (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding dir="ltr">
-      <ion-item [dir]="isRTL?'rtl':'ltr'">
-        <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
-          <img src="assets/img/16.jpg">
-        </ion-thumbnail>
-        <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
-        <h4>pending {{'Request title'|translate}}</h4>
-        <p class="applicants">
-          <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
-
-
-      </ion-item>
-      <ion-item-options side="left">
-        <button ion-button (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding dir="ltr">
-      <ion-item [dir]="isRTL?'rtl':'ltr'">
-        <ion-thumbnail item-start (click)="navigateTo('ProfilePage')">
-          <img src="assets/img/17.jpg">
-        </ion-thumbnail>
-        <h2>{{'Hussein Mahmoud'|translate}}<span item-end class="time">منذ ساعة</span></h2>
-        <h4>pending {{'Request title'|translate}}</h4>
-        <p class="applicants">
-          <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>10 {{'Applicants'|translate}}</p>
-
-
-      </ion-item>
-      <ion-item-options side="left">
-        <button ion-button (click)="navigateTo('RequestsDetail')">{{'Details'|translate}}</button>
-      </ion-item-options>
-    </ion-item-sliding>
-
-   
+  <!-- Executed  Projects List -->
+  <ion-list *ngIf="projectType === 'impProjects'">
+    <ion-item *ngFor="let impPro of impProjects">
+      <ion-thumbnail item-start (click)="navigateTo('ProfilePage',false,{'id':impPro.user_id})">
+        <!-- <img src="assets/img/12.jpg"> -->
+        <img [src]="(impPro.avatar)?imagePath('avatars/'+impPro.avatar):'assets/img/'+impPro.gender+'.png'" alt="" />
+      </ion-thumbnail>
+      <h2>{{impPro.fullname}}<span item-end class="time">{{impPro.date_added | amTimeAgo}}</span></h2>
+      <h4>{{impPro.order_title}}</h4>
+      <p class="applicants">
+        <ion-icon ios="ios-person-outline" md="ios-person-outline"></ion-icon>{{impPro.applicants_count}} {{'Applicants'|translate}}</p>
+      <div class="bottom-btn" [class.toright]="!isRTL">
+        <button ion-button outline (click)="navigateTo('RequestsDetail',false,{order_id:impPro.order_id})">{{'Details'|translate}}</button>
+      </div>
+    </ion-item>
+    <!-- fetch more data -->
+    <p class="small" text-center *ngIf="!moreData">
+      {{'no_contents' | translate}}
+    </p>
+    <ion-infinite-scroll *ngIf="moreData" (ionInfinite)="fetchMoreData($event,projectType)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" [loadingText]="loadingText">
+        ></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <!-- nodata -->
+    <div *ngIf="noData" class="noData">
+        <ion-icon name="alert"></ion-icon>
+        <div> {{'no_implement_projects' | translate}}</div>                
+    </div>
   </ion-list>
-
 </ion-content>

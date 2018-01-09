@@ -255,7 +255,7 @@
         <ion-col *ngFor="let service of bookDate" col-6 class="category-col">
           <div class="category" (click)="navigateTo('SubCategory',service.subCount, service.id)">
             <div class='category-img'>
-              <img [src]="(service.ser_icon)?imagePath(service.ser_icon):'assets/img/png/'+service.id+'.png'" alt="" />
+              <img [src]="(service.ser_icon)?imagePath(service.ser_icon):'assets/img/no-image.png'" alt="" />
             </div>
             <div class="title">
               <h4>{{service.service_name}}</h4>

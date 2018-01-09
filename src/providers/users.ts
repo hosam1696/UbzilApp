@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/* import { Injectable } from '@angular/core';
 import { RequestOptions, Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { API } from "./api";
@@ -438,3 +438,4 @@ export class Users {
 }
 
 
+ */

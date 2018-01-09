@@ -13,12 +13,20 @@
         <div class="my-balance">
             <div class="your-balance">
                 <h2>{{'My Balance' | translate}}</h2>
-                <h4 class="last-charge">{{'Last Recharge'|translate}}<span>{{userBalances.lastDate |  amDateFormat: 'YYYY-MM-DD hh:mmA'}}</span></h4>
+                <h4 class="last-charge">{{'Last Recharge'|translate}} <span> {{userBalances.lastDate |  amDateFormat: 'DD-MM-YYYY hh:mmA'}}</span></h4>
             </div>
+
             <h2>{{userBalances.balanceSum ? userBalances.balanceSum : '0.0' }} <span>{{'EGP'|translate}}</span></h2>
+
+            <div class="your-balance">
+                <h4 class="last-end-date">{{userBalances.trial_msg}} <span>{{userBalances.lastEndDate |  amDateFormat: 'DD-MM-YYYY'}} </span> </h4>
+            </div>
+            
             <div class="view-history">
+                <button *ngIf="userLocal.service_type != 1" ion-button outline (click)="renewMembershipmodal()">{{'renew_membership'|translate}}</button>
                 <button ion-button outline (click)="BalanceHistorymodal()">{{'view history'|translate}}</button>
             </div>
+            
         </div>
 
         <div class="recharge-div">

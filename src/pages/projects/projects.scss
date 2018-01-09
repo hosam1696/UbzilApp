@@ -4,7 +4,7 @@ page-projects {
   .segment-holder {
     padding: 0 8px;
     background-color: #fff;
-    margin-bottom: 8px;
+    //margin-bottom: 8px;
     &.padding-vertical {
       padding: 8px !important;
     }
@@ -17,11 +17,11 @@ page-projects {
         &.segment-button {
           &:first-of-type {
             
- border-top-left-radius: 4px;
- border-top-right-radius: 0;
- border-bottom-right-radius: 0;
- border-bottom-left-radius: 4px;
- margin-right: 0;
+          border-top-left-radius: 4px;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          border-bottom-left-radius: 4px;
+          margin-right: 0;
 
             
           }
@@ -38,7 +38,7 @@ page-projects {
           }
 
           display: flex;
-          height: 4.5rem !important;
+          height: 4.2rem !important;
           font-size: 1rem;
           line-height: 1.8rem !important;
           white-space: initial;
@@ -96,7 +96,7 @@ page-projects {
 
       ion-item {
         height: $thumbnail-height;
-       // margin-bottom: 8px !important;
+        margin-bottom: 8px !important;
         padding: 0px;
         border: 0px!important;
         ion-thumbnail {
@@ -157,7 +157,7 @@ page-projects {
             }
             .bottom-btn {
               position: absolute;
-              bottom: 10px;
+              bottom: 5px;
               left: 10px;
               right: auto;
               &.toright {
@@ -182,6 +182,17 @@ page-projects {
             }*/
           }
         }
+      }
+    }
+    .noData{
+      text-align: center;
+      width: 75%;
+      margin: 20% 12%;
+      font-size: 16px;
+      padding: 10px;
+      color: rgb(0, 0, 0);
+      ion-icon{
+          font-size: 70px;
       }
     }
   }

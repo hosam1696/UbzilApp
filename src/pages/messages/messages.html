@@ -9,23 +9,25 @@
 </ion-header>
 
 <ion-content class="card-background-page" parallax-header>
+    <uz-loader *ngIf="showLoader" [full]="false" [relative]="false"></uz-loader>
 
-
-    <div class="main-content">
+    <div class="main-content" *ngIf="!showLoader">
 
         <div class="inner-content">
 
             <ion-list>
-                <ion-item (click)="MessagesDetail()">
+                <ion-item *ngFor="let conv of convresationList" (click)="MessagesDetail({'fullname':conv.fullname, 'conversation_id':conv.id,'user2':conv.to,'order_id':conv.order_id,'order_title':conv.order_title})">
                     <ion-thumbnail item-start >
-                        <img src="assets/img/png/doctor.png">
+                        <!-- <img src="assets/img/png/doctor.png"> -->
+                        <img [src]="(conv.avatar)?imagePath('avatars/'+conv.avatar):'assets/img/'+conv.gender+'.png'" alt="" />        
+
                     </ion-thumbnail>
-                    <h2>{{'Vezeta_doctors'| translate}}</h2>
-                    <p>السلام عليكم كيفك استاذ حسين  </p>
+                    <h2>{{conv.fullname}}<span>{{(conv.date_added) ? (conv.date_added | amTimeAgo) :''}}</span></h2> 
+                    <p>{{conv.message}}</p>
                     <ion-icon name="arrow-back" item-right></ion-icon>
                 </ion-item>
 
-                <ion-item (click)="MessagesDetail()">
+                <!-- <ion-item (click)="MessagesDetail()">
                     <ion-thumbnail item-start >
                         <img src="assets/img/png/homeserv.png">
                     </ion-thumbnail>
@@ -62,10 +64,13 @@
                     <p>يرجى تأكيد ميعاد الحجز عند دكتور محمد</p>
                     <ion-icon name="arrow-back" item-right></ion-icon>
 
-                </ion-item> 
+                </ion-item>  -->
             </ion-list>
 
-
+            <div *ngIf="noData" class="noData">
+                <ion-icon name="alert"></ion-icon>
+                <div> {{'no_conversation_yet' | translate}}</div>                
+            </div>
         </div>
 
     </div>

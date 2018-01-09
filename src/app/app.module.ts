@@ -3,7 +3,11 @@ import { Push } from '@ionic-native/push';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { Camera } from '@ionic-native/camera';
+import {File} from '@ionic-native/file';
+import {FilePath} from '@ionic-native/file-path';
+import { Transfer} from '@ionic-native/transfer';
 
+//import {Base64} from '@ionic-native/base64'
 //import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ErrorHandler, NgModule} from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule, Platform } from 'ionic-angular';
@@ -27,9 +31,10 @@ import {AppUtilFunctions} from './appglobal/app.utilfuns';
 import {AppPlugins} from './appglobal/app.plugins.ts';
 import {UserProvider} from '../providers/user/user';
 import {ServicesProvider} from '../providers/services/services';
+import { ProjectsProvider} from '../providers/projects/project';
 import {MessagesProvider} from '../providers/messages/messages';
 import {NotificationsProvider} from '../providers/notifications/notifications';
-import { API } from '../providers/api';
+//import { API } from '../providers/api';
 import { Components } from '../providers/components';
 import {GetLocation} from "../pages/get-location/get-location";
 import { MomentModule } from 'angular2-moment';
@@ -83,15 +88,19 @@ let platform = new Platform();
     AppUtilFunctions,
     AppPlugins,
     Camera,
+    File,
+    FilePath,
+    Transfer,
     Network,
     Push,
     SMS,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserProvider,
     ServicesProvider,
+    ProjectsProvider,
     MessagesProvider,
     NotificationsProvider,
-    API,
+    //API,
     Components
   ]
 })
