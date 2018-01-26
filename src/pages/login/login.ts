@@ -40,11 +40,11 @@ export class Login {
   }
 
   userLogin(username: string, password: string) {
-    
+
     let unvalid:(i:string)=>boolean = (input: string) => !input || !input.trim();
 
     if (unvalid(username) || unvalid(password)) {
-      
+
       this.appUtils.AppToast(unvalid(username) ? 'يرجى ادخال اسم المستخدم' : 'يرجى ادخال كلمة المرور');
       unvalid(username)?(this.username=''):(this.password='')
     } else {
@@ -54,7 +54,6 @@ export class Login {
         .LoginUser({ username, password })
         .subscribe(
           userData => {
-            console.log(userData);
             if (userData.status === 'success') {
               this.appUtils.storage.set('localUserInfo', userData.data)
                 .then(() => {
@@ -63,12 +62,12 @@ export class Login {
             }
           },
           err => {
-            this.ubzilLoader = false;
             //for Dev Only
+            /*
             this.appUtils.storage.set('localUserInfo', {id:15, username:'user name'})
             .then(() => {
               this.events.publish('changeRoot', 'Tabs');
-            })
+            })*/
             if (err.error instanceof Error) {
                 console.warn('client side error', err)
             } else {
@@ -78,7 +77,7 @@ export class Login {
           () => {
             this.ubzilLoader = false;
           }
-        
+
         );
 
     }

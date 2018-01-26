@@ -1,7 +1,6 @@
 // Main Components
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController, ViewController} from 'ionic-angular';
-import {Ionic2RatingModule} from 'ionic2-rating';
 import {TranslateService} from 'ng2-translate';
 
 
@@ -26,7 +25,6 @@ export class AddReview {
         public viewCtrl: ViewController,
         public translate: TranslateService,
         private toastCtrl: ToastController,
-        public RatingModule: Ionic2RatingModule,
 
 
     ) {

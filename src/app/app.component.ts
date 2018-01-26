@@ -27,10 +27,10 @@ export class MyApp {
     ) {
         this.storage.get('localUserInfo')
             .then((ud) => {
-                (ud == null) ? (this.rootPage = 'Login') : (this.rootPage = 'Tabs')
+                (ud == null) ? (this.rootPage = 'Tabs') : (this.rootPage = 'Tabs')
                 console.log(ud);
             })
-            .catch(err => { console.warn('no user', err); this.rootPage = 'Login' });
+            .catch(err => { console.warn('no user', err); this.rootPage = 'Tabs' });
         
         this.initializeApp()
 

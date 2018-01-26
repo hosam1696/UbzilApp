@@ -109,11 +109,11 @@ export class Settings {
   }
 
     Logout() {
-    console.warn('you are attempting to log out');
-    this.appUtils.storage.remove('localUserInfo')
-      .then(() => {
-        this.events.publish('changeRoot', 'Login')
-      }).catch(err=>console.warn(err))
+      this.appUtils.storage.remove('localUserInfo')
+        .then(() => {
+          this.events.publish('changeRoot', 'Login')
+        })
+        .catch(err=>console.warn(err))
   }
 
 

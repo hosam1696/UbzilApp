@@ -117,4 +117,8 @@ export class HomePage {
   goSearchResults() {
     this.navCtrl.push('SearchResults');
   }
+
+  imagePath(img) {
+    return 'http://ubzil.com/templates/default/uploads/'+ img
+  }
 }
